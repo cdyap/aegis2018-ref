@@ -4864,26 +4864,32 @@
 
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'pages3.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'pages3.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
-csv.each do |row|
-  	@student = Student.find_by(id: row['student_id'])
-	if !@student.nil?
-	 	@student.update_attribute(:page_number, row['page_num'])
-	else
-		puts row.to_hash
-	end
-end
+# csv.each do |row|
+#   	@student = Student.find_by(id: row['student_id'])
+# 	if !@student.nil?
+# 	 	@student.update_attribute(:page_number, row['page_num'])
+# 	else
+# 		puts row.to_hash
+# 	end
+# end
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'toga3.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'toga3.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
-csv.each do |row|
-	@coursepage = CoursePage.new
-	@coursepage.page_number = row['page_num']
-	@coursepage.course = row['course']
-	@coursepage.save
-end
+# csv.each do |row|
+# 	@coursepage = CoursePage.new
+# 	@coursepage.page_number = row['page_num']
+# 	@coursepage.course = row['course']
+# 	@coursepage.save
+# end
+
+
+# Create admin account
+# Admin.create!([{email: "cdyap@outlook.com", password: "March11996$"}])
+
+
 
 

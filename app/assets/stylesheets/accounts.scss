@@ -6,14 +6,13 @@
 @import 'colors';
 
 .registrations.new form{
-	input {font-family: "Roboto";}
+	input {font-family: "Montserrat";}
 	label {
 		font-family: "Source Serif Pro";
 	}
 	h4 { 
 		color: $darkerblue;
 		margin-top: 40px;
-		font-family: "Roboto";
 		font-weight: bold;
 	}
 	.acct input {
@@ -24,14 +23,14 @@
 		margin-bottom: 20px;
 
 		p {
-			font-family: "Roboto";
+			font-family: "Montserrat";
 			font-weight: 700;
 			font-size:1.5em;
 			color: #203053;
 		}
 	}
 	.terms p, .terms ol li{
-		font-family: "Roboto";
+		font-family: "Montserrat";
 		font-size: 1.1em;
 		margin-bottom:20px;
 		ol>li {
@@ -76,7 +75,7 @@
 	}
 
 #account-details {
-	font-family: "Roboto";
+	font-family: "Montserrat";
 	h3,h2 { font-weight: 700; }
 	h2 {text-transform:uppercase;}
 }
@@ -113,7 +112,7 @@
 	}
 	form input, button {
 		font-weight: 700;
-		font-family: "Roboto";
+		font-family: "Montserrat";
 	}
 	
 }
@@ -126,12 +125,12 @@
 	.btn {
 		color: $darkerblue;
 	}
-	h4 {font-family: "Roboto";}
+	h4 {font-family: "Montserrat";}
 
 	.modal-body {
 		input {
 			font-size:1.5em;
-			font-family: "Roboto";
+			font-family: "Montserrat";
 			width: 100%;
 			border: 1px solid $darkerblue;
 		}
@@ -150,7 +149,7 @@
 			box-shadow: none;
 			appearance: none;
 			border: none;
-			font-family: "Roboto";
+			font-family: "Montserrat";
 			transition: 0.3s ease;
 			&.disable-button {
 				background:grey;
@@ -165,7 +164,7 @@
 }
 
 .confirmation-slip {
-	font-family: "Roboto";
+	font-family: "Montserrat";
 	h4 {
 		line-height: 2em!important;
 		text-indent: 50px;
@@ -189,11 +188,11 @@
 }
 
 .writeup, .edit-info {
-	font-family: "Roboto";
+	font-family: "Montserrat";
 }
 
 .writeup-body {
-	font-family: "Roboto";
+	font-family: "Montserrat";
 	font-size: 14px;
 	white-space: pre-line;
 }
@@ -218,7 +217,7 @@
 	li {
 		a {
 			font-weight: 900!important;
-			font-family: "Roboto";
+			font-family: "Montserrat";
 		}
 		padding-top: 10px;
 		padding-bottom: 10px;
@@ -232,6 +231,6 @@
 		&:active {
 			border-color: #1F2F54;
 		}
-		font-family: "Roboto";
+		font-family: "Montserrat";
 	}
 }

@@ -6,155 +6,49 @@
 /* COLORS */
 @import 'colors';
 
-h1 {
-	color: $blue;
-	font-family: "Source Serif Pro"!important;
-}
-
-h3 {
-	font-family: "Roboto"!important;
-	font-weight:600;
-}
-
-h5 {
-	font-family: "Roboto"!important;
-	font-weight:400;
-}
-
-.fc-event, .fc-event:hover, .ui-widget .fc-event {
-	background-color: #3a87ad;
-}
-
-#home-page {
-	background-image: image-url("homebg.png");
-	background-size: cover;
-	background-position: center center;
-	height: 100vh;
-	width: 100vw;
-
-	.flex {
+.sessions, .pages {
+	#login {
+		background: $blue;
 		height:100vh;
-		width: 100vw;
-		position:absolute;
-		z-index: 3;
-		// .logo-opening {
-		// 	max-height: 25vh;
-		// 	min-width:200px;
-		// 	margin-bottom: 30px;
-		// }
+		width:100vw;
+		color: white;
 
-		h4 {
-			font-family: "Roboto";
-			font-weight:900;
-			text-align: center;
-			color:white;
-		}
-		h1 { color: white;}
-		a { 
-			font-family: "Roboto";
-			font-weight:400;
-			color: white;
-			text-align: center;
-		}
-		p {text-align: center;}
-	}
-	
-	.arrow-down {
-		width: 100px;
-		position:absolute;
-		bottom:20px;
-		margin-left: auto;
-		margin-right: auto;
-		z-index: 5;
-		left:0;
-		right:0;
-	}
-}
-
-.section {
-	padding-top: 50px;
-	padding-bottom: 50px
-}
-	#calendar { font-family: "Source Serif Pro"; }
-	#calendar table { font-family: "Roboto"; }
-	#faq {
-		background: #C7DAE9;
-		h3 {font-family: "Source Serif Pro";}
-		section {
-			margin-top: 30px;
-			margin-bottom:40px;
-			h4 {
-				font-family: "Roboto";
-				font-weight: 700
-			}
-			p {
-				font-family: "Roboto";
-				font-weight: 400;
-				font-size: 1.1em;
-				a {
-					color: $blue;
-					text-decoration: underline;
-					font-weight:700;
-				}
-				a:hover {
-					text-decoration:none;
-					background: none;
-				}
-			}
-
-			.bold {
-				font-weight:700;
-			}
-		}
-	}
-	#contactus{
-		a{
-			font-weight:bold;
-			color:#111d37;
-		}
-	}
-	@media secreen and (min-width 300px){
-		.reminder-photo{
-			max-height: 320px;
-			margin-left:0;
-		}
-	}
-	@media secreen and (min-width 800px){
-		.reminder-photo{
-			max-height: 380px;
-			margin-left: 10%;
+		.remember.field {
+			width:100%
 		}
 	}
 
+	h4 {
+		font-weight:300;
+		font-family: "Montserrat";
+	}
 
-#new_contact {
-	label {
-		font-family: "Roboto";
-		display: block;
+	form input[type="text"],form input[type="password"] {
+		background-color:$blue;
+		color:white;
+		font-weight:300!important;
+		border-radius:0;
 		font-size: 1.1em;
-	}
-	input[type="text"], input[type="email"],textarea {
-		width:90%;
-		padding: 10px 20px;
-		margin:8px 0;
-		margin-bottom: 20px;
-		box-sizing:border-box;
-		border-radius:0; 
-		background-color:#e6e6e6;
+		height:auto;
 		box-shadow: none;
 		appearance: none;
-		border: 0;
-		font-family: "Roboto";
-
+		border: 1px #8C9699 solid;
+		margin-bottom:30px;
 		&:focus {
-			border:1px solid $darkerblue;
-		  box-shadow: none;
-		  -webkit-box-shadow: none;
-		  -moz-box-shadow: none;
-		  -moz-transition: none;
-		  -webkit-transition: none;
-		  outline: 0 none;
+			border-color:white;
+			outline:none;
+			-webkit-box-shadow: none !important;
+		    -moz-box-shadow: none !important;
+		    box-shadow: none !important;
 		}
 	}
 
+	.links {
+		margin-top:30px;
+		a {color: white;}
+	}
+
+	@media (min-width: 768px) {
+		
+	}
 }
