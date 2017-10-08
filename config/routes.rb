@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       get 'accounts'
       get 'students'
       get 'timeslots'
-      get 'writeups'
+      # get 'writeups'
       post 'clean_timeslots'
     end
   end
@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       post 'admin_writeup'
       post 'reset_writeup'
       post 'reset_feedback'
+      post 'reset_timeslot'
       post 'sign_up'
       post 'photoshoot'
       post 'reschedule'

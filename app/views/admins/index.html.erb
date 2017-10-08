@@ -1,31 +1,3 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><%= link_to 'DASHBOARD', admins_path, method: :get %></li>
-        <li class=""><%= link_to 'STUDENTS', students_admins_path, method: :get %></li>
-        <li><%= link_to 'ACCOUNTS', accounts_admins_path, method: :get %></li>
-        <li><%= link_to 'TIMESLOTS', timeslots_admins_path, method: :get %></li>
-        <li><%= link_to 'WRITEUPS', writeups_admins_path, method: :get %></li>
-        <li><%= link_to "LOG OUT", destroy_admin_session_path, :method => :delete %></a>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
 <div class="container with-fixed-navbar">
  <h4 class="center-align"><%= flash[:notice] %></h4>
   <div class="row">
@@ -99,7 +71,7 @@
           </td>
         </tr>
         <tr>
-          <td>Student - Account: </td>
+          <td>Students w/ true account, w/o actual account: </td>
           <td class="left-align">
             <% @a.each do |student| %>
               <%= student.id %> <br/>
@@ -107,7 +79,7 @@
           </td>
         </tr>
         <tr>
-          <td>Account - Student: </td>
+          <td>Accounts w/o student record: </td>
           <td class="left-align">
             <% @b.each do |account| %>
               <%= account.student_id %> <br/>
@@ -115,28 +87,34 @@
           </td>
         </tr>
       </table>
-      <h3 class="center-align">Change Student Record</h3>
+      <h3 class="text-left">Sync student record to account record</h3>
       <form action="/students/reset" method="POST">
-        <input type="number" name="id">
-        <button type="submit">Change</button>
+        <input type="number" name="id" placeholder="Enter ID number">
+        <button type="submit">SYNC</button>
       </form>
 
-      <h3 class="center-align">Transfer Student Details</h3>
+      <h3 class="text-left">Copy student details to account</h3>
       <form action="/students/transfer" method="POST">
-        <input type="number" name="id">
-        <button type="submit">Transfer</button>
+        <input type="number" name="id" placeholder="Enter ID number">
+        <button type="submit">COPY</button>
       </form>
 
-      <h3 class="center-align">Reset Finalized Write-up</h3>
+      <h3 class="text-left">Reset photoshoot timeslot</h3>
+      <form action="/accounts/reset_timeslot" method="POST">
+        <input type="number" name="id" placeholder="Enter ID number">
+        <button type="submit">RESET</button>
+      </form>
+
+      <h3 class="text-left">Reset finalized write-up</h3>
       <form action="/accounts/reset_writeup" method="POST">
-        <input type="number" name="id">
-        <button type="submit">Transfer</button>
+        <input type="number" name="id" placeholder="Enter ID number">
+        <button type="submit">RESET</button>
       </form>
 
-      <h3 class="center-align">Reset Feedback</h3>
+      <h3 class="text-left">Reset feedback</h3>
       <form action="/accounts/reset_feedback" method="POST">
-        <input type="number" name="id">
-        <button type="submit">Reset</button>
+        <input type="number" name="id" placeholder="Enter ID number">
+        <button type="submit">RESET</button>
       </form>
 
     </div>

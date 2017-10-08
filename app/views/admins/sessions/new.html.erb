@@ -1,59 +1,56 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<div class="container-fluid admins" id="login">
+  <div class="row center-vertical">
+    <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+      <div class="col-xs-12">
+        <h1 class="text-center">Admin Area</h1>
+        <h3 class="text-center">Aegis 2018</h3>
+      </div>
+      <% if notice %>
+      <p class="notice text-center"><%= notice %></p>
+      <% elsif alert %>
+      <p class="alert text-center"><%= alert %></p>
+      <%end%>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "center"}) do |f| %>
+        <%= devise_error_messages! %>
+          <div class="row">
+            <div class="field col-xs-12">
+                <h4>Email:</h4>
+                <%= f.text_field :email, required: false, autofocus: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field col-xs-12">
+                <h4>Password:</h4>
+                <%= f.password_field :password, required: false, class: "form-control" %>
+            </div>
+          </div>
+             <div class="row">
+                <div class="field col-xs-12">
+                    <% if devise_mapping.rememberable? -%>
+                    <div class="row" style="margin-bottom:40px;">
+                      <div class="field flex">
+                        <%= f.check_box :remember_me, style: "float: left;" %>
+                        <%= f.label :remember_me, class: "checkbox-inline", style: "float:left;margin-top:5px;font-weight:400"%>
+                      </div>
+                    </div>
+                  <% end -%>
+                </div>
+             </div>
 
-    </div>
+        <div class="actions row">
+          <%= f.submit "LOGIN", class: "btn btn-default center" %>
+        </div>
+        <div class="row links text-center">
+          <%= render "admins/shared/links" %> 
+          <br>
+        </div>
+        
+      <% end %>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'HOME', root_path, method: :get %></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<div class="container with-fixed-navbar">
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-2">
-      <h2>Admin Log-In</h2>
     </div>
   </div>
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-	<p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-	<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<%= devise_error_messages! %>
-	  	<div class="row">
-            <div class="field col-xs-12">
-              	<%= f.input :email, required: false, autofocus: true %>
-            </div>
-         </div>
-         <div class="row">
-            <div class="field col-xs-12">
-			    <%= f.input :password, required: false %>
-            </div>
-         </div>
-         <div class="row">
-            <div class="field col-xs-12">
-			    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-            </div>
-         </div>
-
-	  <div class="form-actions">
-	    <%= f.button :submit, "LOGIN" %>
-	  </div>
-	<% end %>
-	<br>
-	<%= render "admins/shared/links" %>
-	</div>
 </div>
+
+
+
 

@@ -32,28 +32,38 @@ class StudentsController < ApplicationController
 	end
 
 	def reset
-		@student = Student.find(params[:id])
-		if @student.account == false
-			@student.update_attributes(account: true)
+		@student = Student.find_by_id(params[:id])
+		if @student
+			if @student.account == false
+				@student.update_attributes(account: true)
+			else 
+				@student.update_attributes(account: false)
+			end
+			flash[:notice] = "Student #{@student.id} account set to #{@student.account}."
+			redirect_to :back
 		else 
-			@student.update_attributes(account: false)
+			flash[:notice] = "Student " + params[:id] +" not found."
+			redirect_to :back
 		end
-		flash[:notice] = "Student #{@student.id} account set to #{@student.account}."
-		redirect_to :back
 	end
 
 	def transfer
-		@student = Student.find(params[:id])
-		@account = Account.where(student_id: params[:id]).first
+		@student = Student.find_by_id(params[:id])
+		if @student
+			@account = Account.where(student_id: params[:id]).first
 
-		@account.name = @student.name
-		@account.yr = @student.yr
-		@account.course = @student.course
-		@account.school = @student.school
+			@account.name = @student.name
+			@account.yr = @student.yr
+			@account.course = @student.course
+			@account.school = @student.school
 
-		@account.save(validate: false)
+			@account.save(validate: false)
 
-		flash[:notice] = "Student #{@student.id} account details restored."
-		redirect_to :back		
+			flash[:notice] = "Student #{@student.id} account details restored."
+			redirect_to :back	
+		else 
+			flash[:notice] = "Student " + params[:id] +" not found."
+			redirect_to :back
+		end	
 	end
 end

@@ -2,6 +2,7 @@
 class AdminsController < ApplicationController
 	before_filter :authenticate_admin!
 	skip_before_action :verify_authenticity_token
+	layout :resolve_layout
 
 	def new
 		redirect_to root_path
@@ -94,7 +95,7 @@ class AdminsController < ApplicationController
 	end
 
 	def accounts
-		@accounts = Account.where.not(feedback: nil).order('student_id ASC').paginate(:page => params[:page], :per_page => 60)
+		@accounts = Account.order('student_id ASC').paginate(:page => params[:page], :per_page => 60)
 
 		@account_number = Account.count
 	end
@@ -117,4 +118,13 @@ class AdminsController < ApplicationController
 	      format.xls
 	    end
 	end
+
+	private
+
+	  def resolve_layout 
+	  	case action_name 
+	  	when "index", "sign_ups"
+	  		"admins"
+	  	end
+	  end
 end

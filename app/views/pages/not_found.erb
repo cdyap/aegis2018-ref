@@ -1,8 +1,6 @@
-<div id="home-page">
-	<div class="flex container">
-		<div class="row">
-			<h1>Page not found.</h1><br><br>
-			<p><%= link_to "Go back", root_path, method: :get %></p>
-		</div>
+<div class="not_found flex">
+	<div>
+		<h1 class="text-center">Page not found.</h1><br><br>
+		<%= button_to "GO BACK", root_path, method: :get, class: 'center' %>
 	</div>
 </div>

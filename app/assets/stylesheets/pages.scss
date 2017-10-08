@@ -26,7 +26,7 @@
 		font-family: "Montserrat";
 	}
 
-	form input[type="text"],form input[type="password"] {
+	form input[type="text"],form input[type="password"], form input[type="email"] {
 		background-color:$blue;
 		color:white;
 		font-weight:300!important;
@@ -54,4 +54,11 @@
 	@media (min-width: 768px) {
 		
 	}
+}
+
+.not_found {
+	height:100vh;
+	width:100vw;
+	background: $blue;
+	color: white;
 }

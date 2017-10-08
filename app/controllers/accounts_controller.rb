@@ -283,6 +283,24 @@ class AccountsController < ApplicationController
 		end
 	end
 
+	def reset_timeslot
+		@student = Account.find_by(student_id: params[:id])
+		if @student.present? && !@student.timeslot_id.nil? 
+			@timeslot = Timeslot.find(@student.timeslot_id)
+			@slots = @timeslot.slots
+			@timeslot.update(slots: @slots + 1)
+			@student.update_attributes(timeslot_id: nil)
+			flash[:notice] = "Student #{params[:id]} removed from timeslot."
+			redirect_to :back
+		elsif @student.present? && @student.timeslot_id.nil?
+			flash[:notice] = "Account #{params[:id]} has no timeslot yet."
+			redirect_to :back
+		else
+			flash[:notice] = "Account #{params[:id]} not found."
+			redirect_to :back
+		end
+	end
+
 	def reset_feedback
 		@student = Account.find_by(student_id: params[:id])
 
