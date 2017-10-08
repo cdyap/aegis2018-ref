@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#index'
+  root 'accounts#index'
 
   match '/contacts', to: 'pages#index', via: 'get'
   resources "contacts", only: [:new, :create]
@@ -56,8 +56,8 @@ Rails.application.routes.draw do
       post 'sign_up'
       post 'photoshoot'
       post 'reschedule'
-      get 'timeslots'
-      # get 'view_writeup'
+      # get 'timeslots'
+      get 'view_writeup'
       get 'add_writeup'
       get 'edit_info'
       get 'submit_writeup'

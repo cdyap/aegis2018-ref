@@ -79,9 +79,8 @@ class Account < ActiveRecord::Base
   end
 
   def can_login
-
+    return true
     # @end = Time.new(2017,3,1,0)
-return false
     # if Time.now >= @end
     #   return true
     # else

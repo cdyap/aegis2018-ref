@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   	protect_from_forgery with: :exception
 
-  	  def after_sign_in_path_for(resource)
+  	def after_sign_in_path_for(resource)
   	  	# raise resource.inspect
 	    # check for the class of the object to determine what type it is
 	    if resource.class == Admin
@@ -11,5 +11,14 @@ class ApplicationController < ActionController::Base
 	    elsif resource.class == Account
 	      accounts_path
 	    end 
-	  end
+	end
+
+  	protected
+	  	def authenticate_user!
+	    	if !account_signed_in?
+	      		redirect_to new_account_session_path
+	      ## if you want render 404 page
+	      ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
+	    	end
+	  	end
 end

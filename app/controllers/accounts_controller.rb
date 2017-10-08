@@ -1,6 +1,8 @@
 class AccountsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	before_filter :check_for_cancel, :only => [:add_writeup, :edit_info]
+	before_filter :authenticate_user!
+	layout :resolve_layout
 
 	def index
 		@school = current_account.school
@@ -30,9 +32,23 @@ class AccountsController < ApplicationController
 			@timeslot = Timeslot.find(current_account.timeslot_id)
 		end
 
-		@dates = ["2016-10-17", "2016-10-18", "2016-10-19", "2016-10-20","2016-10-21","2016-10-22","2016-10-24","2016-10-25","2016-10-26", "2016-10-27","2016-10-28","2016-10-29","2016-11-03","2016-11-04","2016-11-07","2016-11-08","2016-11-09","2016-11-10","2016-11-14","2016-11-15"]
+		@dates = []
 
-		@slots = Timeslot.where(date: @dates).order(:start_time)
+		case current_account.school
+		when "SOH"
+			@dates = ["2017-10-23", "2017-10-24", "2017-10-25"]
+			@slots = Timeslot.where(date: @dates).order(:start_time)
+		when "SOSS"
+			@dates = ["2017-10-26", "2017-10-27", "2017-10-28", "2017-10-30", "2017-11-02", "2017-11-03"]
+			@slots = Timeslot.where(date: @dates).order(:start_time)
+		when "SOSE"
+			@dates = ["2017-11-04", "2017-11-06", "2017-11-07", "2017-11-08", "2017-11-09"]
+			@slots = Timeslot.where(date: @dates).order(:start_time)
+		when "SOM"
+			@dates = ["2017-11-10", "2017-11-11", "2017-11-13", "2017-11-14", "2017-11-15", "2017-11-16"]
+			@slots = Timeslot.where(date: @dates).order(:start_time)
+		end
+
 	end
 
 	def search 
@@ -77,27 +93,27 @@ class AccountsController < ApplicationController
 	end
 
 	def sign_up
-	# 	@timeslot = Timeslot.find(params[:slot_id])
+		@timeslot = Timeslot.find(params[:slot_id])
 
-	# 	if @timeslot.slots > 0
+		if @timeslot.slots > 0
 			
-	# 		@timeslot.slots = @timeslot.slots - 1
-	# 		if @timeslot.slots < 0
-	# 			flash[:alert] = "Slot already taken."
-	# 			redirect_to sign_ups_accounts_path
-	# 		else
-	# 			@timeslot.save
-	# 			current_account.timeslot_id = params[:slot_id]
-	# 			current_account.save(validate: false)
-	# 		end
+			@timeslot.slots = @timeslot.slots - 1
+			if @timeslot.slots < 0
+				flash[:alert] = "Slot already taken."
+				redirect_to sign_ups_accounts_path
+			else
+				@timeslot.save
+				current_account.timeslot_id = params[:slot_id]
+				current_account.save(validate: false)
+			end
 
-	# 		redirect_to sign_ups_accounts_path
-	# 	elsif @timeslot.slots == 0
-	# 		flash[:alert] = "Slot already taken."
-	# 		redirect_to sign_ups_accounts_path
-	# 	end
-		flash[:alert] = "You may not sign up."
-		redirect_to :back
+			redirect_to sign_ups_accounts_path
+		elsif @timeslot.slots == 0
+			flash[:alert] = "Slot already taken."
+			redirect_to sign_ups_accounts_path
+		end
+		# flash[:alert] = "You may not sign up."
+		# redirect_to :back
 	end
 
 	def group_signup
@@ -316,4 +332,22 @@ class AccountsController < ApplicationController
 	def account_params
 	  params.require(:account).permit(:writeup, :double_major, :minor, :cellphone_number, :full_course, :second_status, :email, :feedback)
 	end
+
+	private
+
+	  def process(action, *args)
+	    super
+	  	rescue AbstractController::ActionNotFound
+	    respond_to do |format|
+	      format.html { render file: "#{Rails.root}/public/404.html" , status: 404}
+	      format.all { render nothing: true, status: :not_found }
+	    end
+	  end
+
+	  def resolve_layout 
+	  	case action_name 
+	  	when "index", "sign_ups"
+	  		"accounts"
+	  	end
+	  end
 end

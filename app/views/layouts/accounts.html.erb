@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AEGIS 2017</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= favicon_link_tag 'favicon.png' %>
+	<%= favicon_link_tag 'favicon.ico' %>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:image" content="<%=image_path('loader.png')%>" />
+	<meta charset="UTF-8">
+	<meta property="og:description" content="The official college yearbook of the Ateneo de Manila University." />
+
+	<meta property="og:url" content="http://aegis2017.com" />
+
+	<meta property="og:title" content="AEGIS 2017" />
+	<%= csrf_meta_tags %>
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+	<div class="container-fluid">
+		<div class="row account_header navbar-fixed-top">
+			<div class="col-xs-12 logo-name">
+				<%= image_tag "header.jpg", class: "account_header_img" %> <span><%= current_account.name %></span>
+			</div>
+			<div class="col-xs-12">
+				<div class="navbar-header">
+			      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+			      	</button>
+
+			    </div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      	<ul class="nav navbar-nav">
+			        <!-- <li><%# link_to 'HOME', root_path, method: :get %></li> -->
+			        	<li class="<%= action_name == 'index' ? 'active' : ''%>"><%= link_to 'ACCOUNT', accounts_path, method: :get %></li>
+			        	<li class="<%= action_name == 'sign_ups' ? 'active' : ''%>"><%= link_to 'PHOTOSHOOT SIGNUPS', sign_ups_accounts_path, method: :get %></li>
+			        <!-- <li><%# link_to 'YEARBOOK PREVIEW', yearbook_preview_accounts_path, method: :get %></li> -->
+			        	<li><%= link_to "LOG OUT", destroy_account_session_path, :method => :delete %></a></li>
+			      	</ul>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<%= yield %>
+</body>
+</html>

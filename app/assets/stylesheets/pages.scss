@@ -6,6 +6,9 @@
 /* COLORS */
 @import 'colors';
 
+.header {
+	height: 100px;
+}
 .sessions, .pages {
 	#login {
 		background: $blue;

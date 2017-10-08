@@ -5,102 +5,196 @@
 /* COLORS */
 @import 'colors';
 
-.registrations.new form{
-	input {font-family: "Montserrat";}
-	label {
-		font-family: "Source Serif Pro";
-	}
-	h4 { 
-		color: $darkerblue;
-		margin-top: 40px;
-		font-weight: bold;
-	}
-	.acct input {
-			width: 70%;
+.account_header {
+	background: $blue;
+	box-shadow: 0 0 50px 0 rgba(0,0,0,0.1);
+	.logo-name {
+		img {
+			height:45px;
+			margin-left:10px;
+			// margin-bottom:20px;
 		}
-
-	.field {
-		margin-bottom: 20px;
-
-		p {
-			font-family: "Montserrat";
-			font-weight: 700;
-			font-size:1.5em;
-			color: #203053;
+		span { 
+			color: white; 
+			font-weight:700;
+			font-size:1em;
+			margin-right:15px;
+			margin-bottom:15px;
+			letter-spacing: 1.5px;
+			display: inline-block;
+			margin-top:20px;
+			float:right;
 		}
 	}
-	.terms p, .terms ol li{
+
+	div.collapse {
+		padding-left: 0;
+	}
+
+	span.icon-bar {
+		background: white;
+		border-radius: 0px;
+	}
+
+	li a {
+		color:white;
 		font-family: "Montserrat";
-		font-size: 1.1em;
-		margin-bottom:20px;
-		ol>li {
-			margin-bottom:20px;
+		font-weight: 400;
+		letter-spacing: 1.2px;
+	}
+
+	li.active {
+		a {
+			font-weight:700;
+			color: $blue;
+			background-color: #F2F2F2;
 		}
-		ol {margin-top:20px;}
-	}
-	ol {
-	    counter-reset: item;
 	}
 
-	ol > li {
-	    counter-increment: item;
-	}
-
-	ol ol > li {
-	    display: block;
-	}
-
-	ol ol > li:before {
-	    content: counters(item, ".") ". ";
-	    margin-left: -20px;
-	}
-
-	input[type="submit"] {
-		margin-top:50px;
+	li a:hover {
+		background-color: $lightblue!important;
+		color: $blue;
 	}
 }
 
-.disable-button {
-	background:grey;
-	color: white;
-	&:hover {background-color: grey;}
+.card-index {
+	
+	padding: 20px 30px;
+	color:white;
+	box-shadow:10px 10px #E6E6E6;
+	padding-bottom:35px;
+	margin-top:25px;
+	transition: 0.3s ease;
+	// &:hover {
+	// 	cursor: pointer;
+	// 	box-shadow:17px 17px $lightblue;
+	// }
 }
 
-	.regform_fields {
-		padding: 10px 20px;
-		margin:8px 0;
-		box-sizing:border-box;
-		border-radius:0; 
-		background-color:#e6e6e6;
+.card-success {
+	background-color: $blue;
+}
+
+.card-warning {
+	background-color: #bf6d10;
+}
+
+@media (max-width: 767px) {
+	.accounts {
+		.row {
+			margin-left: 0;
+			margin-right:0;
+		}
 	}
-
-#account-details {
-	font-family: "Montserrat";
-	h3,h2 { font-weight: 700; }
-	h2 {text-transform:uppercase;}
 }
+// .registrations.new form{
+// 	input {font-family: "Montserrat";}
+// 	label {
+// 		font-family: "Source Serif Pro";
+// 	}
+// 	h4 { 
+// 		color: $darkerblue;
+// 		margin-top: 40px;
+// 		font-weight: bold;
+// 	}
+// 	.acct input {
+// 			width: 70%;
+// 		}
+
+// 	.field {
+// 		margin-bottom: 20px;
+
+// 		p {
+// 			font-family: "Montserrat";
+// 			font-weight: 700;
+// 			font-size:1.5em;
+// 			color: #203053;
+// 		}
+// 	}
+// 	.terms p, .terms ol li{
+// 		font-family: "Montserrat";
+// 		font-size: 1.1em;
+// 		margin-bottom:20px;
+// 		ol>li {
+// 			margin-bottom:20px;
+// 		}
+// 		ol {margin-top:20px;}
+// 	}
+// 	ol {
+// 	    counter-reset: item;
+// 	}
+
+// 	ol > li {
+// 	    counter-increment: item;
+// 	}
+
+// 	ol ol > li {
+// 	    display: block;
+// 	}
+
+// 	ol ol > li:before {
+// 	    content: counters(item, ".") ". ";
+// 	    margin-left: -20px;
+// 	}
+
+// 	input[type="submit"] {
+// 		margin-top:50px;
+// 	}
+// }
+
+// .disable-button {
+// 	background:grey;
+// 	color: white;
+// 	&:hover {background-color: grey;}
+// }
+
+// 	.regform_fields {
+// 		padding: 10px 20px;
+// 		margin:8px 0;
+// 		box-sizing:border-box;
+// 		border-radius:0; 
+// 		background-color:#e6e6e6;
+// 	}
+
+// #account-details {
+// 	font-family: "Montserrat";
+// 	h3,h2 { font-weight: 700; }
+// 	h2 {text-transform:uppercase;}
+// }
 
 #account-sign-ups {
-	h3 {text-transform: uppercase;}
+	h3 {
+		font-weight:700;
+		letter-spacing: 1.2px;
+	}
+	p {
+		margin-bottom:0;
+		margin-top:5px;
+	}
+
+	p:first-child {
+		margin-top:10px;
+	}
 }
 
-@media (max-width: 767px){
+// @media (max-width: 767px){
 
-}
-@media (min-width: 768px) {
-	#account-details {
-		border-right:1px solid black;
-		min-height: 90vh;
-	}	
-}
+// }
+// @media (min-width: 768px) {
+// 	#account-details {
+// 		border-right:1px solid black;
+// 		min-height: 90vh;
+// 	}	
+// }
 
-.writeup a {
-	color: $blue!important;
-	text-decoration: underline!important;
-}
+// .writeup a {
+// 	color: $blue!important;
+// 	text-decoration: underline!important;
+// }
 
 .accounts.sign_ups table, .accounts.group_signups table{
 	margin-top: 30px;
+	margin-bottom:100px;
 	.success {
 		background: #dff0d8;
 	}
@@ -117,9 +211,9 @@
 	
 }
 
-#account-details {
-	padding-right: 20px;
-}
+// #account-details {
+// 	padding-right: 20px;
+// }
 
 .sign_ups, .group_signups, .index {
 	.btn {
@@ -127,6 +221,38 @@
 	}
 	h4 {font-family: "Montserrat";}
 
+	.modal-title {
+		letter-spacing: 1.2px;
+		margin-top:30px;
+	}
+
+	.modal-content {
+		border-radius: 0;
+		background: $blue;
+		color: white;
+	}
+
+	.modal-header {
+		padding-top:10px;
+		border-bottom:none;
+		button.close {
+			margin-top:15px;
+		}
+	}
+
+	.close {
+		color:white;
+		opacity:0.5;
+		line-height:0;
+		font-size:30px;
+		font-weight:400;
+		margin-top:10px;
+
+		&:hover {
+			opacity:1;
+			color:white;
+		}
+	}
 	.modal-body {
 		input {
 			font-size:1.5em;
@@ -135,29 +261,32 @@
 			border: 1px solid $darkerblue;
 		}
 
+		h2 {
+			font-weight:700;
+		}
+
 		button[type="submit"] {
-			display: block;
-			margin-top: 10px;
-			margin-left: auto;
-			margin-right: auto;
-			background-color:$darkerblue;
-			color:#79ADD2;
-			font-weight:bold;
+			background-color:#C4E0F9;
+			color:#041133;
+			font-weight:700;
 			border-radius:0;
 			font-size: 1.3em;
 			padding: 10px 20px;
 			box-shadow: none;
 			appearance: none;
 			border: none;
-			font-family: "Montserrat";
 			transition: 0.3s ease;
+			margin-bottom:50px;
+			margin-top:20px;
 			&.disable-button {
 				background:grey;
 				color: white;
 				&:hover {background-color: grey;}
 			}
 			&:hover {
-				background-color: $blue;
+				box-shadow:7px 7px #E6E6E6;
+				background-color: #C4E0F9;
+				color: #041133;
 			}
 		}
 	}
@@ -175,62 +304,62 @@
 	}
 }
 
-.account-submit {
-	width: 25%;
-}
+// .account-submit {
+// 	width: 25%;
+// }
 
-.edit-account label{
-  width: 4em;
-  float: left;
-  text-align: right;
-  margin-right: 0.5em;
-  display: block
-}
+// .edit-account label{
+//   width: 4em;
+//   float: left;
+//   text-align: right;
+//   margin-right: 0.5em;
+//   display: block
+// }
 
-.writeup, .edit-info {
-	font-family: "Montserrat";
-}
+// .writeup, .edit-info {
+// 	font-family: "Montserrat";
+// }
 
-.writeup-body {
-	font-family: "Montserrat";
-	font-size: 14px;
-	white-space: pre-line;
-}
+// .writeup-body {
+// 	font-family: "Montserrat";
+// 	font-size: 14px;
+// 	white-space: pre-line;
+// }
 
-.writeup div {
-	height: auto;
-}
+// .writeup div {
+// 	height: auto;
+// }
 
-.disabledwriteup {
-	background:grey;
-	color:white;
-}
+// .disabledwriteup {
+// 	background:grey;
+// 	color:white;
+// }
 
-.writeup.form-control {
-	margin-top: 30px;
-	width: 100%;
-}
+// .writeup.form-control {
+// 	margin-top: 30px;
+// 	width: 100%;
+// }
 
-.shoot-dropdown {
-	background-color: $blue!important;
+// .shoot-dropdown {
+// 	background-color: $blue!important;
 	
-	li {
-		a {
-			font-weight: 900!important;
-			font-family: "Montserrat";
-		}
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
-}
+// 	li {
+// 		a {
+// 			font-weight: 900!important;
+// 			font-family: "Montserrat";
+// 		}
+// 		padding-top: 10px;
+// 		padding-bottom: 10px;
+// 	}
+// }
 
-.concerns-form {
-	input, textarea {
-		border-radius:0px;
-		border: 1px solid #1F2F54;
-		&:active {
-			border-color: #1F2F54;
-		}
-		font-family: "Montserrat";
-	}
-}
+// .concerns-form {
+// 	input, textarea {
+// 		border-radius:0px;
+// 		border: 1px solid #1F2F54;
+// 		&:active {
+// 			border-color: #1F2F54;
+// 		}
+// 		font-family: "Montserrat";
+// 	}
+// }
