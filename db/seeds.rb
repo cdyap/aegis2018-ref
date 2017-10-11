@@ -1,3 +1,155 @@
+require 'csv'
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'accounts.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+Account.destroy_all
+
+csv.each do |row|
+	@account = Account.new
+	@account.student_id = row['student_id']
+	@account.username = row['username']
+	@account.course = row['course']
+	@account.email = row['email']
+	@account.name = row['name']
+	@account.school = row['school']
+	@account.minor = row['minor']
+	@account.double_major = row['double_major']
+	@account.cellphone_number = row['cellphone_number']
+	@account.is_graduating = row['is_graduating']
+	@account.password = row['encrypted_password']
+
+	begin
+	  	@account.save!
+	rescue
+		puts @account.email
+	end
+end
+
+
+# danacarmella@gmail.com
+# miggytolentino96@gmail.com
+# kylejacobpoe@gmail.com
+# trisha.guillermo@obf.ateneo.edu
+# ronni.antonio@obf.ateneo.edu
+# vincent.chua@obf.ateneo.edu
+# johhnchua714@gmail.com
+# kelregrey@gmail.com
+# yumark@rocketmail.com
+# jusin.lee@obf.ateneo.edu
+# richard.guzman@obf.ateneo.edu
+# andreahing@yahoo.com
+# paolo.villegas@obf.ateneo.edu
+# jcmendiola001@gmail.com
+# giannaraediaz@google.com
+# chnpineda@gmail.com
+# nikkilazatin@yahoo.com.ph
+# jenina.lim@obf.ateneo.edu
+# jazmasigan@gmail.com
+# daren.andal@obf.ateneo.edu
+# krishna.magallanes@obf.ateneo.edu
+# ysabela.blahan@obf.ateneo.edu
+# ria_mce@yahoo.com
+# johnlloydmatias7@gmail.com
+# markmateobalmes@gmail.com
+# jongminyim@gmail.com
+# mciah.rimando@obf.ateneo.edu
+# staaana.celina@yahoo.com
+# darah.ferrer@obf.ateneo.edu
+# kacieannp@gmail.com
+# jadrianchan1@gmail.com
+# joseph.singson@obf.ateneo.edu
+
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'toga3.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
+# csv.each do |row|
+# 	@coursepage = CoursePage.new
+# 	@coursepage.page_number = row['page_num']
+# 	@coursepage.course = row['course']
+# 	@coursepage.save
+# end
+
+# Timeslot.delete_all
+# # Create admin account
+# # Admin.create!([{email: "cdyap@outlook.com", password: "March11996$"}])
+# Date.new(2017, 10, 23).upto(Date.new(2017, 10, 28)) do |date|
+# 	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
+# end
+
+# Date.new(2017, 11, 2).upto(Date.new(2017, 11, 4)) do |date|
+#   	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
+# end
+
+# Date.new(2017, 11, 6).upto(Date.new(2017, 11, 11)) do |date|
+#   	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
+# end
+
+# Date.new(2017, 11, 13).upto(Date.new(2017, 11, 18)) do |date|
+#   	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
+# end
+
+# Date.new(2017, 11, 20).upto(Date.new(2017, 11, 23)) do |date|
+#   	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
+# 	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
+# end
+
+# date = Date.new(2017,10,30)
+
+# Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
+# Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
+
 # # # Student.create!([
 # # #   {id: 111538, name: "FERNANDEZ, THOMAS SEBASTIAN J.", yr: 4, course: "BFA AM", school: "SOH", account: false},
 # # #   {id: 112793, name: "NGO, RICSSON W.", yr: 4, course: "BSM AMF", school: "SOSE", account: false},
@@ -4861,108 +5013,3 @@
 #   {idnumber: 135039},
 #   {idnumber: 135042}
 # ])
-
-require 'csv'
-
-# csv_text = File.read(Rails.root.join('lib', 'seeds', 'pages3.csv'))
-# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-
-# csv.each do |row|
-#   	@student = Student.find_by(id: row['student_id'])
-# 	if !@student.nil?
-# 	 	@student.update_attribute(:page_number, row['page_num'])
-# 	else
-# 		puts row.to_hash
-# 	end
-# end
-
-# csv_text = File.read(Rails.root.join('lib', 'seeds', 'toga3.csv'))
-# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-
-# csv.each do |row|
-# 	@coursepage = CoursePage.new
-# 	@coursepage.page_number = row['page_num']
-# 	@coursepage.course = row['course']
-# 	@coursepage.save
-# end
-
-Timeslot.delete_all
-# Create admin account
-# Admin.create!([{email: "cdyap@outlook.com", password: "March11996$"}])
-Date.new(2017, 10, 23).upto(Date.new(2017, 10, 28)) do |date|
-	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
-end
-
-Date.new(2017, 11, 2).upto(Date.new(2017, 11, 4)) do |date|
-  	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
-end
-
-Date.new(2017, 11, 6).upto(Date.new(2017, 11, 11)) do |date|
-  	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
-end
-
-Date.new(2017, 11, 13).upto(Date.new(2017, 11, 18)) do |date|
-  	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
-end
-
-Date.new(2017, 11, 20).upto(Date.new(2017, 11, 23)) do |date|
-  	Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
-	Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
-end
-
-date = Date.new(2017,10,30)
-
-Timeslot.create!(start_time: "08:00", end_time: "09:00", date: date, slots:13,)
-Timeslot.create!(start_time: "09:00", end_time: "10:00", date: date, slots:13,)
-Timeslot.create!(start_time: "10:00", end_time: "11:00", date: date, slots:13,)
-Timeslot.create!(start_time: "11:00", end_time: "12:00", date: date, slots:13,)
-Timeslot.create!(start_time: "12:00", end_time: "13:00", date: date, slots:13,)
-Timeslot.create!(start_time: "13:00", end_time: "14:00", date: date, slots:13,)
-Timeslot.create!(start_time: "14:00", end_time: "15:00", date: date, slots:13,)
-Timeslot.create!(start_time: "15:00", end_time: "16:00", date: date, slots:13,)
-Timeslot.create!(start_time: "16:00", end_time: "17:00", date: date, slots:13,)
-Timeslot.create!(start_time: "17:00", end_time: "18:00", date: date, slots:13,)
