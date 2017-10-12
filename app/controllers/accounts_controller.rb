@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
 		when "SOSE"
 			@dates = ["2017-11-04", "2017-11-06", "2017-11-07", "2017-11-08", "2017-11-09"]
 			@slots = Timeslot.where(date: @dates).order(:start_time)
-		when "SOM"
+		when "JGSOM"
 			@dates = ["2017-11-10", "2017-11-11", "2017-11-13", "2017-11-14", "2017-11-15", "2017-11-16"]
 			@slots = Timeslot.where(date: @dates).order(:start_time)
 		end

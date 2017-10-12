@@ -1,7 +1,26 @@
 require 'csv'
 
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'students.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+Student.destroy_all
+
+csv.each do |row|
+	@student = Student.new
+	@student.id = row['id']
+	@student.name = row['name']
+	@student.yr = row['yr']
+	@student.course = row['course']
+	@student.school = row['school']
+	@student.account = false
+	@student.save!
+
+end
+
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'accounts.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
 Account.destroy_all
 
 csv.each do |row|
@@ -16,14 +35,28 @@ csv.each do |row|
 	@account.double_major = row['double_major']
 	@account.cellphone_number = row['cellphone_number']
 	@account.is_graduating = row['is_graduating']
-	@account.password = row['encrypted_password']
+	@account.password = row['username']
 
 	begin
 	  	@account.save!
+	  	@student = Student.find_by(id: @account.student_id)
+	  	if !@student.nil?
+	  		@student.update(account: true)
+	  	end
 	rescue
 		puts @account.email
 	end
 end
+
+@admin = Admin.new
+@admin.email = "admin1@aegis2018.com"
+@admin.password = "Aegis2018"
+@admin.save
+
+@admin = Admin.new
+@admin.email = "admin2@aegis2018.com"
+@admin.password = "Aegis2018"
+@admin.save
 
 
 # danacarmella@gmail.com

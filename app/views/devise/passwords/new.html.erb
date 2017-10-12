@@ -1,40 +1,32 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<div class="container-fluid" id="login" style="height:100vh">
+  <div class="row center-vertical">
+    <div class="col-xs-12">
+      <h1 class="text-center">Forgot your password?</h1>    
+      <br>
+    </div>
+    <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+      
+      <% if notice %>
+      <p class="notice text-center"><%= notice %></p>
+      <% elsif alert %>
+      <p class="alert text-center"><%= alert %></p>
+      <%end%>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "center" }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="row">
+          <div class="field col-xs-12">
+            <h4>Enter your email:</h4>
+            <%= f.text_field :email, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="actions row">
+          <br><br>
+          <%= f.submit "Send me reset password instructions", class: 'btn btn-default center' %>
+        </div>
+      <% end %>
 
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'HOME', root_path, method: :get %></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<div class="container with-fixed-navbar">
-	<h2>Forgot your password?</h2>
-
-	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-	  <%= devise_error_messages! %>
-
-	  <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-	  </div>
-
-	  <div class="actions">
-	    <%= f.submit "Send me reset password instructions" %>
-	  </div>
-	<% end %>
-
-	<%= render "devise/shared/links" %>
+  </div>
 </div>

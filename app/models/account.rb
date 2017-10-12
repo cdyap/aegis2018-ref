@@ -171,24 +171,25 @@ class Account < ActiveRecord::Base
       end
     end
   def create_or_update
-      raise ReadOnlyRecord, "#{self.class} is marked as readonly" if readonly?
-      account = Account.where(student_id: self.student_id).first
-      if account
-        self.id = account.id
+    raise ReadOnlyRecord, "#{self.class} is marked as readonly" if readonly?
+    account = Account.where(student_id: self.student_id).first
+    if account
+      self.id = account.id
+    end
+    result = new_record? ? _create_record : _update_record
+    result != false
+  end
+
+  # create_or_update comes from persistence.rb
+
+  def self.to_csv(options = {})
+    (CSV.generate(options) do |csv|
+      columns = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email writeup feedback)
+      csv << columns
+      all.each do |account|
+        csv << account.attributes.values_at(*columns)
       end
-      result = new_record? ? _create_record : _update_record
-      result != false
-    end
+    end).encode('WINDOWS-1252', :undef => :replace, :replace => '')
+  end
 
-    # create_or_update comes from persistence.rb
-
-    def self.to_csv(options = {})
-      (CSV.generate(options) do |csv|
-        columns = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email writeup feedback)
-        csv << columns
-        all.each do |account|
-          csv << account.attributes.values_at(*columns)
-        end
-      end).encode('WINDOWS-1252', :undef => :replace, :replace => '')
-    end
 end

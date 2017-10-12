@@ -9,7 +9,22 @@
 .header {
 	height: 100px;
 }
-.sessions, .pages {
+
+#error_explanation {
+	width:100%!important;
+	border: none!important;
+	background-color: transparent!important;
+	h2 { margin-bottom: 10px!important;}
+	ul li {
+		list-style: none!important;
+	}
+}
+
+.field_with_errors {
+	display:block!important;
+}
+
+.sessions, .pages, .passwords {
 	#login {
 		background: $blue;
 		height:100vh;
