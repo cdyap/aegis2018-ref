@@ -8,22 +8,25 @@
       </div>
       <div class="row">
         <h3 style="margin-top:30px;margin-bottom:5px;"><%=current_account.student_id %></h3>
-        <h2 style="text-transform: capitalize; margin-top:0px;"><%=current_account.name.downcase %></h2>
+        <h2 style="text-transform: capitalize; margin-top:0px;"><%=current_account.name.downcase %><br><br></h2>
       </div>
       <div class="row">
         
         <% if @current_account.full_course.present? %>
-          <h4 style="margin-bottom:5px;"><%="#{current_account.yr} - " + "#{current_account.full_course}" %></h4>
+          <h4 style="margin-bottom:5px;"><%=current_account.full_course %></h4>
         <% else %>
-          <h4 style="margin-top: 0px;"><%="#{current_account.yr} - " + "#{current_account.course}" %></h4>
+          <h4 style="margin-top: 0px;">Course:<br><%=current_account.course %></h4>
         <% end %>
-        <h4><%=current_account.school %></h4>
+        <% if @current_account.minor.present? %>
+          <h4>Minor:<br><%=current_account.minor %></h4>
+        <% end %>
+        <h4>School:<br><%=current_account.school %></h4>
         <% if @current_account.double_major.present? %>
           <h4><%=current_account.double_major %></h4>
         <% end %>
-        <% if @current_account.minor.present? %>
-          <h4><%=current_account.minor %></h4>
-        <% end %>
+        <br>
+        <%= button_to "CHANGE YOUR PASSWORD", edit_account_registration_path, method: :get%>
+        <br>
       </div>
       <div class="row">
         <%# button_to "View Account Info", edit_info_accounts_path, method: :get%>
@@ -42,7 +45,7 @@
         <div class="card-index card-warning">
           <h2 class="text-bold">No photoshoot timeslot yet!</h2>
           <br><br>
-          <%= button_to "SIGN UP FOR A PHOTOSHOOT", sign_ups_accounts_path, method: :get %>
+          <%= button_to "SIGN UP", sign_ups_accounts_path, method: :get %>
         </div>
       <% end %>
       <!-- <h3>Yearbook Writeup</h3>

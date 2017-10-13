@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
 		when "SOSE"
 			@dates = ["2017-11-04", "2017-11-06", "2017-11-07", "2017-11-08", "2017-11-09"]
 			@slots = Timeslot.where(date: @dates).order(:start_time)
-		when "JGSOM"
+		when "SOM"
 			@dates = ["2017-11-10", "2017-11-11", "2017-11-13", "2017-11-14", "2017-11-15", "2017-11-16"]
 			@slots = Timeslot.where(date: @dates).order(:start_time)
 		end
@@ -347,6 +347,17 @@ class AccountsController < ApplicationController
 		redirect_to yearbook_preview_path
 	end
 
+	def update_password
+		@account = current_account
+	    if @account.update(account_params)
+	      # Sign in the user by passing validation in case their password changed
+	      bypass_sign_in @account, scope: :account
+	      redirect_to root_path
+	    else
+	      render "edit"
+	    end
+	end
+
 	def account_params
 	  params.require(:account).permit(:writeup, :double_major, :minor, :cellphone_number, :full_course, :second_status, :email, :feedback)
 	end
@@ -367,5 +378,9 @@ class AccountsController < ApplicationController
 	  	when "index", "sign_ups"
 	  		"accounts"
 	  	end
+	  end
+
+	  def account_params
+	  	 params.require(:account).permit(:password, :password_confirmation)
 	  end
 end

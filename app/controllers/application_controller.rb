@@ -19,4 +19,5 @@ class ApplicationController < ActionController::Base
 	      		redirect_to new_account_session_path
 	      	end
 	  	end
+	  	
 end

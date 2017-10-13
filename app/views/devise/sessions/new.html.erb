@@ -14,27 +14,19 @@
           <div class="row">
             <div class="field col-xs-12">
                 <h4>ID Number:</h4>
-                <%= f.text_field :student_id, as: "number", placeholder: "ID Number",class:"form-control", autofocus: true %>
+                <%= f.number_field :student_id, as: "number", class:"form-control", autofocus: true %>
             </div>
           </div>
           <div class="row">
             <div class="field col-xs-12">
                 <h4>Password:</h4>
-                <%= f.password_field :password, class:"form-control", autocomplete: "off" %>
+                <%= f.password_field :password, class:"form-control", autocomplete: "off", style: "margin-bottom:5px;" %>
+                <h6 style="margin-bottom:5px;">Note:</h6>
+                <h6 style="line-height:1.5em;margin-top:0;">If you haven't changed your password, enter the username you used to register for this account.</h6>
+                <br><br>
             </div>
+
           </div>
-             <div class="row">
-                <div class="field col-xs-12">
-                    <% if devise_mapping.rememberable? -%>
-                    <div class="row" style="margin-bottom:40px;">
-                      <div class="field flex">
-                        <%= f.check_box :remember_me, style: "float: left;" %>
-                        <%= f.label :remember_me, class: "checkbox-inline", style: "float:left;margin-top:5px;font-weight:400"%>
-                      </div>
-                    </div>
-                  <% end -%>
-                </div>
-             </div>
 
         <div class="actions row">
           <%= f.submit "LOGIN", class: "btn btn-default center" %>

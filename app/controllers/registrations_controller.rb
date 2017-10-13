@@ -40,7 +40,11 @@ class RegistrationsController < Devise::RegistrationsController
 		    end 
 		end
 
-		
+	
+	def update_resource(resource, params)
+    	resource.update_without_password(params)
+  	end
+
 	  def sign_up_params
 	    params.require(resource_name).permit(:student_id, :name, :yr, :course, :school, :email, :password, :password_confirmation, :id)
 	  end

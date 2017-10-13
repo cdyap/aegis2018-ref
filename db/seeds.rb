@@ -36,7 +36,8 @@ csv.each do |row|
 	@account.cellphone_number = row['cellphone_number']
 	@account.is_graduating = row['is_graduating']
 	@account.password = row['username']
-
+	@account.updated_password = false
+	
 	begin
 	  	@account.save!
 	  	@student = Student.find_by(id: @account.student_id)

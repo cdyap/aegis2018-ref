@@ -29,6 +29,10 @@ body {
 	font-family: "Montserrat"!important;
 }
 
+body.accounts {
+	padding-bottom:100px;
+}
+
 .flex {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -58,7 +62,7 @@ body {
 	margin-right: auto;
 }
 
-form input[type="submit"], button[type="submit"] {
+form input[type="submit"], button[type="submit"], a.btn {
 	background-color:#C4E0F9;
 	color:#041133;
 	font-weight:bold;

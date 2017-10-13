@@ -1,60 +1,38 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
+<div class="container-fluid" id="login" style="height:100vh">
+  <div class="row center-vertical">
+    <div class="col-xs-12">
+      <h1 class="text-center">Change your password</h1>
+      <br>
     </div>
+    <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+      <% if notice %>
+        <p class="notice text-center"><%= notice %></p>
+        <% elsif alert %>
+        <p class="alert text-center"><%= alert %></p>
+      <%end%>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'HOME', root_path, method: :get %></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
 
-<div class="container with-fixed-navbar">
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-2">
-      <h2>Change your password</h2>
-    </div>
-  </div>
+        <div class="row">
+          <div class="field col-xs-12">
+            <h4>New password:<em>(<%= @minimum_password_length %> characters minimum)</em></h4>
+            <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+          </div>
+        </div>
 
-  <div class="row">
-  <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+        <div class="row">
+          <div class="field col-xs-12">
+            <h4>Confirm new password:<em>(<%= @minimum_password_length %> characters minimum)</em></h4>
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+        </div>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
-    <%= f.hidden_field :reset_password_token %>
-
-    <div class="field">
-      <%= f.label :password, "New password" %><br />
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+        <div class="actions row">
+          <br><br>
+          <%= f.submit "Change password", class: 'btn btn-default center' %>
+        </div>
       <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
     </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation, "Confirm new password" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Change my password" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
-  </div>
-  </div>
 </div>

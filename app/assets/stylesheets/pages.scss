@@ -24,7 +24,7 @@
 	display:block!important;
 }
 
-.sessions, .pages, .passwords {
+.sessions, .pages, .passwords, .registrations {
 	#login {
 		background: $blue;
 		height:100vh;
@@ -41,13 +41,14 @@
 		font-family: "Montserrat";
 	}
 
-	form input[type="text"],form input[type="password"], form input[type="email"] {
+	form input[type="text"],form input[type="password"], form input[type="email"],form input[type="number"] {
 		background-color:$blue;
 		color:white;
 		font-weight:300!important;
 		border-radius:0;
 		font-size: 1.1em;
 		height:auto;
+		width:100%;
 		box-shadow: none;
 		appearance: none;
 		border: 1px #8C9699 solid;
@@ -55,9 +56,17 @@
 		&:focus {
 			border-color:white;
 			outline:none;
-			-webkit-box-shadow: none !important;
-		    -moz-box-shadow: none !important;
-		    box-shadow: none !important;
+		    box-shadow:3px 3px #E6E6E6;
+		}
+	}
+
+	.lighter {
+		background: $blue;
+		border: 1px solid white;
+		color:white;
+		&:hover {
+			background: $blue;
+			color:white;
 		}
 	}
 
@@ -68,6 +77,19 @@
 
 	@media (min-width: 768px) {
 		
+	}
+}
+
+.registrations {
+	input[type="password"] {
+		margin-bottom:10px!important;
+	}
+
+
+	form input[type="password"] {
+		font-size:1.5em;
+		line-height:1.2em;
+
 	}
 }
 

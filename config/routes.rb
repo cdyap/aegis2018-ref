@@ -68,6 +68,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :account, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
+
  
 
   # Example of regular route:
