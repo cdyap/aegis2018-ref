@@ -41,9 +41,10 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.time_zone = 'UTC'
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.gmail.com',
-    :domain         => 'mail.google.com',
+    :address        => 'smtp://127.0.0.1:1025',
+    :domain         => 'localhost:3000',
     :port           => 587,
     :user_name      => 'USERNAME',
     :password       => 'PASSWORD',
