@@ -75,7 +75,7 @@ class Account < ActiveRecord::Base
     #   return "You may only login between " + @SOMstart.strftime("%b %d, %I:%M")  + " AM and " + @SOMend.strftime("%b %d, %I:%M") +" PM. "
     # end
 
-    return "Sign ups are from October 16 - 21."
+    return "Sign ups are from October 16 to 21."
   end
 
   def can_login
