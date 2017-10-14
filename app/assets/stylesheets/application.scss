@@ -86,5 +86,18 @@ form input[type="submit"], button[type="submit"], a.btn {
 	}
 }
 
+table {
+	width:100%;
+	font-family:"Montserrat";
+	font-size:1em;
+	td {
+		padding:4px 7px;
+		border: 1px solid black;
+	}
+}
+
+hr {
+	border: 1px dashed black;
+}
 
 
