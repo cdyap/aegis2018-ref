@@ -43,17 +43,17 @@ class Account < ActiveRecord::Base
   end
 
   def inactive_message
-    # @SOHstart = Time.new(2016, 10, 2,23).in_time_zone('Hong Kong')
-    # @SOHend = Time.new(2016, 10, 3, 15).in_time_zone('Hong Kong')
+    @SOHstart = Time.new(2017, 10, 16, 7)
+    @SOHend = Time.new(2017, 10, 16, 23)
 
-    # @SOSSstart = Time.new(2016, 10, 3, 23).in_time_zone('Hong Kong')
-    # @SOSSend = Time.new(2016, 10, 4, 15).in_time_zone('Hong Kong')
+    @SOSSstart = Time.new(2017, 10, 17, 7)
+    @SOSSend = Time.new(2017, 10, 17, 23)
 
-    # @SOSEstart = Time.new(2016, 10, 4, 23).in_time_zone('Hong Kong')
-    # @SOSEend = Time.new(2016, 10, 5, 15).in_time_zone('Hong Kong')
+    @SOSEstart = Time.new(2017, 10, 18, 7)
+    @SOSEend = Time.new(2017, 10, 18, 23)
 
-    # @SOMstart = Time.new(2016, 10, 5, 23).in_time_zone('Hong Kong')
-    # @SOMend = Time.new(2016, 10, 6, 15).in_time_zone('Hong Kong')
+    @SOMstart = Time.new(2017, 10, 19, 7)
+    @SOMend = Time.new(2017, 10, 19, 23)
 
     # @groupstart1 = Time.new(2016, 10, 6, 23).in_time_zone('Hong Kong')
     # @groupend1 = Time.new(2016, 10, 7, 15).in_time_zone('Hong Kong')
@@ -64,79 +64,75 @@ class Account < ActiveRecord::Base
     # @somspecialstart = Time.new(2016, 10, 8, 23).in_time_zone('Hong Kong')
     # @somspecialend = Time.new(2016, 10, 9, 15).in_time_zone('Hong Kong')
 
-    # case self.school
-    # when "SOH" 
-    #     return "You may only login between " + @SOHstart.strftime("%b %d, %I:%M") + " AM and " + @SOHend.strftime("%b %d, %I:%M")  +" PM. "
-    # when "SOSS"
-    #     return "You may only login between " + @SOSSstart.strftime("%b %d, %I:%M")  + " AM and " + @SOSSend.strftime("%b %d, %I:%M")   +" PM. "
-    # when "SOSE"
-    #   return "You may only login between " + @SOSEstart.strftime("%b %d, %I:%M")  + " AM and " + @SOSEend.strftime("%b %d, %I:%M")   +" PM. "
-    # when "SOM"
-    #   return "You may only login between " + @SOMstart.strftime("%b %d, %I:%M")  + " AM and " + @SOMend.strftime("%b %d, %I:%M") +" PM. "
-    # end
+    @time = Time.now
+    case self.school
+    when "SOH" 
+        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOHstart.strftime("%b %d, %l:%M %p") + " and " + @SOHend.strftime("%l:%M %p")  +". "
+    when "SOSS"
+        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSSstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSSend.strftime("%l:%M %p") +". "
+    when "SOSE"
+      return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSEstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSEend.strftime("%l:%M %p") +". "
+    when "SOM"
+      return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOMstart.strftime("%b %d, %l:%M %p")  + " and " + @SOMend.strftime("%l:%M %p") +". "
+    end
 
     return "Sign ups are from October 16 to 21."
   end
 
   def can_login
-    return false
-    # @end = Time.new(2017,3,1,0)
-    # if Time.now >= @end
-    #   return true
-    # else
-    #   return false
-    # end
-    # @SOHstart = Time.new(2016, 10, 2,23).in_time_zone('Hong Kong')
-    # @SOHend = Time.new(2016, 10, 3, 15).in_time_zone('Hong Kong')
+    # return true
 
-    # @SOSSstart = Time.new(2016, 10, 3, 23).in_time_zone('Hong Kong')
-    # @SOSSend = Time.new(2016, 10, 4, 15).in_time_zone('Hong Kong')
+    @SOHstart = Time.new(2017, 10, 16, 7)
+    @SOHend = Time.new(2017, 10, 16, 23)
 
-    # @SOSEstart = Time.new(2016, 10, 4, 23).in_time_zone('Hong Kong')
-    # @SOSEend = Time.new(2016, 10, 5, 15).in_time_zone('Hong Kong')
+    @SOSSstart = Time.new(2017, 10, 17, 7)
+    @SOSSend = Time.new(2017, 10, 17, 23)
 
-    # @SOMstart = Time.new(2016, 10, 5, 23).in_time_zone('Hong Kong')
-    # @SOMend = Time.new(2016, 10, 6, 15).in_time_zone('Hong Kong')
+    @SOSEstart = Time.new(2017, 10, 18, 7)
+    @SOSEend = Time.new(2017, 10, 18, 23)
 
-    # @groupstart1 = Time.new(2016, 10, 6, 23).in_time_zone('Hong Kong')
-    # @groupend1 = Time.new(2016, 10, 7, 15).in_time_zone('Hong Kong')
+    @SOMstart = Time.new(2017, 10, 19, 7)
+    @SOMend = Time.new(2017, 10, 19, 23)
 
-    # @groupstart2 = Time.new(2016, 10, 7, 23).in_time_zone('Hong Kong')
-    # @groupend2 = Time.new(2016, 10, 8, 15).in_time_zone('Hong Kong')
+    @groupstart1 = Time.new(2016, 10, 6, 23).in_time_zone('Hong Kong')
+    @groupend1 = Time.new(2016, 10, 7, 15).in_time_zone('Hong Kong')
 
-    # @somspecialstart = Time.new(2016, 10, 8, 23).in_time_zone('Hong Kong')
-    # @somspecialend = Time.new(2016, 10, 9, 15).in_time_zone('Hong Kong')
+    @groupstart2 = Time.new(2016, 10, 7, 23).in_time_zone('Hong Kong')
+    @groupend2 = Time.new(2016, 10, 8, 15).in_time_zone('Hong Kong')
 
-    # @specialstart = Time.new(2016, 10, 9, 16).in_time_zone('Hong Kong')
-    # @specialend = Time.new(2016, 10, 13, 15).in_time_zone('Hong Kong')
+    @somspecialstart = Time.new(2016, 10, 8, 23).in_time_zone('Hong Kong')
+    @somspecialend = Time.new(2016, 10, 9, 15).in_time_zone('Hong Kong')
+
+    @specialstart = Time.new(2016, 10, 9, 16).in_time_zone('Hong Kong')
+    @specialend = Time.new(2016, 10, 13, 15).in_time_zone('Hong Kong')
 
 
-    # case self.school
-    # when "SOH" 
-    #   if Time.current.in_time_zone('Hong Kong').between?(@SOHstart, @SOHend)
-    #     return true
-    #   else
-    #     return false
-    #   end
-    # when "SOSS"
-    #   if Time.current.in_time_zone('Hong Kong').between?(@SOSSstart, @SOSSend)
-    #     return true
-    #   else
-    #     return false
-    #   end
-    # when "SOSE"
-    #   if Time.current.in_time_zone('Hong Kong').between?(@SOSEstart, @SOSEend)
-    #     return true
-    #   else
-    #     return false
-    #   end
-    # when "SOM"
-    #   if Time.current.in_time_zone('Hong Kong').between?(@SOMstart, @SOMend)
-    #     return true
-    #   else
-    #     return false
-    #   end
-    # end
+    case self.school
+    when "SOH" 
+      if Time.now.between?(@SOHstart, @SOHend)
+        return true
+      else
+        return false
+      end
+    when "SOSS"
+      if Time.now.between?(@SOSSstart, @SOSSend)
+        return true
+      else
+        return false
+      end
+    when "SOSE"
+      if Time.now.between?(@SOSEstart, @SOSEend)
+        return true
+      else
+        return false
+      end
+    when "SOM"
+      if Time.now.between?(@SOMstart, @SOMend)
+        return true
+      else
+        return false
+      end
+    end
    
 
     # case self.school

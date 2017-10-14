@@ -89,7 +89,7 @@ class AccountsController < ApplicationController
 		current_account.save(validate: false)
 
 		flash[:alert] = "Timeslot reset."
-		redirect_to :back
+		redirect_to sign_ups_accounts_path
 	end
 
 	def sign_up

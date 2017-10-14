@@ -1,3 +1,46 @@
 // Place all the styles related to the registrations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "colors";
+.registrations.new {
+	background: $blue;
+	color:white;
+	font-family: "Montserrat";
+	padding-top:30px;
+	padding-bottom:30px;
+	input {
+		font-size:1.3em;
+		line-height:1.4em;
+		padding: 5px 15px;
+		transition: 0.3s ease;
+	}
+	input[type="submit"] {
+		margin-top:20px;
+	}
+	label {
+		font-weight:400;
+		font-size:1.1em;
+	}
+	p {
+		font-size:1.5em;
+		line-height:1.6em;
+	}
+	ol {
+		margin-bottom:15px;
+		li {
+		line-height:1.5em;	
+		}	
+	}
+	input:disabled {
+		box-shadow: none!important;
+		border: none;
+		&:hover {
+			box-shadow: none!important;
+			color: white;
+		}
+	}
+	hr {
+		border-color: white;
+	}
+}

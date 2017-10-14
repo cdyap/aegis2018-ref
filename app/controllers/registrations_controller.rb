@@ -1,12 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
 	skip_before_filter :verify_authenticity_token, :only => :create
-	def new 
-		if Time.current.in_time_zone('Hong Kong').between?(Time.new(2016, 11, 3, 16).in_time_zone('Hong Kong'), Time.new(2016, 12, 10, 15).in_time_zone('Hong Kong'))
-			super
-		else 
-			redirect_to root_path
-		end
-	end
+	# def new 
+	# 	if Time.current.in_time_zone('Hong Kong').between?(Time.new(2016, 11, 3, 16).in_time_zone('Hong Kong'), Time.new(2016, 12, 10, 15).in_time_zone('Hong Kong'))
+	# 		super
+	# 	else 
+	# 		redirect_to root_path
+	# 	end
+	# end
 
 	def create
 		super do
@@ -36,7 +36,7 @@ class RegistrationsController < Devise::RegistrationsController
 		    if resource.class == Admin
 		      admins_path
 		    elsif resource.class == Account
-		      yearbook_preview_path
+		      accounts_path
 		    end 
 		end
 

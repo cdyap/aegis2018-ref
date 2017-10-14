@@ -274,7 +274,7 @@
 			font-weight:700;
 		}
 
-		button[type="submit"] {
+		button[type="submit"],input[type="submit"] {
 			background-color:#C4E0F9;
 			color:#041133;
 			font-weight:700;
@@ -283,9 +283,10 @@
 			padding: 10px 20px;
 			box-shadow: none;
 			appearance: none;
-			border: none;
+			border: 1px solid #C4E0F9!important;
 			transition: 0.3s ease;
 			margin-bottom:50px;
+			line-height:1.2em;
 			margin-top:20px;
 			&.disable-button {
 				background:grey;
@@ -372,3 +373,4 @@
 // 		font-family: "Montserrat";
 // 	}
 // }
+

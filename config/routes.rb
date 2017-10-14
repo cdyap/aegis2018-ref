@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       get 'index'
       get 'search'
       get 'sign_ups'
+      get 'reschedule'
       get 'group_signups'
       post 'group_signup'
       get 'slot'

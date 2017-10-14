@@ -1,30 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'HOME', root_path, method: :get %></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-<div class="container with-fixed-navbar">
+<div class="container">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-2">
-      <h1>Register</h1>
-      <h5>Create an account for photoshoot sign-ups, <br>write-up submissions and online previews.</h5>
+    <div class="col-xs-12">
+      <h1 class="text-center text-bold">Register</h1>
     </div>
   </div>
 
@@ -36,38 +13,39 @@
           <h4 id="regform">BASIC INFORMATION</h4>
           <div class="row">
             <div class="field col-xs-12">
-              <%= f.label :student_id, "ID number" %>
+              <%= f.label :student_id, "ID number:" %>
               <%= f.input :student_id, label: false, id: "id_input" %>
             </div>
           </div>
 
           <div class="row">
             <div class="field col-xs-12">
-              <%= f.label :name, "Full Name" %>
+              <%= f.label :name, "Full Name:" %>
               <%= f.input :name, as: :hidden, label: false %>
-              <p id="student-name">Student not found.</p>
+              <p id="student-name" class="text-bold">Student not found.</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col-xs-6">
               <div class="field">
-                <%= f.label :yr, "Year and Course" %>
+                <%= f.label :yr, "Year and Course:" %>
                 <%= f.input :yr, as: :hidden, label: false %>
                 <%= f.input :course, as: :hidden, label: false %>
-                <p id="student-yrcrs"></p>
+                <p id="student-yrcrs" class="text-bold"></p>
               </div>
             </div>
             <div class="col-xs-6">
               <div class="field">
-                <%= f.label :school, "School" %>
+                <%= f.label :school, "School:" %>
                 <%= f.input :school, as: :hidden, label: false %>
-                <p id="student-school"></p>
+                <p id="student-school" class="text-bold"></p>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row for-hiding hidden">
+          <hr><br>
           <h4 id="regform">ACCOUNT DETAILS</h4>
           <div class="row">
             <div class="field acct col-xs-12">
@@ -92,70 +70,72 @@
             </div>
           </div>
         </div>
-        <div class="row terms">
+        <div class="row terms for-hiding hidden">
+          <hr><br>
           <h4>TERMS AND CONDITIONS</h4>
-          <p class="text-bold">Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using http://www.aegis2017.com  (“Service”) operated  by  Ateneo  AEGIS  2017  and Ateneo Management Information Systems Association.</p>
-          <p class="text-bold">Your access to and use of the Service  is conditioned on  your acceptance of and  compliance with these Terms. These Terms apply to all  visitors, users and others who access or use the Service.  By  accessing  or  using  the  Service  you  agree  to  be  bound  by  these  Terms.  If  you disagree with any part of the terms, then you may not access the Service. </p>
+          <p class="">Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using http://www.aegis2018.com  (“Service”) operated  by  Ateneo  AEGIS  2018  and Ateneo Management Information Systems Association.</p>
+          <p class="">Your access to and use of the Service  is conditioned on  your acceptance of and  compliance with these Terms. These Terms apply to all  visitors, users and others who access or use the Service.  By  accessing  or  using  the  Service  you  agree  to  be  bound  by  these  Terms.  If  you disagree with any part of the terms, then you may not access the Service. </p>
+          <br>
           <ol>
             <li>Registration
               <ol>
-                <li>Creation of an account in the website does not guarantee that the student will be graduating in December 2016 or June 2017
+                <li>Creation of an account in the website does not guarantee that the student will be graduating in December 2016 or June 2018
                   <ol><li>The  database  used  is  based  on  the  Loyola  Schools  Office  of  the Registrar’s  list  of  4th  &  5th  year  students  as  of  September  3,  2016  and  list  of students who have graduated during Intersession Semester of the year 2016.</li></ol>
                 </li>
-                <li>Registering  an  account  in  the  website  means  that  the student  shall  agree  on  the Write-ups, Photoshoot Sign-ups, Photo Packages Distribution, Yearbook Distribution and Layout Preview deadlines set by Ateneo AEGIS 2017.
+                <li>Registering  an  account  in  the  website  means  that  the student  shall  agree  on  the Write-ups, Photoshoot Sign-ups, Photo Packages Distribution, Yearbook Distribution and Layout Preview deadlines set by Ateneo AEGIS 2018.
                   <ol>
-                    <li>Ateneo AEGIS 2017 has the right to move deadlines and other dates, as well as revise guidelines when deemed necessary. The team will notify the student of these changes through the official Ateneo AEGIS 2017 FB page and/or www.aegis2017.com at least three (3) days before the deadline or event proper. The student shall be aware of and comply to these changes. </li>
-                    <li>Failure  to  submit  within  the  specified  deadlines  does  not hold  Ateneo AEGIS 2017 responsible to entertain the student’s future requests.</li>
+                    <li>Ateneo AEGIS 2018 has the right to move deadlines and other dates, as well as revise guidelines when deemed necessary. The team will notify the student of these changes through the official Ateneo AEGIS 2018 FB page and/or www.aegis2018.com at least three (3) days before the deadline or event proper. The student shall be aware of and comply to these changes. </li>
+                    <li>Failure  to  submit  within  the  specified  deadlines  does  not hold  Ateneo AEGIS 2018 responsible to entertain the student’s future requests.</li>
                   </ol>
                 </li>
               </ol>
             </li>
             <li>Write-ups
               <ol>
-                <li>Failure to submit within the specified deadline will equate to a generic write-up in the yearbook to be decided by Ateneo AEGIS 2017.
+                <li>Failure to submit within the specified deadline will equate to a generic write-up in the yearbook to be decided by Ateneo AEGIS 2018.
                   <ol>
-                    <li>Major changes that the student wishes to make after the deadline will not be entertained by Ateneo AEGIS 2017.</li>
-                    <li>Requests made due to edits made by Ateneo AEGIS 2017 will be duly addressed until a specified deadline.</li>
+                    <li>Major changes that the student wishes to make after the deadline will not be entertained by Ateneo AEGIS 2018.</li>
+                    <li>Requests made due to edits made by Ateneo AEGIS 2018 will be duly addressed until a specified deadline.</li>
                   </ol>
                 </li>
-                <li>The student shall agree on the future write-up guidelines to be set by Ateneo AEGIS 2017.</li>
+                <li>The student shall agree on the future write-up guidelines to be set by Ateneo AEGIS 2018.</li>
               </ol>
             </li>
             <li>Photoshoot Sign-ups and Proper
               <ol>
-                <li>The student shall agree that he/she will sign up for his/her individual and group shots using only http://www.aegis2017.com.</li>
-                <li>The student shall agree on the future terms and conditions regarding photo shoot guidelines set by the official partner studio and Ateneo AEGIS 2017.</li>
-                <li>Ateneo AEGIS 2017 is limited to the responsibility of graduation photos for the yearbook and not for photography services during the graduation ceremony itself.</li>
+                <li>The student shall agree that he/she will sign up for his/her individual and group shots using only http://www.aegis2018.com.</li>
+                <li>The student shall agree on the future terms and conditions regarding photo shoot guidelines set by the official partner studio and Ateneo AEGIS 2018.</li>
+                <li>Ateneo AEGIS 2018 is limited to the responsibility of graduation photos for the yearbook and not for photography services during the graduation ceremony itself.</li>
               </ol>
             </li>
             <li>Photo Packages and Distribution
               <ol>
                 <li>The student shall claim his/her photo package within the specified deadline, in accordance to claiming procedures to be released.
-                  <ol><li>Photo packages that remain unclaimed after the deadline will be subject to disposal by Ateneo AEGIS 2017 and AEGIS Board.</li></ol></li>
-                <li>Ateneo AEGIS 2017 shall no longer entertain complaints regarding photo packages once these have been approved and claimed in good condition by the student.</li>
+                  <ol><li>Photo packages that remain unclaimed after the deadline will be subject to disposal by Ateneo AEGIS 2018 and AEGIS Board.</li></ol></li>
+                <li>Ateneo AEGIS 2018 shall no longer entertain complaints regarding photo packages once these have been approved and claimed in good condition by the student.</li>
               </ol>
             </li>
             <li>Yearbook Distribution
               <ol>
                 <li>The student shall agree to claim his/her yearbook within the specified deadline, in accordance to claiming procedures to be released.
-                <ol><li>Yearbooks that remain unclaimed after the deadline will be subject to disposal by Ateneo AEGIS 2017 and AEGIS BOARD.</li></li>
+                <ol><li>Yearbooks that remain unclaimed after the deadline will be subject to disposal by Ateneo AEGIS 2018 and AEGIS BOARD.</li></li>
                 </ol>
               </ol>
             </li>
             <li>Layout Preview
               <ol>
                 <li>The student is allowed to request minor changes in his/her page within the specified deadline as per guidelines to be released.
-                  <ol><li>Requests made after the deadline will no longer be entertained by Ateneo AEGIS 2017.</li></ol></li>
+                  <ol><li>Requests made after the deadline will no longer be entertained by Ateneo AEGIS 2018.</li></ol></li>
               </ol>
             </li>
             <li>Privacy
               <ol>
-                <li>Personal information of any kind collected through the Ateneo AEGIS 2017 website will be confidential and shall not be used for purposes outside those of Ateneo AEGIS 2017. </li>
+                <li>Personal information of any kind collected through the Ateneo AEGIS 2018 website will be confidential and shall not be used for purposes outside those of Ateneo AEGIS 2018. </li>
               </ol>
             </li>
           </ol>
         </div>
-        <div class="row">
+        <div class="row for-hiding hidden">
           <div class="checkbox">
             <label><input type="checkbox" value="" id="terms-read">I have read the Terms & Conditions</label>
           </div>
@@ -163,8 +143,8 @@
             <label><input type="checkbox" value="" id="terms-accept">I have accepted the Terms & Conditions</label>
           </div>
         </div>
-        <div class="row actions">
-          <%= f.submit 'Create Account', id: "new-account-submit" %>
+        <div class="row actions for-hiding hidden">
+          <%= f.submit 'Create Account', id: "new-account-submit", class: "center" %>
         </div>
         <% end %>
     </div>

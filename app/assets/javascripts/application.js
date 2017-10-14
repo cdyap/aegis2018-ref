@@ -134,10 +134,12 @@ $('.registrations.new').ready(function () {
 			$('#student-name').text("Student not found.");
 			$('#student-yrcrs').text("");
 			$('#student-school').text("");
+			$('.for-hiding').addClass('hidden');
 		} else {
 			$('#student-name').text($('#account_name').val());
 			$('#student-yrcrs').text($('#account_yr').val() + " - " + $('#account_course').val());
 			$('#student-school').text($('#account_school').val());
+			$('.for-hiding').removeClass('hidden');
 		}
 	} catch (sign_up_validation) {
 		
@@ -158,6 +160,7 @@ $('.registrations.new').ready(function () {
 	            	$('#student-name').text(student[0].name);	
 	            	$('#new-account-submit').attr("disabled", "disabled");
 					$('#new-account-submit').addClass('disable-button');
+					$('.for-hiding').addClass('hidden');
 	            }
 	            else {
 		            $('#student-name').text(student[0].name);
@@ -168,7 +171,7 @@ $('.registrations.new').ready(function () {
 		            $('#account_yr').val(student[0].yr);
 		            $('#account_course').val(student[0].course);
 		            $('#account_school').val(student[0].school);
-
+		            $('.for-hiding').removeClass('hidden');
 		   //          $('input[type=submit]').attr("disabled", "false");
 					// $('input[type=submit]').removeClass('disable-button');
 	        	}
@@ -187,7 +190,8 @@ $('.registrations.new').ready(function () {
 	        $('#account_school').val("");
 	        $('#new-account-submit').attr("disabled", "disabled");
 			$('#new-account-submit').addClass('disable-button');
-	    }
+			$('.for-hiding').addClass('hidden');
+	    }	
 	  }); 
 
 	$('#terms-read').click(function() {
@@ -213,7 +217,7 @@ $('.registrations.new').ready(function () {
 	});
 
 	function activateSubmit() {
-		if ((terms_accepted) && (terms_read) && $('#student-name').text() != "Student not found." && $('#student-name').text() != "Account already created.") {
+		if ((terms_accepted) && (terms_read) && $('#student-name').text() != "Student not found." && $('#student-name').text() != "Account already created." && $('#account_email').val() != "" && $('#account_password').val() != "" && $('#account_password_confirmation').val() != "" ) {
 			$('#new-account-submit').removeAttr("disabled");
 			$('#new-account-submit').removeClass('disable-button');
 		}
@@ -307,6 +311,7 @@ $(document).ready(function () {
   	document.onscroll = scroll;
 
 });
+
 
 // $('.accounts.add_writeup').ready(function(){
 // 	var text_max = 500;

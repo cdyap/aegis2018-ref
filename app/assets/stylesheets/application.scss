@@ -62,7 +62,7 @@ body.accounts {
 	margin-right: auto;
 }
 
-form input[type="submit"], button[type="submit"], a.btn {
+form input[type="submit"], button[type="submit"], a.btn, button {
 	background-color:#C4E0F9;
 	color:#041133;
 	font-weight:bold;
@@ -71,7 +71,7 @@ form input[type="submit"], button[type="submit"], a.btn {
 	padding: 10px 20px;
 	box-shadow: none;
 	appearance: none;
-	border: none;
+	border: 1px solid #C4E0F9;
 	letter-spacing: 1.5px;
 	transition: 0.3s ease;
 	&.disable-button {
@@ -84,9 +84,31 @@ form input[type="submit"], button[type="submit"], a.btn {
 		background-color: #C4E0F9;
 		color: #041133;
 	}
+	.disabled {
+		box-shadow: none;
+		&:hover {
+			box-shadow: none!important;
+			color: white;
+		}
+	}
 }
 
-table {
+input.disabled, button.disabled {
+	box-shadow: none;
+	&:hover {
+		box-shadow: none!important;
+		color: white;
+	}
+}
+.reverse-button-colors {
+	background-color: #E6E6E6;
+	&:hover {
+		background-color: #E6E6E6;
+		box-shadow: 7px 7px #C4E0F9;
+	}
+}
+
+table.with-border {
 	width:100%;
 	font-family:"Montserrat";
 	font-size:1em;
@@ -100,4 +122,16 @@ hr {
 	border: 1px dashed black;
 }
 
+.float-left {
+	display:inline-block;
+}
 
+.lighter {
+	background-color: $blue!important;
+	border: 1px solid white!important;
+	color:white!important;
+	&:hover {
+		background: $blue!important;
+		color:white!important;
+	}
+}
