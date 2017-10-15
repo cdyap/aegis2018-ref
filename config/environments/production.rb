@@ -83,8 +83,8 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'http://aegis2018.herokuapp.com'
-  config.action_mailer.asset_host = "http://aegis2018.herokuapp.com"
+  host = 'https://www.aegis2018.com'
+  config.action_mailer.asset_host = "https://www.aegis2018.com"
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
