@@ -2,7 +2,7 @@ class Timeslot < ActiveRecord::Base
 	has_many :accounts, before_add: :validate_user_limit, after_add: :subtract_slots
 
 	def to_s
-		self.date.strftime("%a, %b %d") + ": " + self.start_time + " - " + self.end_time
+		self.date.strftime("%a, %b %d") + "; " + self.start_time + " - " + self.end_time
 	end
 
 	def start_time_to_s
@@ -65,11 +65,18 @@ class Timeslot < ActiveRecord::Base
 	end
   
 	  def self.to_csv(options = {})
-	    CSV.generate(options) do |csv|
+	    (CSV.generate(options) do |csv|
+	      column_names = %w(date start_time end_time slots accounts)
+	      # names = column_names << "students"
 	      csv << column_names
-	      all.each do |timeslots|
-	        csv << timeslots.attributes.values_at(*column_names)
+	      all.each do |timeslot|
+	      	timeslot_accounts = ""
+	      	timeslot.accounts.each do |account|
+	      		timeslot_accounts += account.to_s + "\n"
+	      	end
+	        row_values = timeslot.attributes.values_at(*column_names).insert(-1, timeslot_accounts)
+	        csv << row_values
 	      end
-	    end
+	    end).encode('WINDOWS-1252', :undef => :replace, :replace => '')
 	  end
 end

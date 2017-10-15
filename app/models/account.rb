@@ -80,7 +80,7 @@ class Account < ActiveRecord::Base
   end
 
   def can_login
-    # return true
+    return true
 
     @SOHstart = Time.new(2017, 10, 16, 7)
     @SOHend = Time.new(2017, 10, 16, 23)
@@ -180,10 +180,12 @@ class Account < ActiveRecord::Base
 
   def self.to_csv(options = {})
     (CSV.generate(options) do |csv|
-      columns = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email writeup feedback)
-      csv << columns
+      column_names = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email)
+      names = column_names << "timeslot"
+      csv << names
       all.each do |account|
-        csv << account.attributes.values_at(*columns)
+        row_values = account.attributes.values_at(*column_names).insert(-1, account.get_timeslot)
+        csv << row_values
       end
     end).encode('WINDOWS-1252', :undef => :replace, :replace => '')
   end

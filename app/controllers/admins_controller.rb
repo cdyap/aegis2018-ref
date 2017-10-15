@@ -78,7 +78,7 @@ class AdminsController < ApplicationController
 
 		@total_shoots = Account.where.not(timeslot_id: nil).count
 
-		@accounts_list = Account.order(:school, :course, :name)
+		@accounts_list = Account.order(:student_id)
 
 		@total_groupshots = Groupslot.all.count
 
@@ -113,9 +113,11 @@ class AdminsController < ApplicationController
 			@dates_g << "#{timeslot.to_s.underscore}"
 		end
 
+		@timeslots = Timeslot.order(:date, :start_time)
+
 		respond_to do |format|
 	      format.html
-	      format.xls
+	      format.csv { send_data @timeslots.to_csv,  filename: "signups-#{Date.today}.csv" }
 	    end
 	end
 

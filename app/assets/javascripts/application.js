@@ -75,7 +75,7 @@ $('.admins.accounts').ready(function(){
 	    var value = $(this).val();
 	    var length = value.toString().length;
 
-	    if(length == 6) {
+	    if(length == 5) {
 	      $.ajax({
 	        method: 'GET',
 	        url: '/accounts/search',

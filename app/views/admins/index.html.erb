@@ -50,9 +50,8 @@
           
         </tr>
       </table>
-      <p>
-        <%= link_to "Download Writeup Compilation", admins_path(format: "csv") %><br>
-      </p>
+      <%= button_to "DOWNLOAD ACCOUNTS", admins_path(format: "csv"), method: :get %><br>
+      <%= button_to "DOWNLOAD PHOTOSHOOT SIGNUPS", timeslots_admins_path(format: "csv"), method: :get %>
     </div>
     <div class="col-xs-12 col-md-4">
       <h3 class="center-align">Errors Summary</h3>
