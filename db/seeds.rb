@@ -1,63 +1,81 @@
-require 'csv'
-
-
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'students.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
-
-Student.destroy_all
-
-csv.each do |row|
-	@student = Student.new
-	@student.id = row['id']
-	@student.name = row['name']
-	@student.yr = row['yr']
-	@student.course = row['course']
-	@student.school = row['school']
-	@student.account = false
-	@student.save!
-
-end
-
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'accounts.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
-
-Account.destroy_all
-
-csv.each do |row|
-	@account = Account.new
-	@account.student_id = row['student_id']
-	@account.username = row['username']
-	@account.course = row['course']
-	@account.email = row['email']
-	@account.name = row['name']
-	@account.school = row['school']
-	@account.minor = row['minor']
-	@account.double_major = row['double_major']
-	@account.cellphone_number = row['cellphone_number']
-	@account.is_graduating = row['is_graduating']
-	@account.password = row['username']
-	@account.updated_password = false
-	
-	begin
-	  	@account.save!
-	  	@student = Student.find_by(id: @account.student_id)
-	  	if !@student.nil?
-	  		@student.update(account: true)
-	  	end
-	rescue
-		puts @account.email
+Account.all.each do |account|
+	@student = Student.find_by(id: account.student_id)
+	if !@student.nil?
+		account.name = @student.name
+		account.yr = @student.yr
+		account.course = @student.course
+		account.school = @student.school
+		account.save
 	end
 end
 
-@admin = Admin.new
-@admin.email = "admin1@aegis2018.com"
-@admin.password = "Aegis2018"
-@admin.save
 
-@admin = Admin.new
-@admin.email = "admin2@aegis2018.com"
-@admin.password = "Aegis2018"
-@admin.save
+# =============================
+# require 'csv'
+
+
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'students.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+# Student.destroy_all
+
+# csv.each do |row|
+# 	@student = Student.new
+# 	@student.id = row['id']
+# 	@student.name = row['name']
+# 	@student.yr = row['yr']
+# 	@student.course = row['course']
+# 	@student.school = row['school']
+# 	@student.account = false
+# 	@student.save!
+
+# end
+
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'accounts.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+# Account.destroy_all
+
+# csv.each do |row|
+# 	@account = Account.new
+# 	@account.student_id = row['student_id']
+# 	@account.username = row['username']
+# 	@account.course = row['course']
+# 	@account.email = row['email']
+# 	@account.name = row['name']
+# 	@account.school = row['school']
+# 	@account.minor = row['minor']
+# 	@account.double_major = row['double_major']
+# 	@account.cellphone_number = row['cellphone_number']
+# 	@account.is_graduating = row['is_graduating']
+# 	@account.password = row['username']
+# 	@account.updated_password = false
+	
+# 	begin
+# 	  	@account.save!
+# 	  	@student = Student.find_by(id: @account.student_id)
+# 	  	if !@student.nil?
+# 	  		@student.update(account: true)
+# 	  	end
+# 	rescue
+# 		puts @account.email
+# 	end
+# end
+
+
+# =============================
+
+
+
+# @admin = Admin.new
+# @admin.email = "admin1@aegis2018.com"
+# @admin.password = "Aegis2018"
+# @admin.save
+
+# @admin = Admin.new
+# @admin.email = "admin2@aegis2018.com"
+# @admin.password = "Aegis2018"
+# @admin.save
 
 
 # danacarmella@gmail.com

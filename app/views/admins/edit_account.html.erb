@@ -1,0 +1,28 @@
+<div class="container with-fixed-navbar admins">
+  <h1 class="text-bold text-center">Edit account</h1> 
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <%= form_for(@account, url: edit_account_admins_path, html: { method: :post }) do |f| %>
+        <div class="row">
+          <div class="field col-xs-12">
+            <h4>Student ID:</h4>
+            <%= f.number_field :student_id, class: 'form-control', label: false %>
+            <%= f.hidden_field :id %>
+          </div>
+          <div class="field col-xs-12">
+            <h4>Email:</h4>
+            <%= f.email_field :email, class: 'form-control', label: false %>
+          </div>
+          <div class="field col-xs-12">
+            <%= f.submit "EDIT ACCOUNT" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<style>
+  input {
+    width: 100%;
+  }
+</style>

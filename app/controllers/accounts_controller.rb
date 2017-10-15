@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
 
 	def search 
 		idparams = params[:id]
-		@student=Account.where(student_id: idparams).first
+		@student=Account.find_by(student_id: idparams)
 
 		if @student.timeslot_id.nil?
 			@timeslot = "No timeslot."
@@ -328,6 +328,7 @@ class AccountsController < ApplicationController
 		flash[:success] = "Feedback submitted!"
 		redirect_to :back
 	end
+
 
 	def update		
 		# if params[:writeup_submit]

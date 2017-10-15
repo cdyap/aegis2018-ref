@@ -39,7 +39,6 @@ class AdminsController < ApplicationController
 	end	
 
 	def index
-
 		@soh_writeups = Account.where(school: "SOH").where(final_writeup: true).count
 		@som_writeups = Account.where(school: "SOM").where(final_writeup: true).count
 		@sose_writeups = Account.where(school: "SOSE").where(final_writeup: true).count
@@ -119,6 +118,30 @@ class AdminsController < ApplicationController
 	      format.html
 	      format.csv { send_data @timeslots.to_csv,  filename: "signups-#{Date.today}.csv" }
 	    end
+	end
+
+
+	def edit_account
+		if request.post?
+			@account = Account.find(params[:account][:id])
+
+			@account.update_column(:student_id, params[:account][:student_id])
+			@account.update_column(:email, params[:account][:email])
+			
+			flash[:success] = "Account details edited!"
+
+			redirect_to accounts_admins_path, method: :get
+		else
+			@account = Account.find_by(student_id: params[:student_id])
+			if !@account.nil? 
+				@account
+			else
+				flash[:notice] = "Student not found."
+				redirect_to :back
+			end
+		end
+
+		
 	end
 
 	private

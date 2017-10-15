@@ -5,7 +5,6 @@ class Account < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:student_id]
   belongs_to :timeslot
   belongs_to :groupshot
-  # validates_uniqueness_of :email, :student_id
   validates :writeup, length: { maximum: 505 }
   validates :cellphone_number, :numericality => true, :allow_blank => true
   
@@ -80,7 +79,7 @@ class Account < ActiveRecord::Base
   end
 
   def can_login
-    return true
+    # return true
 
     @SOHstart = Time.new(2017, 10, 16, 7)
     @SOHend = Time.new(2017, 10, 16, 23)
@@ -94,11 +93,11 @@ class Account < ActiveRecord::Base
     @SOMstart = Time.new(2017, 10, 19, 7)
     @SOMend = Time.new(2017, 10, 19, 23)
 
-    @groupstart1 = Time.new(2016, 10, 6, 23).in_time_zone('Hong Kong')
-    @groupend1 = Time.new(2016, 10, 7, 15).in_time_zone('Hong Kong')
+    @groupstart1 = Time.new(2017, 10, 20, 7)
+    @groupend1 = Time.new(2017, 10, 20, 23)
 
-    @groupstart2 = Time.new(2016, 10, 7, 23).in_time_zone('Hong Kong')
-    @groupend2 = Time.new(2016, 10, 8, 15).in_time_zone('Hong Kong')
+    @groupstart2 = Time.new(2017, 10, 21, 7)
+    @groupend2 = Time.new(2017, 10, 21, 23)
 
     @somspecialstart = Time.new(2016, 10, 8, 23).in_time_zone('Hong Kong')
     @somspecialend = Time.new(2016, 10, 9, 15).in_time_zone('Hong Kong')
@@ -106,6 +105,11 @@ class Account < ActiveRecord::Base
     @specialstart = Time.new(2016, 10, 9, 16).in_time_zone('Hong Kong')
     @specialend = Time.new(2016, 10, 13, 15).in_time_zone('Hong Kong')
 
+    if Time.now.between?(@groupstart1, @groupend1)
+      return true
+    elsif Time.now.between?(@groupstart2, @groupend2)
+      return true
+    end
 
     case self.school
     when "SOH" 

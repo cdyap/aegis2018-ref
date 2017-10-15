@@ -75,7 +75,7 @@ $('.admins.accounts').ready(function(){
 	    var value = $(this).val();
 	    var length = value.toString().length;
 
-	    if(length == 5) {
+	    if(length == 5 || length == 6) {
 	      $.ajax({
 	        method: 'GET',
 	        url: '/accounts/search',
@@ -89,15 +89,25 @@ $('.admins.accounts').ready(function(){
 		            $('#student-account').text(student.account);
 		            $('#student-email').text(student.email);
 		            $('#student-timeslot').text(student.get_timeslot);
-		            // $('#student-writeup').text(student.feedback);
+		            $('#edit-account-id').val(student.student_id);
 	        	} else {
 	        		$('#student-name').text("Not found");
 	        	}
+	          },
+	          error:function(e) {
+	          	$('#edit-account-id').val("");
+		    	$('#student-name').text("Not found.");
+		        $('#student-yrcrs').text("");
+		        $('#student-school').text("");
+		        $('#student-account').text("");
+		        $('#student-email').text("");
+		        $('#student-timeslot').text("");
 	          }
 	      });   
 	    } 
 	    else {
-	    	$('#student-name').text("");	
+	    	$('#edit-account-id').val("");
+	    	$('#student-name').text("Not found.");
 	        $('#student-yrcrs').text("");
 	        $('#student-school').text("");
 	        $('#student-account').text("");

@@ -36,7 +36,7 @@
 			      	<ul class="nav navbar-nav">
 			        	<li class="<%= action_name == 'index' ? 'active' : ''%>"><%= link_to 'DASHBOARD', admins_path, method: :get %></li>
 			        	<li class="<%= action_name == 'students' ? 'active' : ''%>"><%= link_to 'STUDENTS', students_admins_path, method: :get %></li>
-			        	<li class="<%= action_name == 'accounts' ? 'active' : ''%>"><%= link_to 'ACCOUNTS', accounts_admins_path, method: :get %></li>
+			        	<li class="<%= action_name == 'accounts' || action_name == 'edit_account' ? 'active' : ''%>"><%= link_to 'ACCOUNTS', accounts_admins_path, method: :get %></li>
 			        	<li class="<%= action_name == 'timeslots' ? 'active' : ''%>"><%= link_to 'TIMESLOTS', timeslots_admins_path, method: :get %></li>
 			        	<!-- <li class="<%= action_name == 'writeups' ? 'active' : ''%>"><%# link_to 'WRITEUPS', writeups_admins_path, method: :get %></li> -->
 			        	<li><%= link_to "LOG OUT", destroy_admin_session_path, :method => :delete %></a></li>
