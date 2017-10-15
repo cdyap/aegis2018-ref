@@ -37,8 +37,22 @@ class Account < ActiveRecord::Base
     Timeslot.find_by(id: self.timeslot_id).to_s
   end
 
+  def get_groupslot
+    Groupslot.find_by(id: self.groupshot_id).to_s
+  end
+
   def active_for_authentication?
     super and self.can_login
+  end
+
+  def can_signup_for_group
+    @groupstart1 = Time.new(2017, 10, 20, 7)
+    @groupend2 = Time.new(2017, 10, 21, 23)
+    if Time.now.between?(@groupstart1, @groupend2)
+      return true
+    else 
+      return false
+    end
   end
 
   def inactive_message
@@ -54,25 +68,30 @@ class Account < ActiveRecord::Base
     @SOMstart = Time.new(2017, 10, 19, 7)
     @SOMend = Time.new(2017, 10, 19, 23)
 
-    # @groupstart1 = Time.new(2016, 10, 6, 23).in_time_zone('Hong Kong')
-    # @groupend1 = Time.new(2016, 10, 7, 15).in_time_zone('Hong Kong')
+    @groupstart1 = Time.new(2017, 10, 20, 7)
+    @groupend1 = Time.new(2017, 10, 20, 23)
 
-    # @groupstart2 = Time.new(2016, 10, 7, 23).in_time_zone('Hong Kong')
-    # @groupend2 = Time.new(2016, 10, 8, 15).in_time_zone('Hong Kong')
+    @groupstart2 = Time.new(2017, 10, 21, 7)
+    @groupend2 = Time.new(2017, 10, 21, 23)
 
     # @somspecialstart = Time.new(2016, 10, 8, 23).in_time_zone('Hong Kong')
     # @somspecialend = Time.new(2016, 10, 9, 15).in_time_zone('Hong Kong')
 
     @time = Time.now
-    case self.school
-    when "SOH" 
-        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOHstart.strftime("%b %d, %l:%M %p") + " and " + @SOHend.strftime("%l:%M %p")  +". "
-    when "SOSS"
-        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSSstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSSend.strftime("%l:%M %p") +". "
-    when "SOSE"
-      return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSEstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSEend.strftime("%l:%M %p") +". "
-    when "SOM"
-      return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOMstart.strftime("%b %d, %l:%M %p")  + " and " + @SOMend.strftime("%l:%M %p") +". "
+
+    if Time.now > @SOMend
+      return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between 7:00 AM and 11:00 PM of " + @groupstart1.strftime("%b %d") + " and " +@groupstart2.strftime("%b %d")
+    else 
+      case self.school
+      when "SOH" 
+          return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOHstart.strftime("%b %d, %l:%M %p") + " and " + @SOHend.strftime("%l:%M %p")  +". "
+      when "SOSS"
+          return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSSstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSSend.strftime("%l:%M %p") +". "
+      when "SOSE"
+        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSEstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSEend.strftime("%l:%M %p") +". "
+      when "SOM"
+        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOMstart.strftime("%b %d, %l:%M %p")  + " and " + @SOMend.strftime("%l:%M %p") +". "
+      end
     end
 
     return "Sign ups are from October 16 to 21."

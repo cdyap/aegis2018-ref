@@ -1,14 +1,24 @@
-Account.all.each do |account|
-	@student = Student.find_by(id: account.student_id)
-	if !@student.nil?
-		account.name = @student.name
-		account.yr = @student.yr
-		account.course = @student.course
-		account.school = @student.school
-		account.save
-	end
-end
+# Account.all.each do |account|
+# 	@student = Student.find_by(id: account.student_id)
+# 	if !@student.nil?
+# 		account.name = @student.name
+# 		account.yr = @student.yr
+# 		account.course = @student.course
+# 		account.school = @student.school
+# 		account.save
+# 	end
+# end
 
+
+Timeslot.where("date > :start_date", {start_date: "2017-11-16"}).each do |timeslot|
+	@groupshot = Groupshot.new
+	@groupshot.start_time = timeslot.start_time
+	@groupshot.end_time = timeslot.end_time
+	@groupshot.date = timeslot.date
+	@groupshot.slots = timeslot.slots
+	@groupshot.save
+	timeslot.delete
+end
 
 # =============================
 # require 'csv'

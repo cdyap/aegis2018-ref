@@ -74,6 +74,12 @@
 	padding-bottom:35px;
 	margin-top:25px;
 	transition: 0.3s ease;
+	.lighter-blue .lighter {
+		background-color: #213f70!important;
+		&:hover {
+			background-color: #213f70!important;
+		}
+	}
 	// &:hover {
 	// 	cursor: pointer;
 	// 	box-shadow:17px 17px $lightblue;
@@ -81,7 +87,7 @@
 }
 
 .card-success {
-	background-color: $blue;
+	background-color: #213f70;
 }
 
 .card-warning {
@@ -268,6 +274,18 @@
 			font-family: "Montserrat";
 			width: 100%;
 			border: 1px solid $darkerblue;
+		}
+
+		input[type="text"] {
+			background: $blue!important;
+			width:80%;
+			border: 1px solid white;
+			transition: 0.3s ease;
+			padding: 10px 20px;
+			&:focus {
+				outline: none;
+				box-shadow:7px 7px #E6E6E6;
+			}
 		}
 
 		h2 {

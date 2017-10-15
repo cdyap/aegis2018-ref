@@ -35,7 +35,7 @@
     <div class="col-xs-12 col-sm-offset-0 col-sm-8">
       <% if current_account.timeslot_id %>
         <%= link_to "", slip_accounts_path(format: 'pdf'), method: :get%>
-        <div class="card-index card-success">
+        <div class="card-index card-success lighter-blue">
           <h3>Photoshoot timeslot</h3>
           <h2 class="text-bold"><%= current_account.get_timeslot %></h2>
           <br>
@@ -46,7 +46,7 @@
             <%= button_to "PRINT SLIP", slip_accounts_path(format: 'pdf'), method: :get%>
           </div>
           <% if current_account.can_login %>
-          <div class="float-left" style="margin-bottom: 10px;">
+          <div class="float-left lighter-blue" style="margin-bottom: 10px;">
             <button class="lighter" id="reschedule-btn" data-toggle="modal" data-target="#reschedule">RESCHEDULE</button>
           </div>
           <% end %>
@@ -66,7 +66,7 @@
                       <%= button_to "YES", reschedule_accounts_path, method: :get%>
                       </div>
                       <div class="float-left">
-                        <button class="lighter close" data-dismiss="modal" aria-label="Close">CANCEL</button>
+                        <button class="lighter" data-dismiss="modal" aria-label="Close">CANCEL</button>
                       </div>
                     </div>
                     
@@ -80,6 +80,55 @@
           <h2 class="text-bold">No photoshoot timeslot yet!</h2>
           <br><br>
           <%= button_to "SIGN UP", sign_ups_accounts_path, method: :get %>
+        </div>
+      <% end %>
+      <!-- <h3>Yearbook Writeup</h3>
+      <%# if current_account.writeup.present? %>
+        <h4 style="white-space: pre-line;"><%# current_account.writeup %></h4>
+      <%# else %>
+        <h4>No Writeup</h4>
+      <%# end %> -->
+      <% if current_account.groupshot_id %>
+        <%= link_to "", groupslip_accounts_path(format: 'pdf'), method: :get%>
+        <div class="card-index card-success lighter-blue">
+          <h3>Group photoshoot timeslot</h3>
+          <h2 class="text-bold"><%= current_account.get_groupslot %></h2>
+          <br>
+          <p>You are required to bring a print out of your confirmation slip to your photoshoot.<br>The final timeslot you sign up for will be followed.</p>
+          <br>
+          <br>
+          <div class="float-left" style="margin-right:20px; margin-bottom:10px;">
+            <%= button_to "PRINT SLIP", groupslip_accounts_path(format: 'pdf'), method: :get%>
+          </div>
+          <% if current_account.can_signup_for_group %>
+          <div class="float-left lighter-blue" style="margin-bottom: 10px;">
+            <button class="lighter" id="reschedule-btn" data-toggle="modal" data-target="#reschedule-group">RESCHEDULE</button>
+          </div>
+          <% end %>
+          <div class="modal fade bs-example-modal-sm" id="reschedule-group" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+              <div class="modal-dialog modal-md" role="document">
+                
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                    <h2 class="center-align" style="margin-top:0px;line-height:1.3em;">Are you sure you want<br>to reschedule your group photoshoot?</span></h2>
+                    <br>
+                    <h4 class="text-center" style="line-height:1.5em;">You will be removed from your original timeslot<br>before you pick another timeslot.</h4>
+                    <div class="row text-center" style="margin-top:30px;">
+                      <div class="float-left" style="margin-right:20px;">
+                      <%= button_to "YES", reschedule_group_accounts_path, method: :get%>
+                      </div>
+                      <div class="float-left">
+                        <button class="lighter" data-dismiss="modal" aria-label="Close">CANCEL</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
       <% end %>
       <!-- <h3>Yearbook Writeup</h3>

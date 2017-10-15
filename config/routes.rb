@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       post 'sign_up'
       post 'photoshoot'
       post 'reschedule'
+      get 'reschedule_group'
       # get 'timeslots'
       get 'view_writeup'
       get 'add_writeup'

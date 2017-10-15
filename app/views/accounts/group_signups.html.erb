@@ -1,35 +1,3 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'HOME', root_path, method: :get %></li>
-        <li class=""><%= link_to 'ACCOUNT', accounts_path, method: :get %></li>
-        <li class="dropdown active">
-          <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SHOOT SLOTS &#x25BC;<span class="caret" style="border:transparent;margin-left:15px;"></span></a>
-          <ul class="dropdown-menu shoot-dropdown">
-            <li class=""><%= link_to 'PHOTOSHOOT SIGN UPS', sign_ups_accounts_path, method: :get %></li>
-            <li class=""><%= link_to 'GROUPSHOOT SIGN UPS', group_signups_accounts_path, method: :get %></li>
-          </ul>
-        </li>
-        <li class=""><%= link_to 'WRITE UPS', view_writeup_accounts_path, method: :get %></li>
-        <li><%= link_to "LOG OUT", destroy_account_session_path, :method => :delete %></a>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
 <div class="container with-fixed-navbar">
   <h4 class="center-align" style="color:red"><%= flash[:alert] %></h4>
@@ -38,25 +6,62 @@
   
     <div class="confirmation-slip col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
       <div class="row">
-        <h6 class="center-align">You are required to bring a print out of this confirmation slip to your photoshoot proper.</h6><br><br>
-        <h3 class="center-align">AEGIS 2017</h3>
+        <h5 class="center-align">You are required to bring a print out of this confirmation slip to your photoshoot proper. <br><br>The final timeslot you sign up for will be followed.</h5><br>
+        <%= button_to "SAVE AS PDF", groupslip_accounts_path(groupslot: @timeslot.id, format: 'pdf'), method: :get, class: 'center'%>
+        <br>
+        <h3 class="center-align">AEGIS 2018</h3>
         <h3 class="center-align">YEARBOOK PHOTO SHOOT</h3>
         <h3 class="center-align">CONFIRMATION SLIP</h3>
       </div>
       <div class="row">
-        <h4>This confirmation slip stands as proof that <span class="text-bold"><%= @checkgroupslot.group_name %></span>, represented by <span class="text-bold"><%= current_account.to_s %></span> agrees to all the terms and conditions that have been laid out by the AEGIS 2017 Editorial Board in the AEGIS 2017 Photoshoot Primer. We have fully read and understood the primer and am aware of the possible consequences we must face should we break any of the terms and conditions listed.</h4>
+        <h4>This confirmation slip stands as proof that <span class="text-bold"><%= @checkgroupslot.group_name %></span>, represented by <span class="text-bold"><%= current_account.to_s %></span> agrees to all the terms and conditions that have been laid out by the AEGIS 2017 Editorial Board in the AEGIS 2018 Photoshoot Primer. We have fully read and understood the primer and am aware of the possible consequences we must face should we break any of the terms and conditions listed.</h4>
       </div>
       <div class="row">
         <h4>This slip also confirms that we have signed up on <span class="text-bold"><%=@timeslot.date.strftime("%A, %B %d, %Y")%> at <%= @timeslot.start_time.to_s + " - " + @timeslot.end_time.to_s%></span>.</h4>
-        <%= button_to "SAVE AS PDF", groupslip_accounts_path(groupslot: @timeslot.id, format: 'pdf'), method: :get%>
       </div>
+      <table class="with-border">
+        <tbody>
+          <tr>
+            <td colspan="6">COMPLETE NAME:</td>
+          </tr>
+          <tr>
+            <td colspan="6">CONTACT NUMBER:</td>
+          </tr>
+          <tr>
+            <td colspan="6">EMAIL ADDRESS:</td>
+          </tr>
+          <tr>
+            <td>SCHOOL:</td>
+            <td>SOH:</td>
+            <td>SOSS:</td>
+            <td>SOSE:</td>
+            <td>SOM:</td>
+            <td>NON-GRAD:</td>
+          </tr>
+          <tr>
+            <td colspan="1">PACKAGE:</td>
+            <td colspan="3">RECEIPT NO:</td>
+            <td colspan="2">AMOUNT:</td>
+          </tr>
+          <tr>
+            <td colspan="6">CHOSEN IMAGES:</td>
+          </tr>
+          <tr>
+            <td colspan="6">VIEWER:</td>
+          </tr>
+          <tr>
+            <td colspan="6">DATE AND TIME:</td>
+          </tr>
+          <tr>
+            <td class="text-center" colspan="6"><br><br>SIGNATURE OVER PRINTED NAME</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  <% end %>
+  <% else %>
     <div class="row">
       <div class="row" id="account-sign-ups">
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-          <h3 class="center-align"><%=current_account.student_id %> - <%=current_account.name.downcase %></h3>
-          <h4 class="center-align">Available timeslots are shown in case you want to reschedule.</h4>
           <!-- <ol>
             <h4><li>Click on the button of your preferred timeslot to sign up for that slot.</li></h4>
             <h4><li>Numbers show remaining number of slots. </li></h4>
@@ -95,7 +100,7 @@
                 <% end %>
                 <%# if slot.slots == 0 %>
                   <td class="center-align">
-                    <button type="button" class="btn btn-lg <%=@status%>" data-toggle="modal" data-target="#slot<%=slot.id%>" disabled>
+                    <button type="button" class="btn btn-lg <%=@status%>" data-toggle="modal" data-target="#slot<%=slot.id%>" >
                       <%= slot.slots %>
                     </button>
                   <%#button_to slot.slots, group_signup_accounts_path(slot.id), class: "btn #{@status}", disabled: true%></td>
@@ -107,36 +112,42 @@
                     <%#button_to slot.slots, group_signup_accounts_path(slot.id), class: "btn #{@status}"%></td> -->
                 <%# end %>
 
-                <!-- <div class="modal fade bs-example-modal-sm" id="slot<%=slot.id%>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                  <div class="modal-dialog modal-sm" role="document">
+                <div class="modal fade bs-example-modal-sm" id="slot<%=slot.id%>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                  <div class="modal-dialog modal-md" role="document">
                     
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h5 class="modal-title center-align" id="myModalLabel">Groupshoot Slot Signups</h5>
                       </div>
                       <div class="modal-body">
                         <h4 class="center-align">Slot details:</h4>
-                        <h3 class="center-align"><%#Date.parse(date).strftime("%a, %b %d")%></span></h3>
-                        <h3 class="center-align"><%# slot.start_time + " - " + slot.end_time %></h3><br>
+                        <h3 class="center-align"><%=Date.parse(date).strftime("%a, %b %d")%></span></h3>
+                        <h3 class="center-align"><%= slot.start_time + " - " + slot.end_time %></h3><br>
                         <h4 class="center-align">Please indicate your group name:</h4>
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <form action="/accounts/group_signup" method="POST">
-                              <input name="group_name" class="grpnm center-align" required>
-                              <input name="slot_id" value="<%#slot.id%>" hidden><br>
-                              <button type="submit" class="btn groupslot-confirm" disabled>Confirm Timeslot</button>
-                            </form>
+                        <form action="/accounts/group_signup" method="POST">
+                          <br>
+                          <input type="text" name="group_name" class="grpnm center text-center" required><br>
+                          <div class="row text-center">
+                            <div class="float-left" style="margin-right:20px;">
+                              
+                                <input name="slot_id" value="<%=slot.id%>" hidden>
+                                
+                                <button type="submit" class="btn center">SELECT TIMESLOT</button>
+                            </div>
+                            <div class="float-left">
+                              <button class="lighter" data-dismiss="modal" aria-label="Close">CANCEL</button>
+                            </div>
                           </div>
-                        </div>
+                        </form>
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
               <% end %>
             </tr>
           <% end %>
         </table>
       </div>
     </div>
+  <% end %>
 </div>
