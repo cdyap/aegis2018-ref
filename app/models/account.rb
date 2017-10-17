@@ -98,8 +98,7 @@ class Account < ActiveRecord::Base
   end
 
   def can_login
-    # return true
-
+    #2017 start end times
     @SOHstart = Time.new(2017, 10, 16, 7)
     @SOHend = Time.new(2017, 10, 16, 23)
 
@@ -118,18 +117,17 @@ class Account < ActiveRecord::Base
     @groupstart2 = Time.new(2017, 10, 21, 7)
     @groupend2 = Time.new(2017, 10, 21, 23)
 
-    @somspecialstart = Time.new(2016, 10, 8, 23).in_time_zone('Hong Kong')
-    @somspecialend = Time.new(2016, 10, 9, 15).in_time_zone('Hong Kong')
-
-    @specialstart = Time.new(2016, 10, 9, 16).in_time_zone('Hong Kong')
-    @specialend = Time.new(2016, 10, 13, 15).in_time_zone('Hong Kong')
-
+    #if time is between group sign ups, return true
+    #if time is later than last time of group sign ups, return false
     if Time.now.between?(@groupstart1, @groupend1)
       return true
     elsif Time.now.between?(@groupstart2, @groupend2)
       return true
+    elsif Time.now > @groupend2
+      return false
     end
 
+    #return sign in times based on school
     case self.school
     when "SOH" 
       if Time.now.between?(@SOHstart, @SOHend)
@@ -156,27 +154,7 @@ class Account < ActiveRecord::Base
         return false
       end
     end
-   
-
-    # case self.school
-    # when "SOM"
-    #   if Time.current.in_time_zone('Hong Kong').between?(@somspecialstart, @somspecialend)
-    #     return true
-    #   else
-    #     return false
-    #   end
-    # else 
-    #   return false
-    # end
-
-    # if Time.current.in_time_zone('Hong Kong').between?(@specialstart, @specialend)
-    #   return true
-    # else
-    #   return false
-    # end
-
-
-
+    return false
   end
 
 
