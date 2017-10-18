@@ -92,7 +92,8 @@
         <%= link_to "", groupslip_accounts_path(format: 'pdf'), method: :get%>
         <div class="card-index card-success lighter-blue">
           <h3>Group photoshoot timeslot</h3>
-          <h2 class="text-bold"><%= current_account.get_groupslot %></h2>
+          <h2 class="text-bold"><%= current_account.get_groupslot.to_s %></h2>
+          <h4><%=current_account.get_groupslot.group_type%></h4>
           <br>
           <p>You are required to bring a print out of your confirmation slip to your photoshoot.<br>The final timeslot you sign up for will be followed.</p>
           <br>

@@ -14,7 +14,7 @@
         <h3 class="center-align">CONFIRMATION SLIP</h3>
       </div>
       <div class="row">
-        <h4>This confirmation slip stands as proof that <span class="text-bold"><%= @checkgroupslot.group_name %></span>, represented by <span class="text-bold"><%= current_account.to_s %></span> agrees to all the terms and conditions that have been laid out by the AEGIS 2017 Editorial Board in the AEGIS 2018 Photoshoot Primer. We have fully read and understood the primer and am aware of the possible consequences we must face should we break any of the terms and conditions listed.</h4>
+        <h4>This confirmation slip stands as proof that <span class="text-bold"><%= @checkgroupslot.group_name %> (<%=@checkgroupslot.group_type %>)</span>, represented by <span class="text-bold"><%= current_account.to_s %></span> agrees to all the terms and conditions that have been laid out by the AEGIS 2017 Editorial Board in the AEGIS 2018 Photoshoot Primer. We have fully read and understood the primer and am aware of the possible consequences we must face should we break any of the terms and conditions listed.</h4>
       </div>
       <div class="row">
         <h4>This slip also confirms that we have signed up on <span class="text-bold"><%=@timeslot.date.strftime("%A, %B %d, %Y")%> at <%= @timeslot.start_time.to_s + " - " + @timeslot.end_time.to_s%></span>.</h4>
@@ -31,12 +31,7 @@
             <td colspan="6">EMAIL ADDRESS:</td>
           </tr>
           <tr>
-            <td>SCHOOL:</td>
-            <td>SOH:</td>
-            <td>SOSS:</td>
-            <td>SOSE:</td>
-            <td>SOM:</td>
-            <td>NON-GRAD:</td>
+            <td colspan="6">ORGANIZATION TYPE: <b><%=@checkgroupslot.group_type%></b></td>
           </tr>
           <tr>
             <td colspan="1">PACKAGE:</td>
@@ -118,15 +113,51 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title center-align" id="myModalLabel">Timeslot details</h4>
                       </div>
                       <div class="modal-body">
-                        <h4 class="center-align">Slot details:</h4>
-                        <h3 class="center-align"><%=Date.parse(date).strftime("%a, %b %d")%></span></h3>
-                        <h3 class="center-align"><%= slot.start_time + " - " + slot.end_time %></h3><br>
-                        <h4 class="center-align">Please indicate your group name:</h4>
+                        <h2 class="center-align" style="margin-top:0"><%=Date.parse(date).strftime("%a, %b %d")%></span></h2>
+                        <h2 class="center-align"><%= slot.start_time + " - " + slot.end_time %></h2><br>
+                        <h4 class="center-align" style="margin-bottom:0">Group name:</h4>
                         <form action="/accounts/group_signup" method="POST">
                           <br>
                           <input type="text" name="group_name" class="grpnm center text-center" required><br>
+
+                          <h4 class="center-align" style="margin-top:20px">What kind of organization?</h4>
+                          <div class="row radio-btns">
+                            <div class="col-xs-11 col-xs-offset-1 col-sm-10 col-sm-offset-2">
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="group_type" id="officially_accredited" value="Officially accredited organization" required>
+                                  Officially accredited organization
+                                </label>
+                              </div>
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="group_type" id="official_varsity" value="Official Ateneo varsity" required>
+                                  Official Ateneo varsity (Sports and Acads)
+                                </label>
+                              </div>
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="group_type" id="official_student_group" value="Official student group" required>
+                                  Official student group (Endorsed by an office/department)
+                                </label>
+                              </div>
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="group_type" id="LIONS" value="LIONS organization" required>
+                                  LIONS organization
+                                </label>
+                              </div>
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" name="group_type" id="others" value="Others" required>
+                                  Others
+                                </label>
+                              </div>
+                            </div>
+                          </div>
                           <div class="row text-center">
                             <div class="float-left" style="margin-right:20px;">
                               

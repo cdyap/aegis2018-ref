@@ -38,7 +38,7 @@ class Account < ActiveRecord::Base
   end
 
   def get_groupslot
-    Groupslot.find_by(id: self.groupshot_id).to_s
+    Groupslot.find_by(id: self.groupshot_id)
   end
 
   def active_for_authentication?

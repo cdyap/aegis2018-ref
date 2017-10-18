@@ -140,24 +140,30 @@ class AccountsController < ApplicationController
 			@timeslot = Groupshot.find(params[:slot_id])
 
 			if params[:group_name] != "" or params[:group_name].present?
-				if @timeslot.slots > 0 
-					@timeslot.slots = @timeslot.slots - 1
-					
-					if @timeslot.slots < 0
+				if params[:group_type].present?
+					if @timeslot.slots > 0 
+						@timeslot.slots = @timeslot.slots - 1
+						
+						if @timeslot.slots < 0
+							flash[:alert] = "Slot already taken."
+							redirect_to group_signups_accounts_path
+						else
+							@timeslot.save
+							@groupslot = Groupslot.new
+							@groupslot.student_id = current_account.student_id
+							@groupslot.groupshot_id = params[:slot_id]
+							@groupslot.group_name = params[:group_name]
+							@groupslot.group_type = params[:group_type]
+							@groupslot.save
+							current_account.update(groupshot_id: @groupslot.id)
+							redirect_to group_signups_accounts_path
+						end
+					elsif @timeslot.slots == 0
 						flash[:alert] = "Slot already taken."
 						redirect_to group_signups_accounts_path
-					else
-						@timeslot.save
-						@groupslot = Groupslot.new
-						@groupslot.student_id = current_account.student_id
-						@groupslot.groupshot_id = params[:slot_id]
-						@groupslot.group_name = params[:group_name]
-						@groupslot.save
-						current_account.update(groupshot_id: @groupslot.id)
-						redirect_to group_signups_accounts_path
 					end
-				elsif @timeslot.slots == 0
-					flash[:alert] = "Slot already taken."
+				else
+					flash[:alert] = "Please select the type of organization."
 					redirect_to group_signups_accounts_path
 				end
 			else

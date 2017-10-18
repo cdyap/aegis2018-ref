@@ -7,7 +7,7 @@
       </div>
       <div class="row">
       	<br>
-        <h4>This confirmation slip stands as proof that <span class="text-bold"><%= @groupslot.group_name %></span>, represented by <span class="text-bold"><%= current_account.to_s %></span> agrees to all the terms and conditions that have been laid out by the AEGIS 2018 Editorial Board in the AEGIS 2018 Photoshoot Primer. We have fully read and understood the primer and am aware of the possible consequences we must face should we break any of the terms and conditions listed.</h4>
+        <h4>This confirmation slip stands as proof that <span class="text-bold"><%= @groupslot.group_name %> (<%= @groupslot.group_type%>)</span>, represented by <span class="text-bold"><%= current_account.to_s %></span> agrees to all the terms and conditions that have been laid out by the AEGIS 2018 Editorial Board in the AEGIS 2018 Photoshoot Primer. We have fully read and understood the primer and am aware of the possible consequences we must face should we break any of the terms and conditions listed.</h4>
       </div>
       <div class="row">
         <h4>This slip also confirms that we have signed up on <span class="text-bold"><%=@timeslot.date.strftime("%A, %B %d, %Y")%> at <%= @timeslot.start_time.to_s + " - " + @timeslot.end_time.to_s%></span>.</h4>
@@ -36,12 +36,7 @@
               <td colspan="6">EMAIL ADDRESS:</td>
             </tr>
             <tr>
-              <td>SCHOOL:</td>
-              <td>SOH:</td>
-              <td>SOSS:</td>
-              <td>SOSE:</td>
-              <td>SOM:</td>
-              <td>NON-GRAD:</td>
+              <td colspan="6">ORGANIZATION TYPE: <b><%=@groupslot.group_type%></b></td>
             </tr>
             <tr>
               <td colspan="1">PACKAGE:</td>
