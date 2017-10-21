@@ -53,15 +53,13 @@
         </tbody>
       </table>
     </div>
-  <% else %>
+  <% elsif current_account.can_signup_for_group %>
     <div class="row">
       <div class="row" id="account-sign-ups">
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-          <!-- <ol>
-            <h4><li>Click on the button of your preferred timeslot to sign up for that slot.</li></h4>
-            <h4><li>Numbers show remaining number of slots. </li></h4>
-            <h4><li>Please be sure of your slot; you will not be allowed to reschedule through the website.</li></h4>
-          </ol> -->
+          <h3 class="center-align">Timeslots available for<br>group photoshoots:</h3>
+          <p class="text-center">Numbers indicated show how many slots are available.</p>
+          <p class="text-center">Click a number to select a slot.</p>
         </div>
 
       </div>
@@ -178,6 +176,12 @@
             </tr>
           <% end %>
         </table>
+      </div>
+    </div>
+  <% else %>
+    <div class="row" id="account-sign-ups">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <h3 class="center-align">You have not signed up for a group photoshoot slot.</h3>
       </div>
     </div>
   <% end %>

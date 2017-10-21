@@ -75,11 +75,11 @@
       <h3 class="center-align">DETAILED</h3>
       
       <% @dates.each do |date| %>
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
           <table class="table">
             <h5 class="center-align text-bold"><%= Date.parse(date.dasherize).strftime("%a, %b %d")%></h5>
             <tr style="border-top:2px solid black">
-              <th>Time</th>
+              <th class="text-center">Time</th>
               <th>ID Number</th>  
               <th>Name</th>
               <th>Year and Course</th>
@@ -91,22 +91,22 @@
               <% if !@accounts.empty? %>
                 <% num = 1 %>
                 <% @accounts.each do |account| %>
-                <tr style="<%= num == 1 ? "border-top:2px solid black" : '' %>"">
-                  <% if num == 1 %>
-                    <td><%= slot.start_time + " - " + slot.end_time %></td>
-                  <% else %>
-                    <td></td>
-                  <% end %>
-                  <td><%= account.student_id %></td>
-                  <td><%= account.name %></td>
-                  <td><%= account.yr.to_s + " - " + account.course %></td>
-                </tr>
-                <% num = num+1 %>
+                  <tr style="<%= num == 1 ? "border-top:2px solid black" : '' %>"">
+                    <% if num == 1 %>
+                      <td class="text-center"><%= slot.start_time_to_s + " - " + slot.end_time_to_s %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <td><%= account.student_id %></td>
+                    <td><%= account.name %></td>
+                    <td><%= account.yr.to_s + " - " + account.course %></td>
+                  </tr>
+                  <% num = num+1 %>
                 <% end %>
                 
               <% else %>
                 <tr style="border-top:2px solid black">
-                  <td><%= slot.start_time + " - " + slot.end_time %></td>
+                  <td class="text-center"><%= slot.start_time_to_s + " - " + slot.end_time_to_s %></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -118,24 +118,40 @@
       <% end %>
 
       <% @dates_g.each do |date| %>
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
           <table class="table">
             <h5 class="center-align text-bold"><%= Date.parse(date.dasherize).strftime("%a, %b %d")%></h5>
-            <tr>
-              <th>Time</th>
-              <th class="right-align">Slots</th>
-              <th>Groups</th>  
+            <tr style="border-top:2px solid black">
+              <th class="text-center">Time</th>
+              <th>Group</th>
+              <th>Type</th>  
+              <th>Point person</th>
             </tr>
             <% instance_variable_get("@slots_#{date}").order(:start_time).each do |slot| %>
-              <tr>
-                <td><%= slot.start_time + " - " + slot.end_time %></td>
-                <td class="right-align"><%= slot.slots%> </td>
-                <td>
-                  <% Groupslot.where(groupshot_id: slot.id).order(:group_name).each do |group | %>
-                    <%= group.group_name + " c/o " + Account.where(student_id: group.student_id).first.to_s %><br>
-                  <% end %>
-                </td>
-              </tr>
+              <% @groupshots = Groupslot.where(groupshot_id: slot.id).order(:group_name) %>
+              <% if !@groupshots.empty? %>
+                <% num = 1 %>
+                <% @groupshots.each do |group| %>
+                  <tr style="<%= num == 1 ? "border-top:2px solid black" : '' %>"">
+                    <% if num == 1 %>
+                      <td class="text-center"><%= slot.start_time_to_s + " - " + slot.end_time_to_s %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <td><%= group.group_name %></td>
+                    <td><%= group.group_type %></td>
+                    <td><%= group.point_person %></td>
+                  </tr>
+                  <% num = num+1 %>
+                <% end %>
+              <% else %>
+                <tr style="border-top:2px solid black">
+                  <td class="text-center"><%= slot.start_time_to_s + " - " + slot.end_time_to_s %></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              <% end %>
             <% end %>
           </table>
         </div>

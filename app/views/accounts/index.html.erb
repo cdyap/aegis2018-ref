@@ -2,6 +2,7 @@
 
 <div class="container with-fixed-navbar">
   <div class="row">
+    <h4 class="center-align" style="color:red"><%= flash[:alert] %></h4>
     <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4" id="account-details">
       <div class="row">
         <h4 class="center-align" style="color:green"><%= flash[:success] %></h4>
@@ -45,7 +46,7 @@
           <div class="float-left" style="margin-right:20px; margin-bottom:10px;">
             <%= button_to "PRINT SLIP", slip_accounts_path(format: 'pdf'), method: :get%>
           </div>
-          <% if current_account.can_login %>
+          <% if current_account.can_signup %>
           <div class="float-left lighter-blue" style="margin-bottom: 10px;">
             <button class="lighter" id="reschedule-btn" data-toggle="modal" data-target="#reschedule">RESCHEDULE</button>
           </div>
@@ -79,7 +80,9 @@
         <div class="card-index card-warning">
           <h2 class="text-bold">No photoshoot timeslot yet!</h2>
           <br><br>
-          <%= button_to "SIGN UP", sign_ups_accounts_path, method: :get %>
+          <% if current_account.can_signup %>
+            <%= button_to "SIGN UP", sign_ups_accounts_path, method: :get %>
+          <% end %>
         </div>
       <% end %>
       <!-- <h3>Yearbook Writeup</h3>

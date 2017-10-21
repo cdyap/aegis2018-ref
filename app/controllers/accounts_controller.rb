@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
 	end	
 
 	def group_signups
-		if current_account.can_signup_for_group
+		# if current_account.can_signup_for_group
 			@checkgroupslot = Groupslot.where(student_id: current_account.student_id)
 			if @checkgroupslot.count > 0
 				@has_groupshot = true
@@ -26,9 +26,9 @@ class AccountsController < ApplicationController
 			end
 			@slots = Groupshot.all.order(:date).order(:start_time)
 			@dates = ["2017-11-17","2017-11-18","2017-11-20","2017-11-21","2017-11-22","2017-11-23"]
-		else
-			redirect_to accounts_path, method: :get
-		end
+		# else
+		# 	redirect_to accounts_path, method: :get
+		# end
 	end
 
 	def sign_ups
@@ -84,54 +84,68 @@ class AccountsController < ApplicationController
 	end
 
 	def reschedule
-		@timeslot = Timeslot.find_by(id: current_account.timeslot_id)
-		@timeslot.slots = @timeslot.slots + 1
-		@timeslot.save
+		if current_account.can_signup
+			@timeslot = Timeslot.find_by(id: current_account.timeslot_id)
+			@timeslot.slots = @timeslot.slots + 1
+			@timeslot.save
 
-		current_account.timeslot_id = nil
-		current_account.rescheduled = true
-		current_account.save(validate: false)
+			current_account.timeslot_id = nil
+			current_account.rescheduled = true
+			current_account.save(validate: false)
 
-		flash[:alert] = "Timeslot reset."
-		redirect_to sign_ups_accounts_path
+			flash[:alert] = "Timeslot reset."
+			redirect_to sign_ups_accounts_path
+		else
+			flash[:alert] = "You may not reschedule your timeslot."
+			redirect_to :back
+		end
 	end
 
 	def reschedule_group
-		groupslot = Groupslot.find_by(id: current_account.groupshot_id)
-		groupshot = Groupshot.find_by(id: groupslot.groupshot_id)
-		groupslot.delete
-		
-		groupshot.slots = groupshot.slots + 1
-		groupshot.save
+		if current_account.can_signup_for_group
+			groupslot = Groupslot.find_by(id: current_account.groupshot_id)
+			groupshot = Groupshot.find_by(id: groupslot.groupshot_id)
+			groupslot.delete
+			
+			groupshot.slots = groupshot.slots + 1
+			groupshot.save
 
-		current_account.groupshot_id = nil
-		current_account.save(validate: false)
+			current_account.groupshot_id = nil
+			current_account.save(validate: false)
 
-		redirect_to group_signups_accounts_path
+			flash[:alert] = "Groupshot reset."
+			redirect_to group_signups_accounts_path
+		else
+			flash[:alert] = "You may not reschedule your group photoshoot."
+			redirect_to :back
+		end
 	end
 
 	def sign_up
-		@timeslot = Timeslot.find(params[:slot_id])
+		if current_account.can_signup
+			@timeslot = Timeslot.find(params[:slot_id])
 
-		if @timeslot.slots > 0
-			
-			@timeslot.slots = @timeslot.slots - 1
-			if @timeslot.slots < 0
+			if @timeslot.slots > 0
+				
+				@timeslot.slots = @timeslot.slots - 1
+				if @timeslot.slots < 0
+					flash[:alert] = "Slot already taken."
+					redirect_to sign_ups_accounts_path
+				else
+					@timeslot.save
+					current_account.timeslot_id = params[:slot_id]
+					current_account.save(validate: false)
+				end
+
+				redirect_to sign_ups_accounts_path
+			elsif @timeslot.slots == 0
 				flash[:alert] = "Slot already taken."
 				redirect_to sign_ups_accounts_path
-			else
-				@timeslot.save
-				current_account.timeslot_id = params[:slot_id]
-				current_account.save(validate: false)
 			end
-
-			redirect_to sign_ups_accounts_path
-		elsif @timeslot.slots == 0
-			flash[:alert] = "Slot already taken."
-			redirect_to sign_ups_accounts_path
+		else
+			flash[:alert] = "You may not sign up."
+			redirect_to :back
 		end
-		# flash[:alert] = "You may not sign up."
-		# redirect_to :back
 	end
 
 	def group_signup

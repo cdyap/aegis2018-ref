@@ -48,10 +48,24 @@ class Account < ActiveRecord::Base
   def can_signup_for_group
     @groupstart1 = Time.new(2017, 10, 20, 7)
     @groupend2 = Time.new(2017, 10, 21, 23)
-    if Time.now.between?(@groupstart1, @groupend2)
+    @time = Time.now
+    # @time = Time.new(2017, 10, 21, 23,01)
+    if @time.between?(@groupstart1, @groupend2)
       return true
     else 
       return false
+    end
+  end
+
+  def can_signup
+    @time = Time.now
+    @signups_end = Time.new(2017, 10, 21, 23)
+
+    # @time = Time.new(2017, 10, 21, 23,01)
+    if @time > @signups_end
+      return false
+    else
+      return true
     end
   end
 
@@ -98,63 +112,64 @@ class Account < ActiveRecord::Base
   end
 
   def can_login
+    return true
     #2017 start end times
-    @SOHstart = Time.new(2017, 10, 16, 7)
-    @SOHend = Time.new(2017, 10, 16, 23)
+    # @SOHstart = Time.new(2017, 10, 16, 7)
+    # @SOHend = Time.new(2017, 10, 16, 23)
 
-    @SOSSstart = Time.new(2017, 10, 17, 7)
-    @SOSSend = Time.new(2017, 10, 17, 23)
+    # @SOSSstart = Time.new(2017, 10, 17, 7)
+    # @SOSSend = Time.new(2017, 10, 17, 23)
 
-    @SOSEstart = Time.new(2017, 10, 18, 7)
-    @SOSEend = Time.new(2017, 10, 18, 23)
+    # @SOSEstart = Time.new(2017, 10, 18, 7)
+    # @SOSEend = Time.new(2017, 10, 18, 23)
 
-    @SOMstart = Time.new(2017, 10, 19, 7)
-    @SOMend = Time.new(2017, 10, 19, 23)
+    # @SOMstart = Time.new(2017, 10, 19, 7)
+    # @SOMend = Time.new(2017, 10, 19, 23)
 
-    @groupstart1 = Time.new(2017, 10, 20, 7)
-    @groupend1 = Time.new(2017, 10, 20, 23)
+    # @groupstart1 = Time.new(2017, 10, 20, 7)
+    # @groupend1 = Time.new(2017, 10, 20, 23)
 
-    @groupstart2 = Time.new(2017, 10, 21, 7)
-    @groupend2 = Time.new(2017, 10, 21, 23)
+    # @groupstart2 = Time.new(2017, 10, 21, 7)
+    # @groupend2 = Time.new(2017, 10, 21, 23)
 
-    #if time is between group sign ups, return true
-    #if time is later than last time of group sign ups, return false
-    if Time.now.between?(@groupstart1, @groupend1)
-      return true
-    elsif Time.now.between?(@groupstart2, @groupend2)
-      return true
-    elsif Time.now > @groupend2
-      return false
-    end
+    # #if time is between group sign ups, return true
+    # #if time is later than last time of group sign ups, return false
+    # if Time.now.between?(@groupstart1, @groupend1)
+    #   return true
+    # elsif Time.now.between?(@groupstart2, @groupend2)
+    #   return true
+    # elsif Time.now > @groupend2
+    #   return false
+    # end
 
-    #return sign in times based on school
-    case self.school
-    when "SOH" 
-      if Time.now.between?(@SOHstart, @SOHend)
-        return true
-      else
-        return false
-      end
-    when "SOSS"
-      if Time.now.between?(@SOSSstart, @SOSSend)
-        return true
-      else
-        return false
-      end
-    when "SOSE"
-      if Time.now.between?(@SOSEstart, @SOSEend)
-        return true
-      else
-        return false
-      end
-    when "SOM"
-      if Time.now.between?(@SOMstart, @SOMend)
-        return true
-      else
-        return false
-      end
-    end
-    return false
+    # #return sign in times based on school
+    # case self.school
+    # when "SOH" 
+    #   if Time.now.between?(@SOHstart, @SOHend)
+    #     return true
+    #   else
+    #     return false
+    #   end
+    # when "SOSS"
+    #   if Time.now.between?(@SOSSstart, @SOSSend)
+    #     return true
+    #   else
+    #     return false
+    #   end
+    # when "SOSE"
+    #   if Time.now.between?(@SOSEstart, @SOSEend)
+    #     return true
+    #   else
+    #     return false
+    #   end
+    # when "SOM"
+    #   if Time.now.between?(@SOMstart, @SOMend)
+    #     return true
+    #   else
+    #     return false
+    #   end
+    # end
+    # return false
   end
 
 
