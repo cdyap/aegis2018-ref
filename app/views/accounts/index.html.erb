@@ -155,7 +155,7 @@
             <%= button_to "FINALIZE YEARBOOK WRITE-UP", add_writeup_accounts_path, method: :get %>
           <% end %>
         </div>
-      <% elsif !current_account.writeup.present? %>
+      <% elsif !current_account.writeup.present? && Time.now >= Time.new(2017,10,30)%>
         <div class="card-index card-warning writeup-card">
           <h2 class="text-bold">No yearbook write-up drafted yet!</h2>
           <br>
