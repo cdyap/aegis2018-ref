@@ -277,9 +277,7 @@ class AccountsController < ApplicationController
 	def add_writeup
 		@account = current_account
 
-		if current_account.final_writeup
-			redirect_to view_writeup_accounts_path
-		elsif !current_account.can_write
+		if !@account.can_submit_writeup
 			redirect_to accounts_path
 		end
 	end
@@ -377,21 +375,25 @@ class AccountsController < ApplicationController
 
 
 	def update		
-		# if params[:writeup_submit]
-		# 	@account = current_account
-		# 	@account.update_attributes!(account_params)
-		# 	redirect_to view_writeup_accounts_path
-		# elsif params[:account_submit]
-		# 	@account = current_account
-		# 	@account.update_attributes!(account_params)
-		# 	redirect_to accounts_path
-		# else
-			# redirect_to accounts_path
-		# end
+		if params[:writeup_submit]
+			@account = current_account
+			@account.update_attributes!(account_params)
+			flash[:success] = "Write-up draft saved!"
+			redirect_to :back
+		elsif params[:account_submit]
+			@account = current_account
+			@account.final_writeup = true
+			@account.save
+			@account.update_attributes!(account_params)
+			flash[:success] = "Final write-up submitted!"
+			redirect_to :back
+		else
+			redirect_to accounts_path
+		end
 
-		current_account.update_attribute(:feedback, params[:feedback])
-		flash[:success] = "Feedback submitted!"
-		redirect_to yearbook_preview_path
+		# current_account.update_attribute(:feedback, params[:feedback])
+		# flash[:success] = "Feedback submitted!"
+		# redirect_to accounts_path
 	end
 
 	def update_password
@@ -428,6 +430,6 @@ class AccountsController < ApplicationController
 	  end
 
 	  def account_params
-	  	 params.require(:account).permit(:password, :password_confirmation)
+	  	 params.require(:account).permit(:password, :password_confirmation, :writeup)
 	  end
 end

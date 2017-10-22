@@ -177,7 +177,7 @@
 // 	h2 {text-transform:uppercase;}
 // }
 
-#account-sign-ups {
+#account-sign-ups, .add_writeup {
 	h3 {
 		font-weight:700;
 		letter-spacing: 1.2px;
@@ -230,7 +230,7 @@
 // 	padding-right: 20px;
 // }
 
-.sign_ups, .group_signups, .index {
+.sign_ups, .group_signups, .index, .add_writeup {
 	.btn {
 		color: $darkerblue;
 	}
@@ -399,5 +399,60 @@
 	}
 	.radio {
 		margin-bottom:20px;
+	}
+}
+
+.add_writeup {
+	input[type="radio"] {
+		margin-top:2px;
+	}
+
+	textarea {
+		border: 1px solid $blue;
+		outline: none;
+		box-shadow: none;
+		font-family: "Montserrat";
+		font-size:1.2em;
+		border-radius: 0;
+		transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+	    -moz-transition: all 0.3s ease;
+	    -ms-transition: all 0.3s ease;
+	    -o-transition: all 0.3s ease;
+		&:focus {
+			border-color: $blue;
+			box-shadow:7px 7px $lightblue;
+		}
+	}
+
+	.cws {
+		margin-bottom: 10px;
+	}
+	#writeup-preview {
+		p {
+			white-space: pre-wrap;	
+			font-size:1.3em;
+		}
+		border:1px solid white;
+		width:80%;
+		padding:20px;
+		margin-bottom:20px;
+	}
+
+	.write-up-final {
+		padding: 20px 30px;
+		font-family: "Montserrat";
+
+		p {
+			margin-top:20px;
+			font-size:1.5em;
+		}
+		
+	}
+}
+
+.writeup-card {
+	p {
+		font-size:18px;
 	}
 }

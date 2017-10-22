@@ -12,14 +12,6 @@ class Account < ActiveRecord::Base
     "#{self.student_id}, #{self.name}, #{self.yr} - #{self.course}"
   end
 
-  def can_write
-    if WriteupAccount.find_by(idnumber: self.student_id).nil?
-      return false
-    else
-      return true
-    end
-  end
-
   def yearbook_shot
     @casualshot = Student.find(self.student_id).page_number
     case @casualshot.to_s.length
@@ -53,6 +45,18 @@ class Account < ActiveRecord::Base
     if @time.between?(@groupstart1, @groupend2)
       return true
     else 
+      return false
+    end
+  end
+
+  def can_submit_writeup
+    @writeup_start = Time.new(2017,10,30)
+    @writeup_end = Time.new(2017,11,30)
+    @time = Time.now
+
+    if @time.between?(@writeup_start, @writeup_end)
+      return true
+    else
       return false
     end
   end
