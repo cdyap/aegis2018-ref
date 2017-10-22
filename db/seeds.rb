@@ -24,22 +24,36 @@
 # require 'csv'
 
 
-# csv_text = File.read(Rails.root.join('lib', 'seeds', 'students.csv'))
-# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'students.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
 
-# Student.destroy_all
+csv.each do |row|
+	@student = Student.find_by(id: row['id'])
+	if !@student.nil?
+		@student.name = row['name']
+		@student.save!
+		@account = Account.find_by(student_id: @student.id)
+		if !@account.nil?
+			@account.name = @student.name
+			@account.yr = @student.yr
+			@account.course = @student.course
+			@account.save!
+		end
+	end
+end
 
-# csv.each do |row|
-# 	@student = Student.new
-# 	@student.id = row['id']
-# 	@student.name = row['name']
-# 	@student.yr = row['yr']
-# 	@student.course = row['course']
-# 	@student.school = row['school']
-# 	@student.account = false
-# 	@student.save!
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'descriptions.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
 
-# end
+csv.each do |row|
+	@account = Account.find_by(student_id: row['Student ID'])
+
+	if !@account.nil?
+		@account.description = row['Description']
+		@account.save!
+	end
+	
+end
 
 # csv_text = File.read(Rails.root.join('lib', 'seeds', 'accounts.csv'))
 # csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
