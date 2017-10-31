@@ -9,28 +9,41 @@
       </div>
       <div class="row">
         <h3 style="margin-top:30px;margin-bottom:5px;"><%=current_account.student_id %></h3>
-        <h2 style="text-transform: capitalize; margin-top:0px;"><%=current_account.name.downcase %><br><br></h2>
+        <h2 style="text-transform: capitalize; margin-top:0px;"><b><%=current_account.name.downcase %></b><br><br></h2>
       </div>
       <div class="row">
         
         <% if @current_account.full_course.present? %>
           <h4 style="margin-bottom:5px;"><%=current_account.full_course %></h4>
         <% else %>
-          <h4 style="margin-top: 0px;">Course:<br><%=current_account.course %></h4>
+          <h4 style="margin-top: 0px; margin-bottom:15px;">Year and course:<br><b><%=current_account.yr %> - <%=current_account.course %></b></h4>
+        <% end %>
+        <% if @current_account.double_major.present? %>
+          <h4 style="margin-bottom:15px;">Second major:<br><b><%=current_account.double_major %></b></h4>
+        <% end %>
+        <% if @current_account.triple_major.present? %>
+          <h4 style="margin-bottom:15px;">Third major:<br><b><%=current_account.triple_major %></b></h4>
         <% end %>
         <% if @current_account.minor.present? %>
-          <h4>Minor:<br><%=current_account.minor %></h4>
+          <h4 style="margin-bottom:15px;">Minor:<br><b><%=current_account.minor %></b></h4>
         <% end %>
-        <h4>School:<br><%=current_account.school %></h4>
-        <% if @current_account.double_major.present? %>
-          <h4><%=current_account.double_major %></h4>
+        <% if @current_account.minor2.present? %>
+          <h4 style="margin-bottom:15px;">Second minor:<br><b><%=current_account.minor2 %></b></h4>
         <% end %>
+        <% if @current_account.minor3.present? %>
+          <h4 style="margin-bottom:15px;">Third minor:<br><b><%=current_account.minor3 %></b></h4>
+        <% end %>
+        <% if @current_account.minor4.present? %>
+          <h4 style="margin-bottom:15px;">Fourth minor:<br><b><%=current_account.minor4 %></b></h4>
+        <% end %>
+        <h4 style="margin-bottom:15px;">School:<br><b><%=current_account.school %></b></h4>
+        
         <br>
         <%# button_to "CHANGE YOUR PASSWORD", edit_account_registration_path, method: :get%>
         <br>
       </div>
       <div class="row">
-        <%# button_to "View Account Info", edit_info_accounts_path, method: :get%>
+        <%= button_to "EDIT INFORMATION", edit_info_accounts_path, method: :get%>
       </div>
     </div>
     <div class="col-xs-12 col-sm-offset-0 col-sm-8">

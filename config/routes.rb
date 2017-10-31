@@ -64,7 +64,6 @@ Rails.application.routes.draw do
       get 'view_writeup'
       get 'add_writeup'
       get 'edit_info'
-
       get 'submit_writeup'
       post 'submit_final_writeup'
       get 'yearbook_preview'

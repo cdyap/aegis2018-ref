@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171022103644) do
+ActiveRecord::Schema.define(version: 20171030135334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -48,6 +49,11 @@ ActiveRecord::Schema.define(version: 20171022103644) do
     t.boolean  "is_graduating"
     t.boolean  "updated_password"
     t.string   "description"
+    t.string   "specialization"
+    t.string   "minor2"
+    t.string   "minor3"
+    t.string   "minor4"
+    t.string   "triple_major"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree

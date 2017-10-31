@@ -35,7 +35,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      	<ul class="nav navbar-nav">
 			        <!-- <li><%# link_to 'HOME', root_path, method: :get %></li> -->
-			        	<li class="<%= action_name == 'index' ? 'active' : ''%>"><%= link_to 'ACCOUNT', accounts_path, method: :get %></li>
+			        	<li class="<%= action_name == 'index' || action_name == 'edit_info' ? 'active' : ''%>"><%= link_to 'ACCOUNT', accounts_path, method: :get %></li>
 			        	<li class="<%= action_name == 'sign_ups' ? 'active' : ''%>"><%= link_to 'PHOTOSHOOT SIGNUPS', sign_ups_accounts_path, method: :get %></li>
 			        	<li class="<%= action_name == 'group_signups' ? 'active' : ''%>"><%= link_to 'GROUP PHOTOSHOOT SIGNUPS', group_signups_accounts_path, method: :get %></li>
 			        	<% if Time.now >= Time.new(2017,10,30) %>

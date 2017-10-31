@@ -312,6 +312,28 @@ class AccountsController < ApplicationController
 
 	def edit_info
 		@account = current_account
+
+		@soh_minors = ["Literature (English)", "Literature (Filipino)", "Creative Writing", "Theater Arts", "Music Literature", "French", "German", "Spanish", "Philosophy"]
+
+		@som_minors = ["Financial Management", "International Business", "Strategic Human Resource Management", "Management", "Sustainability", "Marketing", "Information Technology", "Decision Science", "Project Management", "Enterprise Development"]
+
+		@soh_certificates = ["Certificate Program - Creative Writing", "Certificate Program - Theater Arts", "Certificate Program - Spanish"]
+		@sose_minors = ["Biomedical Science","Ecology and Systematics",	"Microbiology",	"Molecular Biology and Biotechnology",	"Minor/Specialization in Enterprise Systems",	"Minor/Specialization in Data Science and Analytics",	"Minor/Specialization in Interactive Multimedia"]
+
+		@soss_minors = ["Chinese Studies", "Development Management", "Health and Development", "Economics", "Education", "European Studies", "History", "Japanese Studies", "Korean Studies", "Global Politics", "Public Management", "Cultural Heritage", "Sociology"]
+
+		@soss_specializations = ["Specialization in Development Management", "Specialization in Health and Development", "Specialization in Cultural Heritage"]
+
+		@soss_certificates = ["Certificate Program - Chinese Language Proficiency", "Certificate Program - Completion of Chinese Language Subjects"]
+
+
+		@soh_majors = ["BFA Art Management","BFA Creative Writing","BFA Information Design","BFA Theater Arts","AB	Humanities","AB	Interdisciplinary Studies","AB	Literature - English", "AB	Literature - Filipino (Filipino-Panitikan)","AB	Philosophy"]
+
+		@soss_majors = ["AB Chinese Studies","AB Communication","AB Development Studies","AB Diplomacy and International Relations with Specialization in East and Southeast Asian Studies"	"AB Economics",	"AB Economics (Honors)","AB European Studies","AB History","AB Management Economics","AB Political Science","AB/MA Political Science - Major in Global Politics","AB Political Science - Masters in Public Management","AB Psychology","BS Psychology","AB Social Sciences"]
+
+		@sose_majors = ["BS Applied Physics - BS Materials Science and Engineering","BS Biology","BS Chemistry - BS Materials Science and Engineering","BS Chemistry","BS Computer Science","BS/MS Computer Science","BS Computer Engineering","BS Computer Science - BS Digital Game Design and Development", "BS Environmental Science","BS Electronics Engineering","BS Health Sciences","BS Life Sciences","BS Management Information Systems - MS Computer Science","BS Management Information Systems","BS/M Applied Mathematics with Specialization in Mathematical Finance","BS Mathematics","BS Physics"]
+
+		@som_majors = ["BS Communications Technology Management","BS Information Technology Entrepreneurship","BS Legal Management","BS Management","BS Management (Honors)","BS Management Engineering","BS Management of Applied Chemistry"]
 	end
 
 	def reset_writeup 
@@ -387,6 +409,31 @@ class AccountsController < ApplicationController
 			@account.update_attributes!(account_params)
 			flash[:success] = "Final write-up submitted!"
 			redirect_to :back
+		elsif params[:edit_account]
+			if params[:account][:email] != current_account.email
+				if current_account.update_attributes(account_params)
+					flash[:success] = "Information successfully edited!"
+					redirect_to :back
+				else
+					@errors = current_account.errors.full_messages
+					flash[:error] = @errors
+					@account = current_account
+					redirect_to :back
+				end
+			else
+				params[:account].except(:email)
+				if current_account.update_attributes(account_params.except(:email))
+					current_account.save!
+					flash[:success] = "Information successfully edited!"
+					redirect_to :back
+				else
+					@errors = current_account.errors.full_messages
+					flash[:error] = @errors
+					@account = current_account
+					redirect_to :back
+				end
+			end
+
 		else
 			redirect_to accounts_path
 		end
@@ -430,6 +477,6 @@ class AccountsController < ApplicationController
 	  end
 
 	  def account_params
-	  	 params.require(:account).permit(:password, :password_confirmation, :writeup)
+	  	 params.require(:account).permit(:password, :password_confirmation, :writeup, :minor, :description, :double_major, :cellphone_number, :email, :minor2, :minor3, :minor4, :triple_major)
 	  end
 end
