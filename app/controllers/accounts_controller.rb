@@ -318,7 +318,7 @@ class AccountsController < ApplicationController
 		@som_minors = ["Financial Management", "International Business", "Strategic Human Resource Management", "Management", "Sustainability", "Marketing", "Information Technology", "Decision Science", "Project Management", "Enterprise Development"]
 
 		@soh_certificates = ["Certificate Program - Creative Writing", "Certificate Program - Theater Arts", "Certificate Program - Spanish"]
-		@sose_minors = ["Biomedical Science","Ecology and Systematics",	"Microbiology",	"Molecular Biology and Biotechnology",	"Minor/Specialization in Enterprise Systems",	"Minor/Specialization in Data Science and Analytics",	"Minor/Specialization in Interactive Multimedia"]
+		@sose_minors = ["Biomedical Science","Ecology and Systematics",	"Microbiology",	"Molecular Biology and Biotechnology",	"Minor in Enterprise Systems",	"Minor in Data Science and Analytics",	"Minor in Interactive Multimedia",	"Specialization in Enterprise Systems",	"Specialization in Data Science and Analytics",	"Specialization in Interactive Multimedia"]
 
 		@soss_minors = ["Chinese Studies", "Development Management", "Health and Development", "Economics", "Education", "European Studies", "History", "Japanese Studies", "Korean Studies", "Global Politics", "Public Management", "Cultural Heritage", "Sociology"]
 
