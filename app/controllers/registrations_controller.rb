@@ -13,12 +13,12 @@ class RegistrationsController < Devise::RegistrationsController
 			@student = Student.find(resource.student_id)
 			if resource.name == ""
 				resource.name = @student.name
-				resource.yr = @student.yr
-				resource.course = @student.course
-				resource.school = @student.school
-
-				resource.save(validate: false)
 			end
+			resource.yr = @student.yr
+			resource.course = @student.course
+			resource.school = @student.school
+
+			resource.save(validate: false)
 			@student.account = true
 			@student.save
 			# Student.find(params[:account][:student_id]).update(account: true)
