@@ -313,27 +313,27 @@ class AccountsController < ApplicationController
 	def edit_info
 		@account = current_account
 
-		@soh_minors = ["Literature (English)", "Literature (Filipino)", "Creative Writing", "Theater Arts", "Music Literature", "French", "German", "Spanish", "Philosophy"]
+		@soh_minors = ["Literature (English)", "Literature (Filipino)", "Creative Writing", "Theater Arts", "Music Literature", "French", "German", "Spanish", "Philosophy"].sort_by!{ |e| e.downcase }
 
-		@som_minors = ["Financial Management", "International Business", "Strategic Human Resource Management", "Management", "Sustainability", "Marketing", "Information Technology", "Decision Science", "Project Management", "Enterprise Development"]
+		@som_minors = ["Financial Management", "International Business", "Strategic Human Resource Management", "Management", "Sustainability", "Marketing", "Information Technology", "Decision Science", "Project Management", "Enterprise Development"].sort_by!{ |e| e.downcase }
 
-		@soh_certificates = ["Certificate Program - Creative Writing", "Certificate Program - Theater Arts", "Certificate Program - Spanish"]
-		@sose_minors = ["Biomedical Science","Ecology and Systematics",	"Microbiology",	"Molecular Biology and Biotechnology",	"Minor in Enterprise Systems",	"Minor in Data Science and Analytics",	"Minor in Interactive Multimedia",	"Specialization in Enterprise Systems",	"Specialization in Data Science and Analytics",	"Specialization in Interactive Multimedia"]
+		@soh_certificates = ["Certificate Program - Creative Writing", "Certificate Program - Theater Arts", "Certificate Program - Spanish"].sort_by!{ |e| e.downcase }
 
-		@soss_minors = ["Chinese Studies", "Development Management", "Health and Development", "Economics", "Education", "European Studies", "History", "Japanese Studies", "Korean Studies", "Global Politics", "Public Management", "Cultural Heritage", "Sociology", "Humanitarian Action"]
+		@sose_minors = ["Biomedical Science","Ecology and Systematics",	"Microbiology",	"Molecular Biology and Biotechnology",	"Minor in Enterprise Systems",	"Minor in Data Science and Analytics",	"Minor in Interactive Multimedia",	"Specialization in Enterprise Systems",	"Specialization in Data Science and Analytics",	"Specialization in Interactive Multimedia"].sort_by!{ |e| e.downcase }
 
-		@soss_specializations = ["Specialization in Development Management", "Specialization in Health and Development", "Specialization in Cultural Heritage"]
+		@soss_minors = ["Chinese Studies", "Development Management", "Health and Development", "Economics", "Education", "European Studies", "History", "Japanese Studies", "Korean Studies", "Global Politics", "Public Management", "Cultural Heritage", "Sociology", "Humanitarian Action"].sort_by!{ |e| e.downcase }
 
-		@soss_certificates = ["Certificate Program - Chinese Language Proficiency", "Certificate Program - Completion of Chinese Language Subjects"]
+		@soss_specializations = ["Specialization in Development Management", "Specialization in Health and Development", "Specialization in Cultural Heritage"].sort_by!{ |e| e.downcase }
 
+		@soss_certificates = ["Certificate Program - Chinese Language Proficiency", "Certificate Program - Completion of Chinese Language Subjects"].sort_by!{ |e| e.downcase }
 
-		@soh_majors = ["BFA Art Management","BFA Creative Writing","BFA Information Design","BFA Theater Arts","AB	Humanities","AB	Interdisciplinary Studies","AB	Literature - English", "AB	Literature - Filipino (Filipino-Panitikan)","AB	Philosophy"]
+		@soh_majors = ["BFA Art Management","BFA Creative Writing","BFA Information Design","BFA Theater Arts","AB	Humanities","AB	Interdisciplinary Studies","AB	Literature - English", "AB	Literature - Filipino (Filipino-Panitikan)","AB	Philosophy"].sort_by!{ |e| e.downcase }
 
-		@soss_majors = ["AB Chinese Studies","AB Communication","AB Development Studies","AB Diplomacy and International Relations with Specialization in East and Southeast Asian Studies"	"AB Economics",	"AB Economics (Honors)","AB European Studies","AB History","AB Management Economics","AB Political Science","AB/MA Political Science - Major in Global Politics","AB Political Science - Masters in Public Management","AB Psychology","BS Psychology","AB Social Sciences"]
+		@soss_majors = ["AB Chinese Studies","AB Communication","AB Development Studies","AB Diplomacy and International Relations with Specialization in East and Southeast Asian Studies", "AB Economics", "AB Economics (Honors)","AB European Studies","AB History","AB Management Economics","AB Political Science","AB/MA Political Science - Major in Global Politics","AB Political Science - Masters in Public Management","AB Psychology","BS Psychology","AB Social Sciences"].sort_by!{ |e| e.downcase }
 
-		@sose_majors = ["BS Applied Physics - BS Materials Science and Engineering","BS Biology","BS Chemistry - BS Materials Science and Engineering","BS Chemistry","BS Computer Science","BS/MS Computer Science","BS Computer Engineering","BS Computer Science - BS Digital Game Design and Development", "BS Environmental Science","BS Electronics Engineering","BS Health Sciences","BS Life Sciences","BS Management Information Systems - MS Computer Science","BS Management Information Systems","BS/M Applied Mathematics with Specialization in Mathematical Finance","BS Mathematics","BS Physics"]
+		@sose_majors = ["BS Applied Physics - BS Materials Science and Engineering","BS Biology","BS Chemistry - BS Materials Science and Engineering","BS Chemistry","BS Computer Science","BS/MS Computer Science","BS Computer Engineering","BS Computer Science - BS Digital Game Design and Development", "BS Environmental Science","BS Electronics Engineering","BS Health Sciences","BS Life Sciences","BS Management Information Systems - MS Computer Science","BS Management Information Systems","BS/M Applied Mathematics with Specialization in Mathematical Finance","BS Mathematics","BS Physics"].sort_by!{ |e| e.downcase }
 
-		@som_majors = ["BS Communications Technology Management","BS Information Technology Entrepreneurship","BS Legal Management","BS Management","BS Management (Honors)","BS Management Engineering","BS Management of Applied Chemistry"]
+		@som_majors = ["BS Communications Technology Management","BS Information Technology Entrepreneurship","BS Legal Management","BS Management","BS Management (Honors)","BS Management Engineering","BS Management of Applied Chemistry"].sort_by!{ |e| e.downcase }
 	end
 
 	def reset_writeup 
