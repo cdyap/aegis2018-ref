@@ -8,8 +8,8 @@ class Account < ActiveRecord::Base
   validates :writeup, length: { maximum: 505 }
   validates :cellphone_number, :numericality => true, :allow_blank => true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :update }
-  validates_numericality_of :cellphone_number, :only_integer => true, on: :update
-  validates_presence_of :cellphone_number, on: :update
+  # validates_numericality_of :cellphone_number, :only_integer => true, on: :updates
+  # validates_presence_of :cellphone_number, on: :update
   validates_uniqueness_of :email, on: :update, unless: Proc.new { |user| Account.where(name: user.name).first && Account.where(name: user.name).first.email.include?(user.email) }
   
   def to_s
