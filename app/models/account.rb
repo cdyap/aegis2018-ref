@@ -55,7 +55,7 @@ class Account < ActiveRecord::Base
 
   def can_submit_writeup
     @writeup_start = Time.new(2017,10,30)
-    @writeup_end = Time.new(2017,11,30)
+    @writeup_end = Time.new(2017,12,01)
     @time = Time.now
 
     if @time.between?(@writeup_start, @writeup_end)
