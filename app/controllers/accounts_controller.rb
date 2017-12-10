@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	before_filter :check_for_cancel, :only => [:add_writeup, :edit_info]
-	before_filter :authenticate_user!, :except => [:search, :reset_writeup, :reset_feedback ]
+	before_filter :authenticate_user!, :except => [:search, :reset_writeup, :reset_feedback, :add_writeup, :submit_final_writeup ]
 	layout :resolve_layout
 
 	def index
