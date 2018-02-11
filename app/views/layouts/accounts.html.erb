@@ -36,11 +36,11 @@
 			      	<ul class="nav navbar-nav">
 			        <!-- <li><%# link_to 'HOME', root_path, method: :get %></li> -->
 			        	<li class="<%= action_name == 'index' || action_name == 'edit_info' ? 'active' : ''%>"><%= link_to 'ACCOUNT', accounts_path, method: :get %></li>
-			        	<li class="<%= action_name == 'sign_ups' ? 'active' : ''%>"><%= link_to 'PHOTOSHOOT SIGNUPS', sign_ups_accounts_path, method: :get %></li>
-			        	<li class="<%= action_name == 'group_signups' ? 'active' : ''%>"><%= link_to 'GROUP PHOTOSHOOT SIGNUPS', group_signups_accounts_path, method: :get %></li>
-			        	<% if Time.now >= Time.new(2017,10,30) %>
+			        	<li class="<%= action_name == 'yearbook_preview' ? 'active' : ''%>"><%= link_to 'PREVIEW', yearbook_preview_accounts_path, method: :get %></li>
+			        	<!-- <li class="<%# action_name == 'group_signups' ? 'active' : ''%>"><%# link_to 'GROUP PHOTOSHOOT SIGNUPS', group_signups_accounts_path, method: :get %></li>
+			        	<%# if Time.now >= Time.new(2017,10,30) %>
 				        	<li class="<%= action_name == 'add_writeup' ? 'active' : ''%>"><%= link_to 'YEARBOOK WRITE-UP', add_writeup_accounts_path, method: :get %></li>
-			        	<% end %>
+			        	<%# end %> -->
 			        <!-- <li><%# link_to 'YEARBOOK PREVIEW', yearbook_preview_accounts_path, method: :get %></li> -->
 			        	<li><%= link_to "LOG OUT", destroy_account_session_path, :method => :delete %></a></li>
 			      	</ul>

@@ -463,7 +463,7 @@
 	}
 }
 
-.edit_info {
+.edit_info, .yearbook_preview {
 	input {
 		font-size:1.5em;
 		font-family: "Montserrat";
@@ -473,7 +473,7 @@
 		font-weight:700;
 	}
 
-	input[type="text"],input[type="number"] {
+	input[type="text"],input[type="number"], textarea {
 		height:150%;
 		border: 1px solid $blue;
 		transition: 0.3s ease;
@@ -483,6 +483,15 @@
 		&:focus {
 			outline: none;
 			box-shadow:7px 7px $blue;
+		}
+	}
+
+	textarea {
+		border-radius: 0;
+		&:focus {
+			outline: none;
+			box-shadow:7px 7px $blue;
+			border-color: $blue;
 		}
 	}
 

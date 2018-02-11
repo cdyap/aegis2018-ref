@@ -471,7 +471,7 @@ class AccountsController < ApplicationController
 
 	  def resolve_layout 
 	  	case action_name 
-	  	when "index", "sign_ups"
+	  	when "index", "sign_ups", "yearbook_preview"
 	  		"accounts"
 	  	end
 	  end
