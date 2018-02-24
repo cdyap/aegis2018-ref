@@ -28,8 +28,12 @@
             <td id="student-email"></td>
           </tr>
           <tr>
-            <th>Timeslot</th>
-            <td id="student-timeslot"></td>
+            <th>Conforme</th>
+            <td id="student-conforme"></td>
+          </tr>
+          <tr>
+            <th>Feedback</th>
+            <td id="student-feedback"></td>
           </tr>
           <!-- <tr>
             <th>Feedback</th>
@@ -63,7 +67,7 @@
           <th>School</th>
           <th>Writeup</th>
           <th>Feedback</th>
-          <th></th>
+          <th>Conforme</th>
         </tr>
         <% @accounts.each do |student| %> 
           <tr>
@@ -75,6 +79,7 @@
             <td><%= student.school %></td>
             <td style="white-space: pre-line;"><%= student.writeup %></td>
             <td><%= student.feedback %></td>
+            <td><%= student.conforme %></td>
           </tr>
         <% end %>
       </table>

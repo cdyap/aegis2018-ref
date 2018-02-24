@@ -371,8 +371,11 @@ class AccountsController < ApplicationController
 		@student = Account.find_by(student_id: params[:id])
 
 		if @student.present? 
-			@student.update_attributes(feedback: nil)
-			flash[:notice] = "Student #{params[:id]} feedback resetted."
+			@student.feedback = nil
+			@student.conforme = nil
+			@student.yearbook_waiver = false
+			@student.save
+			flash[:notice] = "Student #{params[:id]} waiver, feedback, and conforme resetted."
 			redirect_to :back
 		else
 			flash[:notice] = "Student #{params[:id]} not found."
@@ -382,7 +385,7 @@ class AccountsController < ApplicationController
 
 	def yearbook_preview
 		@casualshot = current_account.yearbook_shot
-		@togashots = CoursePage.select('page_number').where(course: current_account.course.upcase)
+		@togashots = current_account.toga_shots
 	end
 
 	def addfeedback
@@ -395,6 +398,24 @@ class AccountsController < ApplicationController
 		redirect_to :back
 	end
 
+	def addconforme
+		if params[:conforme] == ""
+			flash[:error] = "Electronic signature required!"
+			redirect_to :back
+		end
+		current_account.conforme = params[:conforme]
+		current_account.save
+
+		flash[:success] = "Yearbook pages accepted!"
+		redirect_to :back
+	end
+
+	def accept_yearbook_waiver
+		current_account.yearbook_waiver = true
+		current_account.save
+
+		redirect_to yearbook_preview_accounts_path
+	end
 
 	def update		
 		if params[:writeup_submit]

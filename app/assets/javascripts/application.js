@@ -88,7 +88,19 @@ $('.admins.accounts').ready(function(){
 		            $('#student-school').text(student.school);
 		            $('#student-account').text(student.account);
 		            $('#student-email').text(student.email);
-		            $('#student-timeslot').text(student.get_timeslot);
+		            if (student.conforme != null){
+			            $('#student-conforme').text(student.conforme);
+		            }
+			        else{
+			        	$('#student-conforme').text("");
+			        }
+			        if (student.feedback != null){
+			            $('#student-feedback').text(student.feedback);
+		            }
+			        else{
+			        	$('#student-feedback').text("");
+			        }
+
 		            $('#edit-account-id').val(student.student_id);
 	        	} else {
 	        		$('#student-name').text("Not found");
@@ -101,7 +113,8 @@ $('.admins.accounts').ready(function(){
 		        $('#student-school').text("");
 		        $('#student-account').text("");
 		        $('#student-email').text("");
-		        $('#student-timeslot').text("");
+		        $('#student-conforme').text("");
+	            $('#student-feedback').text("");
 	          }
 	      });   
 	    } 
@@ -248,12 +261,16 @@ $('.pages.index').ready(function(){
 });
 
 $('.yearbook_preview').ready(function(){
-	$('form').submit(function(e){
-		
-
+	$('#add_feedback_form').submit(function(e){
 		if (($('#page_number').val()=="") || ($('#name').val()=="") || ($('#feedback').val()=="")) {
 			e.preventDefault();
-			$('#error').text("Please fill up all fields.");
+			$('#add_feedback_form #error').text("Please fill up all fields.");
+		} 
+	});
+	$('#add_conforme_form').submit(function(e){
+		if ($('#conforme').val()=="") {
+			e.preventDefault();
+			$('#add_conforme_form #error').text("Please fill up all fields.");
 		} 
 	});
 });

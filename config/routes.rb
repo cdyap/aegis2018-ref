@@ -68,6 +68,8 @@ Rails.application.routes.draw do
       post 'submit_final_writeup'
       get 'yearbook_preview'
       post 'addfeedback'
+      post 'addconforme'
+      get 'accept_yearbook_waiver'
     end
   end
 

@@ -21,39 +21,72 @@
 # end
 
 # =============================
-# require 'csv'
+require 'csv'
 
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'students.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'grads.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
 
 csv.each do |row|
-	@student = Student.find_by(id: row['id'])
+	@account = Account.find_by(student_id: row['student_id'])
+	@student = Student.find_by(id: row['student_id'])
 	if !@student.nil?
-		@student.name = row['name']
-		@student.save!
-		@account = Account.find_by(student_id: @student.id)
-		if !@account.nil?
-			@account.name = @student.name
-			@account.yr = @student.yr
-			@account.course = @student.course
-			@account.save!
+		begin
+			@student.page_number = row[0]
+			@student.save!
+		rescue
+			puts @student.id
 		end
+	else
+		puts row['student_id'] + " not found"
 	end
 end
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'descriptions.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'nongrads.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
 
 csv.each do |row|
-	@account = Account.find_by(student_id: row['Student ID'])
-
-	if !@account.nil?
-		@account.description = row['Description']
-		@account.save!
+	@account = Account.find_by(student_id: row['student_id'])
+	@student = Student.find_by(id: row['student_id'])
+	if !@student.nil?
+		begin
+			@student.page_number = row[0]
+			@student.save!
+		rescue
+			puts @student.id
+		end
+	else
+		puts row['student_id'] + " not found"
 	end
-	
 end
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'courses.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+CoursePage.delete_all
+csv.each do |row|
+	begin
+		@coursepage = CoursePage.new
+		@coursepage.page_number = row[0]
+		@coursepage.course = row['course']
+		@coursepage.save!
+	rescue
+		puts row['page_num'] + " " + row['course']
+	end
+end
+
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'descriptions.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+# csv.each do |row|
+# 	@account = Account.find_by(student_id: row['Student ID'])
+
+# 	if !@account.nil?
+# 		@account.description = row['Description']
+# 		@account.save!
+# 	end
+	
+# end
 
 # csv_text = File.read(Rails.root.join('lib', 'seeds', 'accounts.csv'))
 # csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')

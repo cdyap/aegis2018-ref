@@ -1,62 +1,99 @@
 <div class="container with-fixed-navbar">
-  <div class="row">
-    <h4 class="center-align" style="color:green"><%= flash[:success] %></h4>
-    <h2 class="text-left text-bold">Individual page:</h2>
-    <br>
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1" style="margin-bottom:30px;">
-      <object data="<%= current_account.yearbook_shot %>" type="application/pdf" style="width:100%;height:100vh;" height="100">
-      Your browser does not support pdfs, <a href="<%= current_account.yearbook_shot %>">click here to
-      download the file.</a>
-      </object>
-    </div>
-
-    
-  </div>
-  <hr>
-  <div class="row">
-    <h2 class="text-left text-bold" style="margin-top:30px;margin-bottom:20px;">Toga pages of your course:</h2>
-    <% @togashots.each do |togapage| %>
-      
+  <% if @current_account.yearbook_waiver %>
+    <div class="row">
+      <h4 class="center-align" style="color:green"><%= flash[:success] %></h4>
+      <h2 class="text-left text-bold">Individual page:</h2>
+      <br>
       <div class="col-xs-12 col-sm-10 col-sm-offset-1" style="margin-bottom:30px;">
-        <object data="<%= togapage.page_num %>" type="application/pdf" style="width:100%;height:100vh;" height="100">
-        Your browser does not support pdfs, <a href="<%= togapage.page_num %>">click here to
+        <object data="<%= current_account.yearbook_shot %>" type="application/pdf" style="width:100%;height:100vh;" height="100">
+        Your browser does not support pdfs, <a href="<%= current_account.yearbook_shot %>">click here to
         download the file.</a>
         </object>
       </div>
 
-
-    <% end %>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
-      <h2 class="text-left text-bold" style="margin-top:30px;margin-bottom:10px;">Concerns:</h2><br>
       
-      <% if current_account.feedback.nil? %>
-      
-      <p class="text-left">You will only be able to submit a concern once. <br>Please review your concern before submitting. <br>You don't have to submit a concern if you're okay with your yearbook pages already.</p>
-      <br>
-      
-      <form class="form-horizontal concerns-form" action="/accounts/addfeedback" method="POST">
-        <p id="error" style="color:red;text-align:center;"></p>
-        <div class="col-xs-12">
-        <div class="field">
-        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-        <label for="page_number" style="font-family: 'Montserrat'!important;font-size:16px;">Relevant page number/s:</label>
-        <input type="text" name="page_number" class="form-control" required id="page_number">
-        <br>
-        <br>
-        <label for="name" style="font-family: 'Montserrat'!important;font-size:16px;">Name in yearbook:</label>
-        <input type="text" name="name" class="form-control" required id="name">
-        <br>
-        <br>
-        <label for="feedback" style="font-family: 'Montserrat'!important;font-size:16px;">Concern:</label>
-        <textarea name="feedback" id="" rows="5" class="writeup form-control" style="margin-top:0px;" required id="feedback"></textarea>
-        <button type="submit" class="center lighter" style="margin-top:30px;">SAVE FEEDBACK</button>
-        </div></div>
-      </form>
-      <%end%>
     </div>
-  </div>
+    <hr>
+    <div class="row">
+      <h2 class="text-left text-bold" style="margin-top:30px;margin-bottom:20px;">Toga pages of your course:</h2>
+      <% @togashots.each do |togapage| %>
+        
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1" style="margin-bottom:30px;">
+          <object data="/pics/<%= togapage.page_number %>.pdf" type="application/pdf" style="width:100%;height:100vh;" height="100">
+          Your browser does not support pdfs, <a href="/pics/<%= togapage.page_number %>.pdf">click here to
+          download the file.</a>
+          </object>
+        </div>
+
+
+      <% end %>
+    </div>
+    <% if current_account.conforme.nil? && current_account.feedback.nil? %>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
+        <% if current_account.conforme.nil? %>
+          <h2 class="text-left text-bold" style="margin-top:30px;margin-bottom:0px;">Accept yearbook pages:</h2>
+          
+          <h4 class="text-left" style="line-height: 1.5em;">If your photo and all your details (name, course, double minor, minor or specialization (if applicable), write-up) are correct, please type in your full name and the date today as your electronic signature in the area below.</h4> <br>
+          <h4 class="text-left" style="line-height: 1.5em;">You may <b>not</b> submit concerns once you accept your yearbook pages.</h4><br>
+          <form class="form-horizontal concerns-form" action="/accounts/addconforme" method="POST" id="add_conforme_form">
+            <p id="error" style="color:red;text-align:center;"></p>
+            <div class="col-xs-12">
+            <div class="field">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <label for="conforme" style="font-family: 'Montserrat'!important;font-size:16px;">Conforme:</label>
+            <textarea name="conforme" id="" rows="5" class="writeup form-control" style="margin-top:0px;" required id="conforme" placeholder="Juan dela Cruz 03/04/2018"></textarea>
+            <button type="submit" class="lighter" style="margin-top:30px;">ACCEPT YEARBOOK PAGES</button>
+            </div></div>
+          </form>
+          <br>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
+        <% if current_account.feedback.nil? %>
+        <h2 class="text-left text-bold" style="margin-top:30px;margin-bottom:0px;">Concerns:</h2>
+        <h4 class="text-left" style="line-height: 1.5em;">You will only be able to submit a concern <b>once</b>. <br>Please review your concern before submitting.</h4>
+        <br>
+        
+        <form class="form-horizontal concerns-form" action="/accounts/addfeedback" method="POST" id="add_feedback_form">
+          <p id="error" style="color:red;text-align:center;"></p>
+          <div class="col-xs-12">
+          <div class="field">
+          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+          <label for="page_number" style="font-family: 'Montserrat'!important;font-size:16px;">Relevant page number/s:</label>
+          <input type="text" name="page_number" class="form-control" required id="page_number">
+          <br>
+          <br>
+          <label for="name" style="font-family: 'Montserrat'!important;font-size:16px;">Email:</label>
+          <input type="text" name="name" class="form-control" required id="name">
+          <br>
+          <br>
+          <label for="feedback" style="font-family: 'Montserrat'!important;font-size:16px;">Concern:</label>
+          <textarea name="feedback" id="" rows="5" class="writeup form-control" style="margin-top:0px;" required id="feedback"></textarea>
+          <button type="submit" class="lighter" style="margin-top:30px;">SAVE FEEDBACK</button>
+          </div></div>
+        </form>
+        <%end%>
+      </div>
+    </div>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <h2 class="text-left text-bold">Disclaimer:</h2><br>
+        <h3 style="line-height: 1.5em;">
+        This yearbook is not an official school document of the Ateneo de Manila University. It is not based on the official list of graduation. By being in this yearbook, the reader understands that this cannot be a substitute for a diploma or definite graduation.</h3>
+  
+        <h3  style="line-height: 1.5em;">This is also subject to change if the status of a student changes before the printing schedule.</h3>
+        <br>
+        <a href="<%= accept_yearbook_waiver_accounts_path %>" class="btn lighter">ACCEPT AND VIEW YEARBOOK PAGE</a>
+      </div>
+    </div>
+  <% end %>
       
 </div>

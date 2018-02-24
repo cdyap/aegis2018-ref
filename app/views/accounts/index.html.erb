@@ -47,24 +47,24 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-offset-0 col-sm-8">
-      <% if current_account.timeslot_id %>
-        <% if Timeslot.find_by(id: current_account.timeslot_id).date >= Date.today %>
-          <%= link_to "", slip_accounts_path(format: 'pdf'), method: :get%>
+      <!-- <%# if current_account.timeslot_id %>
+        <%# if Timeslot.find_by(id: current_account.timeslot_id).date >= Date.today %>
+          <%# link_to "", slip_accounts_path(format: 'pdf'), method: :get%>
           <div class="card-index card-success lighter-blue">
             <h3><u>Photoshoot timeslot:</u></h3>
-            <h2 class="text-bold"><%= current_account.get_timeslot %></h2>
+            <h2 class="text-bold"><%# current_account.get_timeslot %></h2>
             <br>
             <p>You are required to bring a print out of your confirmation slip to your photoshoot.<br>The final timeslot you sign up for will be followed.</p>
             <br>
             <br>
             <div class="float-left" style="margin-right:20px; margin-bottom:10px;">
-              <%= button_to "PRINT SLIP", slip_accounts_path(format: 'pdf'), method: :get%>
+              <%# button_to "PRINT SLIP", slip_accounts_path(format: 'pdf'), method: :get%>
             </div>
-            <% if current_account.can_signup %>
+            <%# if current_account.can_signup %>
             <div class="float-left lighter-blue" style="margin-bottom: 10px;">
               <button class="lighter" id="reschedule-btn" data-toggle="modal" data-target="#reschedule">RESCHEDULE</button>
             </div>
-            <% end %>
+            <%# end %>
             <div class="modal fade bs-example-modal-sm" id="reschedule" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                 <div class="modal-dialog modal-md" role="document">
                   
@@ -78,7 +78,7 @@
                       <h4 class="text-center" style="line-height:1.5em;">You will be removed from your original timeslot<br>before you pick another timeslot.</h4>
                       <div class="row text-center" style="margin-top:30px;">
                         <div class="float-left" style="margin-right:20px;">
-                        <%= button_to "YES", reschedule_accounts_path, method: :get%>
+                        <%# button_to "YES", reschedule_accounts_path, method: :get%>
                         </div>
                         <div class="float-left">
                           <button class="lighter" data-dismiss="modal" aria-label="Close">CANCEL</button>
@@ -90,41 +90,41 @@
                 </div>
               </div>
           </div>
-        <% end %>
-      <% else %>
+        <%# end %>
+      <%# else %>
         <div class="card-index card-warning">
           <h2 class="text-bold">No photoshoot timeslot</h2>
           <br><br>
-          <% if current_account.can_signup %>
-            <%= button_to "SIGN UP", sign_ups_accounts_path, method: :get %>
-          <% end %>
+          <%# if current_account.can_signup %>
+            <%# button_to "SIGN UP", sign_ups_accounts_path, method: :get %>
+          <%# end %>
         </div>
-      <% end %>
+      <%# end %> -->
       <!-- <h3>Yearbook Writeup</h3>
       <%# if current_account.writeup.present? %>
         <h4 style="white-space: pre-line;"><%# current_account.writeup %></h4>
       <%# else %>
         <h4>No Writeup</h4>
       <%# end %> -->
-      <% if current_account.groupshot_id %>
-        <% if Groupshot.find_by(id: Groupslot.find_by(id: current_account.groupshot_id).groupshot_id).date >= Date.today %>
-          <%= link_to "", groupslip_accounts_path(format: 'pdf'), method: :get%>
-          <div class="card-index card-success lighter-blue">
+      <%# if current_account.groupshot_id %>
+        <%# if Groupshot.find_by(id: Groupslot.find_by(id: current_account.groupshot_id).groupshot_id).date >= Date.today %>
+          <%# link_to "", groupslip_accounts_path(format: 'pdf'), method: :get%>
+          <!-- <div class="card-index card-success lighter-blue">
             <h3><u>Group photoshoot timeslot:</u></h3>
-            <h2 class="text-bold"><%= current_account.get_groupslot.to_s %></h2>
-            <h4><%=current_account.get_groupslot.group_type%></h4>
+            <h2 class="text-bold"><%# current_account.get_groupslot.to_s %></h2>
+            <h4><%#current_account.get_groupslot.group_type%></h4>
             <br>
             <p>You are required to bring a print out of your confirmation slip to your photoshoot.<br>The final timeslot you sign up for will be followed.</p>
             <br>
             <br>
             <div class="float-left" style="margin-right:20px; margin-bottom:10px;">
-              <%= button_to "PRINT SLIP", groupslip_accounts_path(format: 'pdf'), method: :get%>
+              <%# button_to "PRINT SLIP", groupslip_accounts_path(format: 'pdf'), method: :get%>
             </div>
-            <% if current_account.can_signup_for_group %>
+            <%# if current_account.can_signup_for_group %>
             <div class="float-left lighter-blue" style="margin-bottom: 10px;">
               <button class="lighter" id="reschedule-btn" data-toggle="modal" data-target="#reschedule-group">RESCHEDULE</button>
             </div>
-            <% end %>
+            <%# end %>
             <div class="modal fade bs-example-modal-sm" id="reschedule-group" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                 <div class="modal-dialog modal-md" role="document">
                   
@@ -138,7 +138,7 @@
                       <h4 class="text-center" style="line-height:1.5em;">You will be removed from your original timeslot<br>before you pick another timeslot.</h4>
                       <div class="row text-center" style="margin-top:30px;">
                         <div class="float-left" style="margin-right:20px;">
-                        <%= button_to "YES", reschedule_group_accounts_path, method: :get%>
+                        <%# button_to "YES", reschedule_group_accounts_path, method: :get%>
                         </div>
                         <div class="float-left">
                           <button class="lighter" data-dismiss="modal" aria-label="Close">CANCEL</button>
@@ -149,41 +149,67 @@
                   </div>
                 </div>
               </div>
-          </div>
-        <% end %>
-      <% end %>
-      <% if current_account.writeup.present? && current_account.final_writeup? %>
-        <div class="card-index card-success lighter-blue">
+          </div> -->
+        <%# end %>
+      <%# end %>
+      <%# if current_account.writeup.present? && current_account.final_writeup? %>
+        <!-- <div class="card-index card-success lighter-blue">
           <h3><u>Final yearbook write-up:</u></h3>
-          <h2 class=""><%= current_account.writeup.gsub(/\n/, '<br />').html_safe %></h2>
-        </div>
-      <% elsif current_account.writeup.present? && !current_account.final_writeup? %>
-        <div class="card-index card-warning writeup-card">
+          <h2 class=""><%# current_account.writeup.gsub(/\n/, '<br />').html_safe %></h2>
+        </div> -->
+      <%# elsif current_account.writeup.present? && !current_account.final_writeup? %>
+        <!-- <div class="card-index card-warning writeup-card">
           <h2 class="text-bold">Yearbook write-up not yet finalized!</h2>
           <br>
           <h4><u>Current write-up draft:</u></h4>
-          <h3><%= current_account.writeup.gsub(/\n/, '<br />').html_safe %></h3>
-          <br>
-          <% if current_account.can_submit_writeup %>
-            <%= button_to "FINALIZE YEARBOOK WRITE-UP", add_writeup_accounts_path, method: :get %>
-          <% end %>
-        </div>
-      <% elsif !current_account.writeup.present? && Time.now >= Time.new(2017,10,30)%>
-        <div class="card-index card-warning writeup-card">
+          <h3><%# current_account.writeup.gsub(/\n/, '<br />').html_safe %></h3>
+          <br> -->
+          <%# if current_account.can_submit_writeup %>
+            <%# button_to "FINALIZE YEARBOOK WRITE-UP", add_writeup_accounts_path, method: :get %>
+          <%# end %>
+        <!-- </div> -->
+      <%# elsif !current_account.writeup.present? && Time.now >= Time.new(2017,10,30)%>
+      <!--   <div class="card-index card-warning writeup-card">
           <h2 class="text-bold">No yearbook write-up drafted yet!</h2>
           <br>
-          <br>
-          <% if current_account.can_submit_writeup %>
-            <%= button_to "CREATE YOUR YEARBOOK WRITE-UP", add_writeup_accounts_path, method: :get %>
-          <% end %>
-        </div>
-      <% end %>
+          <br> -->
+          <%# if current_account.can_submit_writeup %>
+            <%# button_to "CREATE YOUR YEARBOOK WRITE-UP", add_writeup_accounts_path, method: :get %>
+          <%# end %>
+        <!-- </div> -->
+      <%# end %>
       <!-- <h3>Yearbook Writeup</h3>
       <%# if current_account.writeup.present? %>
         <h4 style="white-space: pre-line;"><%# current_account.writeup %></h4>
       <%# else %>
         <h4>No Writeup</h4>
       <%# end %> -->
+      <% if !current_account.yearbook_waiver %>
+        <div class="card-index card-warning">
+            <h2 class="text-bold">Yearbook waiver not accepted!</h2>
+            <br><br>
+            <%= button_to "VIEW YEARBOOK PAGES", yearbook_preview_accounts_path, method: :get %>
+        </div>
+      <% elsif current_account.yearbook_waiver && current_account.conforme == nil && current_account.feedback == nil %>
+        <div class="card-index card-warning">
+            <h2 class="text-bold">No feedback for yearbook pages submitted!</h2>
+            <h4 style="line-height: 1.5em">Enter your electronic signature to accept your yearbook pages or submit a concern.</h4>
+            <br><br>
+            <%= button_to "SUBMIT FEEDBACK", yearbook_preview_accounts_path, method: :get %>
+        </div>
+      <% elsif current_account.conforme != nil %>
+        <div class="card-index card-success">
+            <h2 class="text-bold">Yearbook pages accepted!</h2>
+            <h4 style="line-height: 1.5em">Electronic signature: <%=current_account.conforme %></h4>
+        </div>
+      <% elsif current_account.feedback != nil %>
+        <div class="card-index card-success">
+            <h2 class="text-bold">Concern submitted!</h2>
+            <h4 style="line-height: 1.5em">Page number: <b><%=current_account.feedback.split('][')[0][1..-1] %></b></h4>
+            <h4 style="line-height: 1.5em">Email: <b><%=current_account.feedback.split('][')[1] %></b></h4>
+            <h4 style="line-height: 1.5em">Concern: <b><%=current_account.feedback.split('][')[2].chomp(']') %></b></h4>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

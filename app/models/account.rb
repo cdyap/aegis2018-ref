@@ -17,16 +17,20 @@ class Account < ActiveRecord::Base
   end
 
   def yearbook_shot
-    @casualshot = Student.find(self.student_id).page_number
-    case @casualshot.to_s.length
-    when 2
-      return "/pics/00"+@casualshot.to_s+".pdf"
-    when 3
-      return "/pics/0"+@casualshot.to_s+".pdf"
-    when 4
+    begin
+      @casualshot = Student.find(self.student_id).page_number
       return "/pics/"+@casualshot.to_s+".pdf"
+    rescue
+      return ""
     end
+  end
 
+  def toga_shots
+    begin
+      return CoursePage.select('page_number').where(course: self.course).order('page_number')
+    rescue
+      return ""
+    end
   end
 
   def get_timeslot
