@@ -23,6 +23,40 @@
 # =============================
 require 'csv'
 
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'students.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
+
+csv.each do |row|
+
+	@student = Student.find_by(id: row['id'])
+	@account = Account.find_by(student_id: row['id'])
+	if @student.nil?
+		begin
+			@new_student = Student.new
+			@new_student.id = row['id']
+			@new_student.name = row['name']
+			@new_student.yr = row['yr']
+			@new_student.course = row['course']
+			@new_student.school = row['school']
+
+			if @account.nil?
+				@new_student.account = false
+			else
+				@new_student.account = true
+			end
+			@new_student.save!
+		rescue
+			puts row['id'] + " failed!"
+		end
+	elsif !@student.nil? and !@account.nil?
+		@student.update_column(:course, row['course'])
+		@account.update_column(:course, @student.course)
+	end
+end
+
+@student_ids = Account.pluck(:student_id)
+Student.where('id in (?)', @student_ids).update_all(account: true)
+Student.where('id not in (?)', @student_ids).update_all(account: false)
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'grads.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
@@ -62,7 +96,6 @@ end
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'courses.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
-
 CoursePage.delete_all
 csv.each do |row|
 	begin

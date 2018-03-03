@@ -82,49 +82,19 @@ class Account < ActiveRecord::Base
   end
 
   def inactive_message
-    @SOHstart = Time.new(2017, 10, 16, 7)
-    @SOHend = Time.new(2017, 10, 16, 23)
-
-    @SOSSstart = Time.new(2017, 10, 17, 7)
-    @SOSSend = Time.new(2017, 10, 17, 23)
-
-    @SOSEstart = Time.new(2017, 10, 18, 7)
-    @SOSEend = Time.new(2017, 10, 18, 23)
-
-    @SOMstart = Time.new(2017, 10, 19, 7)
-    @SOMend = Time.new(2017, 10, 19, 23)
-
-    @groupstart1 = Time.new(2017, 10, 20, 7)
-    @groupend1 = Time.new(2017, 10, 20, 23)
-
-    @groupstart2 = Time.new(2017, 10, 21, 7)
-    @groupend2 = Time.new(2017, 10, 21, 23)
-
-    # @somspecialstart = Time.new(2016, 10, 8, 23).in_time_zone('Hong Kong')
-    # @somspecialend = Time.new(2016, 10, 9, 15).in_time_zone('Hong Kong')
-
-    @time = Time.now
-
-    if Time.now > @SOMend
-      return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between 7:00 AM and 11:00 PM of " + @groupstart1.strftime("%b %d") + " and " +@groupstart2.strftime("%b %d")
-    else 
-      case self.school
-      when "SOH" 
-          return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOHstart.strftime("%b %d, %l:%M %p") + " and " + @SOHend.strftime("%l:%M %p")  +". "
-      when "SOSS"
-          return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSSstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSSend.strftime("%l:%M %p") +". "
-      when "SOSE"
-        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOSEstart.strftime("%b %d, %l:%M %p")  + " and " + @SOSEend.strftime("%l:%M %p") +". "
-      when "SOM"
-        return "Time now is " + @time.strftime("%l:%M %p") + ". You may only login between " + @SOMstart.strftime("%b %d, %l:%M %p")  + " and " + @SOMend.strftime("%l:%M %p") +". "
-      end
-    end
-
-    return "Sign ups are from October 16 to 21."
+  
+    return "Feedback submission is from March 4 to 6."
   end
 
   def can_login
-    return true
+    # Feedback start end times
+    @feedback_start = Time.new(2018,3,4)
+    @feedback_end = Time.new(2018,3,7)
+    if Time.now.between?(@feedback_start, @feedback_end)
+      return true
+    else
+      return false
+    end
     #2017 start end times
     # @SOHstart = Time.new(2017, 10, 16, 7)
     # @SOHend = Time.new(2017, 10, 16, 23)
@@ -193,7 +163,8 @@ class Account < ActiveRecord::Base
       else
         where(conditions.to_hash).first
       end
-    end
+  end
+
   def create_or_update
     raise ReadOnlyRecord, "#{self.class} is marked as readonly" if readonly?
     account = Account.where(student_id: self.student_id).first
@@ -208,11 +179,11 @@ class Account < ActiveRecord::Base
 
   def self.to_csv(options = {})
     (CSV.generate(options) do |csv|
-      column_names = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email)
-      names = column_names << "timeslot"
-      csv << names
+      column_names = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email feedback)
+      # names = column_names << "timeslot"
+      csv << column_names
       all.each do |account|
-        row_values = account.attributes.values_at(*column_names).insert(-1, account.get_timeslot)
+        row_values = account.attributes.values_at(*column_names)
         csv << row_values
       end
     end).encode('WINDOWS-1252', :undef => :replace, :replace => '')

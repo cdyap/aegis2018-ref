@@ -1,6 +1,6 @@
 <div class="container with-fixed-navbar">
  <h4 class="center-align text-bold"><%= flash[:notice] %></h4>
-  <div class="row">
+  <div class="row" style="margin-bottom:100px;">
     <div class="col-xs-12 col-md-8">
       <h3 class="center-align">Accounts Summary</h3>
       <table class="table-striped table">
@@ -86,7 +86,7 @@
           </td>
         </tr>
       </table>
-      <h3 class="text-left">Sync student record to account record</h3>
+      <!-- <h3 class="text-left">Sync student record to account record</h3>
       <form action="/students/reset" method="POST">
         <input type="number" name="id" placeholder="Enter ID number">
         <button type="submit">SYNC</button>
@@ -108,7 +108,7 @@
       <form action="/accounts/reset_writeup" method="POST">
         <input type="number" name="id" placeholder="Enter ID number">
         <button type="submit">RESET</button>
-      </form>
+      </form> -->
 
       <h3 class="text-left">Reset feedback</h3>
       <form action="/accounts/reset_feedback" method="POST">

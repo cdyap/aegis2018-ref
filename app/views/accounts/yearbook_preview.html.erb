@@ -9,7 +9,10 @@
         Your browser does not support pdfs, <a href="<%= current_account.yearbook_shot %>">click here to
         download the file.</a>
         </object>
+        <br><br>
+        <a class="text-center" href="<%= current_account.yearbook_shot %>">Download file</a>
       </div>
+
 
       
     </div>
@@ -23,6 +26,9 @@
           Your browser does not support pdfs, <a href="/pics/<%= togapage.page_number %>.pdf">click here to
           download the file.</a>
           </object>
+          <br><br>
+          <a class="text-center" href="/pics/<%= togapage.page_number %>.pdf">Download file</a>
+          <br><br>
         </div>
 
 
@@ -35,7 +41,7 @@
         <% if current_account.conforme.nil? %>
           <h2 class="text-left text-bold" style="margin-top:30px;margin-bottom:0px;">Accept yearbook pages:</h2>
           
-          <h4 class="text-left" style="line-height: 1.5em;">If your photo and all your details (name, course, double minor, minor or specialization (if applicable), write-up) are correct, please type in your full name and the date today as your electronic signature in the area below.</h4> <br>
+          <h4 class="text-left" style="line-height: 1.5em;">If your photo and all your details (name, course, double minor, minor or specialization (if applicable), write-up) are correct, please type in your <b>full name, email address, and the date today</b> as your electronic signature in the area below.</h4> <br>
           <h4 class="text-left" style="line-height: 1.5em;">You may <b>not</b> submit concerns once you accept your yearbook pages.</h4><br>
           <form class="form-horizontal concerns-form" action="/accounts/addconforme" method="POST" id="add_conforme_form">
             <p id="error" style="color:red;text-align:center;"></p>
@@ -43,7 +49,7 @@
             <div class="field">
             <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
             <label for="conforme" style="font-family: 'Montserrat'!important;font-size:16px;">Conforme:</label>
-            <textarea name="conforme" id="" rows="5" class="writeup form-control" style="margin-top:0px;" required id="conforme" placeholder="Juan dela Cruz 03/04/2018"></textarea>
+            <textarea name="conforme" id="" rows="5" class="writeup form-control" style="margin-top:0px;" required id="conforme" placeholder="Juan dela Cruz, juan_delacruz@obf.ateneo.edu, 03/05/2018"></textarea>
             <button type="submit" class="lighter" style="margin-top:30px;">ACCEPT YEARBOOK PAGES</button>
             </div></div>
           </form>
@@ -87,7 +93,7 @@
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <h2 class="text-left text-bold">Disclaimer:</h2><br>
         <h3 style="line-height: 1.5em;">
-        This yearbook is not an official school document of the Ateneo de Manila University. It is not based on the official list of graduation. By being in this yearbook, the reader understands that this cannot be a substitute for a diploma or definite graduation.</h3>
+        This yearbook is not an official school record of the Ateneo de Manila University. It is not in any way an authority to graduate a particular student from a course nor proof that a student has satisfied the requirements for graduation.</h3>
   
         <h3  style="line-height: 1.5em;">This is also subject to change if the status of a student changes before the printing schedule.</h3>
         <br>

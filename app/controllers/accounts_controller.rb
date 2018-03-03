@@ -370,11 +370,12 @@ class AccountsController < ApplicationController
 	def reset_feedback
 		@student = Account.find_by(student_id: params[:id])
 
-		if @student.present? 
-			@student.feedback = nil
-			@student.conforme = nil
-			@student.yearbook_waiver = false
-			@student.save
+		if @student.present?
+			@student.update_columns(feedback: nil, conforme: nil, yearbook_waiver: false)
+			# @student.feedback = nil
+			# @student.conforme = nil
+			# @student.yearbook_waiver = false
+			# @student.save 
 			flash[:notice] = "Student #{params[:id]} waiver, feedback, and conforme resetted."
 			redirect_to :back
 		else
@@ -391,8 +392,7 @@ class AccountsController < ApplicationController
 	def addfeedback
 
 		feedback = "["+params[:page_number]+"]"+"["+params[:name]+"]"+"["+params[:feedback]+"]"
-		current_account.feedback = feedback
-		current_account.save
+		current_account.update_column(:feedback, feedback)
 
 		flash[:success] = "Feedback submitted!"
 		redirect_to :back
