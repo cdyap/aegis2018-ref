@@ -19,7 +19,7 @@ class Account < ActiveRecord::Base
   def yearbook_shot
     begin
       @casualshot = Student.find(self.student_id).page_number
-      return "/pics/"+@casualshot.to_s+".pdf"
+      return "#{Rails.root}/pics/"+@casualshot.to_s+".pdf"
     rescue
       return ""
     end
