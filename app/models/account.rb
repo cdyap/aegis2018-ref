@@ -59,7 +59,7 @@ class Account < ActiveRecord::Base
 
   def can_submit_writeup
     @writeup_start = Time.new(2017,10,30)
-    @writeup_end = Time.new(2017,12,11)
+    @writeup_end = Time.new(2017,12,12)
     @time = Time.now
 
     if @time.between?(@writeup_start, @writeup_end)
@@ -182,6 +182,7 @@ class Account < ActiveRecord::Base
       column_names = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email feedback)
       # names = column_names << "timeslot"
       csv << column_names
+
       all.each do |account|
         row_values = account.attributes.values_at(*column_names)
         csv << row_values
