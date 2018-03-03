@@ -19,7 +19,7 @@ class Account < ActiveRecord::Base
   def yearbook_shot
     begin
       @casualshot = Student.find(self.student_id).page_number
-      return "#{Rails.root}/pics/"+@casualshot.to_s+".pdf"
+      return "pdfs/"+@casualshot.to_s+".pdf"
     rescue
       return ""
     end
@@ -27,7 +27,7 @@ class Account < ActiveRecord::Base
 
   def toga_shots
     begin
-      return CoursePage.select('page_number').where(course: self.course).order('page_number')
+      return CoursePage.where(course: self.course).order('page_number').pluck('page_number')
     rescue
       return ""
     end
