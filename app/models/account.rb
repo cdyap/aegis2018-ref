@@ -80,7 +80,6 @@ class Account < ActiveRecord::Base
   end
 
   def inactive_message
-  
     return "Feedback submission is from March 4 to 6."
   end
 

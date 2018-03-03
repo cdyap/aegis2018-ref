@@ -42,7 +42,6 @@
           <th>Course</th>
           <th>School</th>
           <th class="right-align">Page number</th>
-          <th class="right-align">Exists?</th>
         </tr>
         <% @students.each do |student| %> 
           <tr class=<%=student.account ? "success":"warning" %>>
@@ -52,11 +51,6 @@
             <td><%= student.course %></td>
             <td><%= student.school %></td>
             <td class="right-align"><%= student.page_number %></td>
-            <% if !student.page_number.nil? %>
-            <td><%=File::exist?("public/pics/"+student.page_number+".pdf")%></td>
-            <% else %>
-              <td></td>
-            <% end %>
           </tr>
         <% end %>
       </table>
