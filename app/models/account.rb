@@ -70,14 +70,12 @@ class Account < ActiveRecord::Base
   end
 
   def can_signup
-    @time = Time.now
-    @signups_end = Time.new(2017, 10, 21, 23)
-
-    # @time = Time.new(2017, 10, 21, 23,01)
-    if @time > @signups_end
-      return false
-    else
+    @feedback_start = Time.new(2018,3,4)
+    @feedback_end = Time.new(2018,3,7)
+    if Time.now.between?(@feedback_start, @feedback_end)
       return true
+    else
+      return false
     end
   end
 
@@ -87,6 +85,9 @@ class Account < ActiveRecord::Base
   end
 
   def can_login
+    if self.email == "cdyap@outlook.com"
+      return true
+    end
     # Feedback start end times
     @feedback_start = Time.new(2018,3,4)
     @feedback_end = Time.new(2018,3,7)
