@@ -75,6 +75,18 @@ class AdminsController < ApplicationController
 		@sose_feedback = Account.where(school: "SOSE").where.not(feedback: nil).count
 		@total_feedback = Account.where.not(feedback: nil).count
 
+		@soh_conforme = Account.where(school: "SOH").where.not(conforme: nil).count
+		@som_conforme = Account.where(school: "SOM").where.not(conforme: nil).count
+		@soss_conforme = Account.where(school: "SOSS").where.not(conforme: nil).count
+		@sose_conforme = Account.where(school: "SOSE").where.not(conforme: nil).count
+		@total_conforme = Account.where.not(conforme: nil).count
+
+		@soh_signed = Account.where(school: "SOH").where(yearbook_waiver: true).count
+		@som_signed = Account.where(school: "SOM").where(yearbook_waiver: true).count
+		@soss_signed = Account.where(school: "SOSS").where(yearbook_waiver: true).count
+		@sose_signed = Account.where(school: "SOSE").where(yearbook_waiver: true).count
+		@total_signed = Account.where(yearbook_waiver: true).count
+
 		@total_shoots = Account.where.not(timeslot_id: nil).count
 
 		@accounts_list = Account.order(:student_id)
