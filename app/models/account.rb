@@ -179,7 +179,7 @@ class Account < ActiveRecord::Base
 
   def self.to_csv(options = {})
     (CSV.generate(options) do |csv|
-      column_names = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email feedback)
+      column_names = %w(student_id name school yr course full_course double_major second_status minor cellphone_number email feedback conforme)
       # names = column_names << "timeslot"
       csv << column_names
 
