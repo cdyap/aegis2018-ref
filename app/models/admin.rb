@@ -9,6 +9,8 @@ class Admin < ActiveRecord::Base
     return false
   end
 
+
+
   def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       #raise conditions.inspect
@@ -21,7 +23,7 @@ class Admin < ActiveRecord::Base
 
   def create_or_update
     raise ReadOnlyRecord, "#{self.class} is marked as readonly" if readonly?
-    account = Admin.where(id: self.id).first
+    account = Admin.where(email: self.email).first
     if account
       self.id = account.id
     end
