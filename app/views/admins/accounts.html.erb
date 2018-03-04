@@ -56,7 +56,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 table-responsive">
       <table class="table-striped table">
         <tr>
           <th class="right-align">Student ID</th>
@@ -65,9 +65,9 @@
           <th class="right-align">Year</th>
           <th>Course</th>
           <th>School</th>
-          <th>Writeup</th>
-          <th>Feedback</th>
-          <th>Conforme</th>
+          <th style="max-width: 150px;">Writeup</th>
+          <th style="max-width: 150px;">Feedback</th>
+          <th style="max-width: 100px;">Conforme</th>
         </tr>
         <% @accounts.each do |student| %> 
           <tr>
