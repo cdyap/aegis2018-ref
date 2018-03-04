@@ -10,7 +10,7 @@
       <% elsif alert %>
       <p class="alert text-center"><%= alert %></p>
       <%end%>
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "center"}) do |f| %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "center"}) do |f| %>
         <%= devise_error_messages! %>
           <div class="row">
             <div class="field col-xs-12">

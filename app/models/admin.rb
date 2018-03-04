@@ -5,6 +5,9 @@ class Admin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   self.primary_key = :id
 
+  def can_signup
+    return false
+  end
 
   def create_or_update
     raise ReadOnlyRecord, "#{self.class} is marked as readonly" if readonly?
