@@ -3,6 +3,9 @@ class Admin < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  self.primary_key = :id
+
+
   def create_or_update
     raise ReadOnlyRecord, "#{self.class} is marked as readonly" if readonly?
     account = Admin.where(id: self.id).first
