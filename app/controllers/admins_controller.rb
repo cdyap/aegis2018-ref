@@ -156,6 +156,20 @@ class AdminsController < ApplicationController
 		
 	end
 
+	def reset_password
+		@student = Account.find_by(student_id: params[:id])
+		if @student.present?
+			@student.password = "Password1234"
+			@student.password_confirmation = "Password1234"
+			@student.save
+			flash[:notice] = "Student #{params[:id]} password resetted to 'Password1234'."
+			redirect_to :back
+		else
+			flash[:notice] = "Student #{params[:id]} not found."
+			redirect_to :back
+		end
+	end
+
 	private
 
 	  def resolve_layout 

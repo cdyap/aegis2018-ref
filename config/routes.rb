@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get 'edit_account'
       post 'edit_account'
       post 'clean_timeslots'
+      post 'reset_password'
     end
   end
 
@@ -69,6 +70,7 @@ Rails.application.routes.draw do
       get 'yearbook_preview'
       post 'addfeedback'
       post 'addconforme'
+
       get 'accept_yearbook_waiver'
     end
   end
